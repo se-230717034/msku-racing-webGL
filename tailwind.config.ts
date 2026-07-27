@@ -10,19 +10,21 @@ export default {
   theme: {
     extend: {
       colors: {
-        background: "#050914",
-        foreground: "#f4f5f7",
-        navy: "#071a35",
-        burgundy: "#8a1f3d",
-        accent: "#e13d58",
-        muted: "#a3abba"
+        background: "#080D1A",
+        foreground: "#F5F4EF",
+        navy: "#080D1A",
+        university: "#252B87",
+        burgundy: "#A00026",
+        green: "#00652E",
+        accent: "#A00026",
+        muted: "#B7BAC7"
       },
       fontFamily: {
         sans: ["var(--font-manrope)", "sans-serif"],
         display: ["var(--font-space)", "sans-serif"]
       },
       backgroundImage: {
-        "grid-dark": "linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px)"
+        "grid-dark": "linear-gradient(rgba(37,43,135,.10) 1px, transparent 1px), linear-gradient(90deg, rgba(37,43,135,.10) 1px, transparent 1px)"
       },
       animation: {
         marquee: "marquee 24s linear infinite"

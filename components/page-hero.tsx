@@ -5,7 +5,8 @@ export function PageHero({ eyebrow, title, description, children }: { eyebrow: s
   return (
     <section className="relative overflow-hidden border-b border-white/10 pt-[76px]">
       <div className="absolute inset-0 bg-grid-dark bg-[size:56px_56px] [mask-image:linear-gradient(to_bottom,black,transparent)]" />
-      <div className="absolute -right-24 top-10 h-96 w-96 rounded-full bg-burgundy/15 blur-[110px]" />
+      <div className="absolute right-[8%] top-0 h-full w-px rotate-[18deg] bg-university/30" />
+      <div className="absolute right-[18%] top-0 h-1/2 w-px rotate-[18deg] bg-burgundy/50" />
       <div className="container-shell relative py-24 md:py-32">
         <Reveal>
           <p className="eyebrow">{eyebrow}</p>

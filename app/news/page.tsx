@@ -4,16 +4,16 @@ import { PageHero } from "@/components/page-hero";
 import { Reveal } from "@/components/motion-reveal";
 
 const stories = [
-  ["Development","MR-26 concept freeze: the next chapter begins","After months of trade studies, simulations, and packaging reviews, our newest platform enters detailed design.","22 July 2026","https://images.unsplash.com/photo-1581092921461-eab62e97a780?auto=format&fit=crop&w=1200&q=85"],
-  ["Team","Inside vehicle dynamics: grip starts with questions","Meet the group translating tire data and driver feedback into a responsive chassis.","04 July 2026","https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=1200&q=85"],
-  ["Workshop","Our first carbon-fiber layup","A new in-house process brings lighter, stiffer bodywork—and a lot of learning.","18 June 2026","https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=1200&q=85"],
-  ["Partners","Manufacturing partnership expands for 2026","Better access to precision machining accelerates iteration throughout the build.","29 May 2026","https://images.unsplash.com/photo-1565439396-9e59f6d5dc1b?auto=format&fit=crop&w=1200&q=85"]
+  ["Geliştirme","MR-26 konsept tasarımı tamamlandı","Aylar süren karşılaştırma, simülasyon ve yerleşim çalışmalarının ardından yeni platformumuz detay tasarım sürecine girdi.","22 Temmuz 2026","https://images.unsplash.com/photo-1581092921461-eab62e97a780?auto=format&fit=crop&w=1200&q=85"],
+  ["Takım","Araç dinamiği: yol tutuş doğru sorularla başlar","Lastik verilerini ve sürücü geri bildirimlerini çevik bir şasiye dönüştüren ekibimizi tanıyın.","04 Temmuz 2026","https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=1200&q=85"],
+  ["Atölye","İlk karbon fiber serimimiz","Yeni takım içi üretim süreci daha hafif, daha rijit gövde parçaları ve büyük bir öğrenme deneyimi sağlıyor.","18 Haziran 2026","https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=1200&q=85"],
+  ["İş Birliği","2026 üretim iş birliğimiz büyüyor","Hassas imalat olanaklarına daha iyi erişim, geliştirme döngülerimizi hızlandırıyor.","29 Mayıs 2026","https://images.unsplash.com/photo-1565439396-9e59f6d5dc1b?auto=format&fit=crop&w=1200&q=85"]
 ];
 
 export default function NewsPage() {
   return (
     <>
-      <PageHero eyebrow="News & build notes" title="From the garage." description="Progress reports, team stories, technical deep dives, and everything learned between the lines." />
+      <PageHero eyebrow="Haberler ve üretim notları" title="Garajdan gelişmeler." description="İlerleme raporları, takım hikâyeleri, teknik incelemeler ve süreç boyunca öğrendiklerimiz." />
       <section className="section-space"><div className="container-shell grid gap-x-6 gap-y-12 md:grid-cols-2">
         {stories.map(([tag,title,copy,date,image],i)=><Reveal key={title} delay={(i%2)*.07}>
           <article className="group">

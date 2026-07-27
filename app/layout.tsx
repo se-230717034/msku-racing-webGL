@@ -8,13 +8,13 @@ const manrope = Manrope({ subsets: ["latin"], variable: "--font-manrope" });
 const space = Space_Grotesk({ subsets: ["latin"], variable: "--font-space" });
 
 export const metadata: Metadata = {
-  title: { default: "MSKU Racing", template: "%s — MSKU Racing" },
-  description: "Muğla Sıtkı Koçman University Formula Student Team — engineered to move forward."
+  title: { default: "MSKÜ Racing", template: "%s — MSKÜ Racing" },
+  description: "Muğla Sıtkı Koçman Üniversitesi Formula Student Takımı."
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className="dark">
+    <html lang="tr" className="dark">
       <body className={`${manrope.variable} ${space.variable} font-sans antialiased`}>
         <div className="noise" />
         <Header />

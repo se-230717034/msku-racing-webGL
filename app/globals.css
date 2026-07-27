@@ -6,18 +6,15 @@
 html { scroll-behavior: smooth; }
 body {
   margin: 0;
-  color: #f4f5f7;
-  background:
-    radial-gradient(circle at 80% 10%, rgba(138,31,61,.16), transparent 28rem),
-    radial-gradient(circle at 10% 28%, rgba(10,52,97,.18), transparent 32rem),
-    #050914;
+  color: #F5F4EF;
+  background: #080D1A;
 }
-::selection { background: #e13d58; color: white; }
+::selection { background: #A00026; color: #F5F4EF; }
 
 @layer utilities {
   .container-shell { @apply mx-auto w-full max-w-[1440px] px-5 sm:px-8 lg:px-12; }
   .section-space { @apply py-20 md:py-28; }
-  .eyebrow { @apply text-xs font-bold uppercase tracking-[.26em] text-accent; }
+  .eyebrow { @apply text-xs font-bold uppercase tracking-[.24em] text-burgundy; }
   .display-title { @apply font-display text-5xl font-semibold uppercase leading-[.9] tracking-[-.055em] sm:text-6xl lg:text-8xl; }
   .text-balance { text-wrap: balance; }
 }
@@ -27,11 +24,17 @@ body {
   inset: 0;
   pointer-events: none;
   z-index: 50;
-  opacity: .025;
+  opacity: .015;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
 }
 
 .clip-slash { clip-path: polygon(0 0, 100% 0, 92% 100%, 0 100%); }
 .image-mask { mask-image: linear-gradient(to bottom, black 70%, transparent 100%); }
+.carbon-subtle {
+  background-image:
+    linear-gradient(45deg, rgba(245,244,239,.018) 25%, transparent 25%),
+    linear-gradient(-45deg, rgba(245,244,239,.018) 25%, transparent 25%);
+  background-size: 8px 8px;
+}
 
 input, textarea, select { color-scheme: dark; }

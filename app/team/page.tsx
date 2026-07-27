@@ -1,24 +1,110 @@
+import { CalendarDays, Code2, Cpu, Wrench } from "lucide-react";
 import { PageHero } from "@/components/page-hero";
 import { Reveal } from "@/components/motion-reveal";
-import { Card, CardContent } from "@/components/ui/card";
 
-const groups = [
-  ["Araç Dinamiği", "Süspansiyon, direksiyon, lastikler ve mekanik yol tutuş.", "AD"],
-  ["Güç Aktarma", "Elektrikli tahrik, soğutma, kontrol ve enerji sistemleri.", "GA"],
-  ["Aerodinamik", "Her newtonu verimli kullanan CFD odaklı gövde tasarımı.", "AERO"],
-  ["Şasi ve Kompozit", "Rijitlik, güvenlik ve servis kolaylığı için hafif yapılar.", "ŞK"],
-  ["Elektronik", "Araç kontrolü, telemetri, gömülü sistemler ve kablolama.", "EL"],
-  ["İş Geliştirme ve Medya", "İş birlikleri, finans, marka, etkinlik ve takım iletişimi.", "İM"]
+const teams = [
+  {
+    name: "Elektronik Ekibi",
+    description: "Araç elektroniği, kablolama, veri toplama ve kontrol sistemleri.",
+    icon: Cpu,
+    members: [
+      "Ufuk Çok",
+      "Mahmut Can Aşar",
+      "Eylül Deniz Kudüs",
+      "Alper Salih Günaydın",
+      "Barış Bağcı",
+      "Ebrar Azra Arslan",
+      "Alperen Kaşıkçı",
+      "Vatan Saatçi",
+    ],
+  },
+  {
+    name: "Yazılım Ekibi",
+    description: "Gömülü yazılım, telemetri, veri analizi ve takımın dijital sistemleri.",
+    icon: Code2,
+    members: [
+      "Aslı Ceren Yılmaz",
+      "Şenol Durmuş",
+      "Yaşar Kaki",
+      "Yunus Emre Çelik",
+    ],
+  },
+  {
+    name: "Mekanik Ekip",
+    description: "Şasi, süspansiyon, aktarma, üretim ve aracın mekanik bütünlüğü.",
+    icon: Wrench,
+    members: [
+      "Halil İbrahim Yılmaz",
+      "Sertan Kurt",
+      "Ata Üstün",
+      "Tuğra Temur",
+      "Zişan Günay",
+    ],
+  },
+  {
+    name: "Organizasyon Ekibi",
+    description: "Etkinlik, iletişim, sponsorluk ve takım organizasyonu.",
+    icon: CalendarDays,
+    members: [
+      "Eylül Deniz Kudu",
+      "Ebrar Azra Arslan",
+      "Şule Nilay Aktaş",
+      "Selin Kula",
+      "Zişan Günay",
+    ],
+  },
 ];
 
 export default function TeamPage() {
   return (
     <>
-      <PageHero eyebrow="Takımımız" title="Farklı disiplinler. Ortak hedef." description="Araç bizim ortak dilimiz. Altı uzman departman, aynı hedef için birlikte çalışıyor." />
-      <section className="section-space"><div className="container-shell grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-        {groups.map(([title, copy, mark], i) => <Reveal key={title} delay={i * .05}><Card className="group h-full overflow-hidden transition hover:border-accent/40"><CardContent className="relative min-h-72 p-8"><span className="absolute right-5 top-3 font-display text-6xl font-bold text-white/[.035] transition group-hover:text-accent/[.09]">{mark}</span><span className="text-xs font-bold uppercase tracking-[.2em] text-accent">0{i + 1}</span><h2 className="mt-20 font-display text-3xl font-semibold uppercase tracking-[-.03em]">{title}</h2><p className="mt-4 leading-7 text-white/45">{copy}</p></CardContent></Card></Reveal>)}
-      </div></section>
-      <section className="border-y border-white/10 bg-university/10"><div className="container-shell py-20 text-center"><Reveal><p className="eyebrow">Her sezon büyüyen ekip</p><p className="mx-auto mt-6 max-w-4xl font-display text-4xl font-semibold uppercase leading-tight tracking-[-.04em] md:text-6xl">Merak, başlangıç için yeterli.</p><a href="/join" className="mt-8 inline-flex rounded-sm bg-burgundy px-7 py-4 text-xs font-bold uppercase tracking-[.18em]">Takıma katıl</a></Reveal></div></section>
+      <PageHero
+        eyebrow="Takımımız"
+        title="Dört ekip. Tek hedef."
+        description="Amper'i tasarlayan, geliştiren ve takımın sürdürülebilirliğini sağlayan MSKÜ Racing üyeleri."
+      />
+
+      <section className="section-space">
+        <div className="container-shell grid gap-5 lg:grid-cols-2">
+          {teams.map(({ name, description, icon: Icon, members }, teamIndex) => (
+            <Reveal key={name} delay={teamIndex * .06}>
+              <article className="h-full border border-white/10 bg-[#0D1425]">
+                <header className="flex items-start justify-between gap-6 border-b border-white/10 p-7 md:p-8">
+                  <div>
+                    <p className="text-[10px] font-bold uppercase tracking-[.22em] text-green">
+                      Ekip 0{teamIndex + 1}
+                    </p>
+                    <h2 className="mt-4 font-display text-3xl font-semibold uppercase tracking-[-.035em]">
+                      {name}
+                    </h2>
+                    <p className="mt-3 max-w-lg text-sm leading-7 text-white/45">{description}</p>
+                  </div>
+                  <span className="grid size-12 shrink-0 place-items-center border border-university/50 bg-university/10 text-white/70">
+                    <Icon size={22} />
+                  </span>
+                </header>
+
+                <div className="p-7 md:p-8">
+                  <div className="mb-5 flex items-center justify-between">
+                    <p className="text-[10px] font-bold uppercase tracking-[.2em] text-white/35">Ekip üyeleri</p>
+                    <span className="font-display text-sm text-burgundy">{members.length} kişi</span>
+                  </div>
+                  <ul className="grid gap-px overflow-hidden border border-white/10 bg-white/10 sm:grid-cols-2">
+                    {members.map((member, memberIndex) => (
+                      <li key={`${name}-${member}`} className="flex items-center gap-3 bg-[#0A1020] px-4 py-4 text-sm">
+                        <span className="font-display text-[10px] text-university">
+                          {String(memberIndex + 1).padStart(2, "0")}
+                        </span>
+                        <span className="text-white/75">{member}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </article>
+            </Reveal>
+          ))}
+        </div>
+      </section>
     </>
   );
 }

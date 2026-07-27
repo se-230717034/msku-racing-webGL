@@ -14,7 +14,7 @@ export function Footer() {
           <div>
             <p className="eyebrow mb-5">Keşfet</p>
             <div className="grid grid-cols-2 gap-3 text-sm text-white/55">
-              <Link href="/about">Hakkımızda</Link><Link href="/team">Takım</Link>
+              <Link href="/">Ana Sayfa</Link><Link href="/team">Takım</Link>
               <Link href="/car">Araç</Link><Link href="/sponsors">Sponsorlar</Link>
               <Link href="/news">Haberler</Link><Link href="/contact">İletişim</Link>
             </div>

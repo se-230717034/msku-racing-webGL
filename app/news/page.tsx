@@ -4,7 +4,7 @@ import { PageHero } from "@/components/page-hero";
 import { Reveal } from "@/components/motion-reveal";
 
 const stories = [
-  ["Geliştirme","MR-26 konsept tasarımı tamamlandı","Aylar süren karşılaştırma, simülasyon ve yerleşim çalışmalarının ardından yeni platformumuz detay tasarım sürecine girdi.","22 Temmuz 2026","https://images.unsplash.com/photo-1581092921461-eab62e97a780?auto=format&fit=crop&w=1200&q=85"],
+  ["Geliştirme","Amper konsept tasarımı tamamlandı","Aylar süren karşılaştırma, simülasyon ve yerleşim çalışmalarının ardından yeni platformumuz detay tasarım sürecine girdi.","22 Temmuz 2026","https://images.unsplash.com/photo-1581092921461-eab62e97a780?auto=format&fit=crop&w=1200&q=85"],
   ["Takım","Araç dinamiği: yol tutuş doğru sorularla başlar","Lastik verilerini ve sürücü geri bildirimlerini çevik bir şasiye dönüştüren ekibimizi tanıyın.","04 Temmuz 2026","https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=1200&q=85"],
   ["Atölye","İlk karbon fiber serimimiz","Yeni takım içi üretim süreci daha hafif, daha rijit gövde parçaları ve büyük bir öğrenme deneyimi sağlıyor.","18 Haziran 2026","https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=1200&q=85"],
   ["İş Birliği","2026 üretim iş birliğimiz büyüyor","Hassas imalat olanaklarına daha iyi erişim, geliştirme döngülerimizi hızlandırıyor.","29 Mayıs 2026","https://images.unsplash.com/photo-1565439396-9e59f6d5dc1b?auto=format&fit=crop&w=1200&q=85"]

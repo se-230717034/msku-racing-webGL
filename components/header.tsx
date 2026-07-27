@@ -9,7 +9,7 @@ import { Logo } from "./logo";
 import { cn } from "@/lib/utils";
 
 const nav = [
-  ["Ana Sayfa", "/"], ["Hakkımızda", "/about"], ["Araç", "/car"], ["Takım", "/team"],
+  ["Ana Sayfa", "/"], ["Araç", "/car"], ["Takım", "/team"],
   ["Sponsorlar", "/sponsors"], ["Haberler", "/news"], ["Galeri", "/gallery"], ["İletişim", "/contact"]
 ];
 

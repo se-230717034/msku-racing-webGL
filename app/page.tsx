@@ -1,34 +1,31 @@
 import Link from "next/link";
 import {
   ArrowRight,
-  BatteryCharging,
   CalendarDays,
-  Gauge,
+  Code2,
+  Cpu,
   Layers3,
-  MoveUpRight,
-  Radio,
-  ShieldCheck,
-  Users,
+  Wrench,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Reveal } from "@/components/motion-reveal";
 import { SectionHeading } from "@/components/section-heading";
 
 const departments = [
-  { title: "Şasi ve Kompozit", copy: "Hafif, rijit ve güvenli taşıyıcı sistemler.", icon: Layers3 },
-  { title: "Güç Aktarma", copy: "Elektrikli tahrik, batarya ve termal yönetim.", icon: BatteryCharging },
-  { title: "Araç Dinamiği", copy: "Süspansiyon, direksiyon ve mekanik yol tutuş.", icon: Gauge },
-  { title: "Elektronik", copy: "Araç kontrolü, veri toplama ve telemetri.", icon: Radio },
+  { title: "Mekanik Ekip", copy: "Şasi, süspansiyon, aktarma ve üretim süreçleri.", icon: Wrench },
+  { title: "Elektronik Ekip", copy: "Araç elektroniği, kablolama ve kontrol sistemleri.", icon: Cpu },
+  { title: "Yazılım Ekibi", copy: "Gömülü yazılım, telemetri ve veri analizi.", icon: Code2 },
+  { title: "Organizasyon Ekibi", copy: "Etkinlik, iletişim, sponsorluk ve takım yönetimi.", icon: CalendarDays },
 ];
 
 const targets = [
-  ["01", "Aracı tamamlamak", "MR-26 platformunu üretimden dinamik testlere taşımak."],
+  ["01", "Aracı tamamlamak", "Amper'i üretimden dinamik testlere taşımak."],
   ["02", "Veriyle geliştirmek", "Her test turunu ölçülebilir mühendislik kazanımına dönüştürmek."],
   ["03", "Yarışmaya hazırlanmak", "Teknik kontrollerden dayanıklılık etabına kadar eksiksiz hazırlanmak."],
 ];
 
 const news = [
-  ["22.07.2026", "Tasarım", "MR-26 konsept tasarım süreci tamamlandı"],
+  ["22.07.2026", "Tasarım", "Amper konsept tasarım süreci tamamlandı"],
   ["04.07.2026", "Takım", "Araç dinamiği departmanımızı yakından tanıyın"],
   ["18.06.2026", "Üretim", "Kompozit üretim çalışmalarında yeni dönem"],
 ];
@@ -78,36 +75,15 @@ export default function Home() {
                 <p className="text-[10px] font-bold uppercase tracking-[.28em] text-white/30">Araç render alanı</p>
                 <p className="mt-3 max-w-xs text-xs leading-6 text-white/20">Nihai araç görseli daha sonra bu alana yerleştirilecektir.</p>
               </div>
-              <span className="absolute bottom-8 right-8 font-display text-7xl font-semibold text-white/[.035]">MR-26</span>
+              <span className="absolute bottom-8 right-8 font-display text-7xl font-semibold uppercase text-white/[.035]">Amper</span>
             </div>
-          </Reveal>
-        </div>
-      </section>
-
-      <section className="section-space bg-[#F5F4EF] text-[#080D1A]">
-        <div className="container-shell grid gap-12 lg:grid-cols-[.8fr_1.2fr] lg:items-start">
-          <Reveal>
-            <p className="text-xs font-bold uppercase tracking-[.24em] text-burgundy">Takım Hakkında</p>
-            <h2 className="mt-5 font-display text-4xl font-semibold uppercase leading-[.95] tracking-[-.045em] sm:text-5xl lg:text-6xl">
-              Sınıftan piste, birlikte üretiyoruz.
-            </h2>
-          </Reveal>
-          <Reveal delay={.08}>
-            <p className="text-xl leading-9 text-[#080D1A]/70 md:text-2xl">
-              MSKÜ Racing; mühendislik, tasarım, iletişim ve iş geliştirme disiplinlerini tek bir yarış aracı etrafında buluşturan öğrenci takımıdır.
-            </p>
-            <div className="mt-9 grid gap-5 border-t border-[#080D1A]/15 pt-7 sm:grid-cols-2">
-              <div><Users className="text-university" /><strong className="mt-4 block font-display text-xl uppercase">Çok disiplinli ekip</strong><p className="mt-2 text-sm leading-6 text-[#080D1A]/55">Farklı bölümlerden öğrenciler, ortak mühendislik hedefleri.</p></div>
-              <div><ShieldCheck className="text-green" /><strong className="mt-4 block font-display text-xl uppercase">Gerçek sorumluluk</strong><p className="mt-2 text-sm leading-6 text-[#080D1A]/55">Tasarım kararından üretime kadar uçtan uca deneyim.</p></div>
-            </div>
-            <Link href="/about" className="mt-8 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[.18em] text-burgundy">Hikâyemizi keşfet <MoveUpRight size={15} /></Link>
           </Reveal>
         </div>
       </section>
 
       <section className="section-space border-y border-white/10">
         <div className="container-shell">
-          <Reveal><SectionHeading eyebrow="Araç ve Departmanlar" title="Bir araç. Dört temel sistem." copy="Her departman kendi uzmanlık alanında çalışır; tüm kararlar pist üzerindeki ortak performansa bağlanır." /></Reveal>
+          <Reveal><SectionHeading eyebrow="Takım Yapısı" title="Dört ekip. Tek hedef." copy="Mekanik, elektronik, yazılım ve organizasyon ekipleri Amper için birlikte çalışır." /></Reveal>
           <div className="mt-12 grid gap-px overflow-hidden border border-white/10 bg-white/10 md:grid-cols-2 lg:grid-cols-4">
             {departments.map(({ title, copy, icon: Icon }, i) => (
               <Reveal key={title} delay={i * .05} className="h-full">
@@ -120,7 +96,7 @@ export default function Home() {
               </Reveal>
             ))}
           </div>
-          <div className="mt-8 flex justify-end"><Link href="/car" className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[.18em] text-burgundy">Araç detayları <ArrowRight size={15} /></Link></div>
+          <div className="mt-8 flex justify-end"><Link href="/team" className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[.18em] text-burgundy">Tüm ekibi gör <ArrowRight size={15} /></Link></div>
         </div>
       </section>
 
@@ -145,8 +121,8 @@ export default function Home() {
             <div><p className="text-xs font-bold uppercase tracking-[.24em] text-burgundy">Sponsorlarımız</p><h2 className="mt-5 font-display text-4xl font-semibold uppercase tracking-[-.04em] sm:text-5xl">Mühendisliğe güç verenler.</h2></div>
             <Link href="/sponsors" className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[.18em] text-university">İş birliği seçenekleri <ArrowRight size={15} /></Link>
           </Reveal>
-          <div className="mt-12 grid grid-cols-2 gap-px border border-[#080D1A]/15 bg-[#080D1A]/15 md:grid-cols-4">
-            {["Ana Sponsor", "Teknik Partner", "Üretim Partneri", "Destekçi"].map((label) => (
+          <div className="mt-12 grid grid-cols-2 gap-px border border-[#080D1A]/15 bg-[#080D1A]/15 md:grid-cols-3">
+            {["Elmas Sponsor 01", "Elmas Sponsor 02", "Altın Sponsor 01", "Altın Sponsor 02", "Gümüş Sponsor 01", "Gümüş Sponsor 02"].map((label) => (
               <div key={label} className="grid min-h-36 place-items-center bg-[#F5F4EF] p-5 text-center"><span className="text-[10px] font-bold uppercase tracking-[.2em] text-[#080D1A]/30">{label}<small className="mt-2 block font-normal tracking-[.1em]">Logo alanı</small></span></div>
             ))}
           </div>

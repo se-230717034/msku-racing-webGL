@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Logo } from "./logo";
+import { ThemeToggle } from "./theme-toggle";
 import { cn } from "@/lib/utils";
 
 const nav = [
@@ -35,14 +36,17 @@ export function Header() {
   const pathname = usePathname();
 
   return (
-    <header className="fixed inset-x-0 top-0 z-40 border-b border-white/[.09] bg-[#080D1A]/95 backdrop-blur-md">
+    <header className="site-header fixed inset-x-0 top-0 z-40 border-b border-white/[.09] bg-[#080D1A]/95 backdrop-blur-md">
       <div className="container-shell flex h-[68px] items-center justify-between xl:h-[76px]">
         <Logo />
-        <nav className="hidden items-center gap-1 xl:flex" aria-label="Ana navigasyon">
-          {nav.map(([label, href]) => (
-            <NavLink key={href} label={label} href={href} active={pathname === href} />
-          ))}
-        </nav>
+        <div className="flex items-center gap-3">
+          <nav className="hidden items-center gap-1 xl:flex" aria-label="Ana navigasyon">
+            {nav.map(([label, href]) => (
+              <NavLink key={href} label={label} href={href} active={pathname === href} />
+            ))}
+          </nav>
+          <ThemeToggle />
+        </div>
       </div>
 
       <nav className="border-t border-white/[.07] xl:hidden" aria-label="Mobil navigasyon">

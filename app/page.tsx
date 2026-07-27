@@ -59,7 +59,7 @@ export default function Home() {
           <Reveal delay={.08} className="relative">
             <div className="absolute -left-5 top-10 h-[72%] w-1 bg-university" />
             <div className="absolute -left-5 top-[82%] h-10 w-1 bg-burgundy" />
-            <div className="carbon-subtle relative min-h-[390px] overflow-hidden border border-white/15 bg-[#0B1222] md:min-h-[540px]">
+            <div className="theme-fixed-dark carbon-subtle relative min-h-[390px] overflow-hidden border border-white/15 bg-[#0B1222] md:min-h-[540px]">
               <div className="absolute inset-5 border border-university/35" />
               <div className="absolute right-5 top-5 h-px w-1/3 bg-burgundy" />
               <div className="absolute bottom-5 left-5 h-px w-1/4 bg-green/70" />
@@ -168,7 +168,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="relative overflow-hidden border-t border-white/10 bg-university">
+      <section className="theme-fixed-dark relative overflow-hidden border-t border-white/10 bg-university">
         <div className="absolute bottom-0 right-[14%] h-full w-px rotate-[18deg] bg-white/15" />
         <div className="absolute bottom-0 right-[9%] h-1/2 w-px rotate-[18deg] bg-burgundy" />
         <div className="container-shell relative flex flex-col items-start justify-between gap-8 py-16 md:flex-row md:items-center">

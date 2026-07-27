@@ -18,7 +18,15 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="tr" className="dark">
+    <html lang="tr" className="dark" suppressHydrationWarning>
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html:
+              "try{if(localStorage.getItem('msku-racing-theme')==='light'){document.documentElement.classList.remove('dark');document.documentElement.classList.add('light')}}catch(e){}",
+          }}
+        />
+      </head>
       <body className={`${manrope.variable} ${space.variable} font-sans antialiased`}>
         <div className="noise" />
         <Header />

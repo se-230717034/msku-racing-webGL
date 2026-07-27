@@ -14,7 +14,7 @@ export function Footer() {
   ];
 
   return (
-    <footer className="border-t border-white/10 bg-[#03060d]">
+    <footer className="site-footer border-t border-white/10 bg-[#03060d]">
       <div className="container-shell py-14">
         <div className="grid gap-12 lg:grid-cols-[1.3fr_.7fr_.7fr]">
           <div>

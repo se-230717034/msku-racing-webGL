@@ -3,7 +3,7 @@ import { Reveal } from "./motion-reveal";
 
 export function PageHero({ eyebrow, title, description, children }: { eyebrow: string; title: string; description: string; children?: ReactNode }) {
   return (
-    <section className="relative overflow-hidden border-b border-white/10 pt-[76px]">
+    <section className="relative overflow-hidden border-b border-white/10 pt-[140px] xl:pt-[76px]">
       <div className="absolute inset-0 bg-grid-dark bg-[size:56px_56px] [mask-image:linear-gradient(to_bottom,black,transparent)]" />
       <div className="absolute right-[8%] top-0 h-full w-px rotate-[18deg] bg-university/30" />
       <div className="absolute right-[18%] top-0 h-1/2 w-px rotate-[18deg] bg-burgundy/50" />

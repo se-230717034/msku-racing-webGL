@@ -33,13 +33,13 @@ const news = [
 export default function Home() {
   return (
     <>
-      <section className="relative min-h-[780px] overflow-hidden border-b border-white/10 pt-[76px] lg:min-h-screen">
+      <section className="relative min-h-[780px] overflow-hidden border-b border-white/10 pt-[140px] xl:min-h-screen xl:pt-[76px]">
         <div className="absolute inset-0 bg-grid-dark bg-[size:64px_64px] opacity-60 [mask-image:linear-gradient(to_bottom,black,transparent_92%)]" />
         <div className="absolute left-0 top-[22%] h-px w-[42%] bg-university/70" />
         <div className="absolute left-[38%] top-[22%] h-px w-16 bg-burgundy" />
         <div className="absolute bottom-[18%] right-0 h-px w-[28%] bg-green/70" />
 
-        <div className="container-shell relative grid min-h-[calc(100vh-76px)] items-center gap-14 py-20 lg:grid-cols-[.9fr_1.1fr]">
+        <div className="container-shell relative grid min-h-[calc(100vh-140px)] items-center gap-14 py-16 lg:grid-cols-[.9fr_1.1fr] xl:min-h-[calc(100vh-76px)] xl:py-20">
           <Reveal className="relative z-10">
             <div className="mb-7 flex items-center gap-3">
               <span className="h-2 w-2 bg-green" />

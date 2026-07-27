@@ -3,6 +3,16 @@ import { ArrowUpRight, Instagram, Linkedin, Mail } from "lucide-react";
 import { Logo } from "./logo";
 
 export function Footer() {
+  const socialLinks = [
+    { label: "Instagram", href: "#", icon: Instagram },
+    {
+      label: "LinkedIn",
+      href: "https://www.linkedin.com/company/msku-racing/posts/?feedView=all",
+      icon: Linkedin,
+    },
+    { label: "E-posta", href: "mailto:mskuracing@gmail.com", icon: Mail },
+  ];
+
   return (
     <footer className="border-t border-white/10 bg-[#03060d]">
       <div className="container-shell py-14">
@@ -22,7 +32,18 @@ export function Footer() {
           <div>
             <p className="eyebrow mb-5">Bizi takip et</p>
             <div className="flex gap-3">
-              {[Instagram, Linkedin, Mail].map((Icon, i) => <a key={i} href="#" className="grid size-10 place-items-center rounded-full border border-white/10 text-white/50 transition hover:border-accent hover:text-white"><Icon size={17} /></a>)}
+              {socialLinks.map(({ label, href, icon: Icon }) => (
+                <a
+                  key={label}
+                  href={href}
+                  aria-label={label}
+                  target={href.startsWith("http") ? "_blank" : undefined}
+                  rel={href.startsWith("http") ? "noreferrer" : undefined}
+                  className="grid size-10 place-items-center rounded-full border border-white/10 text-white/50 transition hover:border-accent hover:text-white"
+                >
+                  <Icon size={17} />
+                </a>
+              ))}
             </div>
           </div>
         </div>

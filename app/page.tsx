@@ -24,12 +24,6 @@ const targets = [
   ["03", "Yarışmaya hazırlanmak", "Teknik kontrollerden dayanıklılık etabına kadar eksiksiz hazırlanmak."],
 ];
 
-const news = [
-  ["22.07.2026", "Tasarım", "Amper konsept tasarım süreci tamamlandı"],
-  ["04.07.2026", "Takım", "Araç dinamiği departmanımızı yakından tanıyın"],
-  ["18.06.2026", "Üretim", "Kompozit üretim çalışmalarında yeni dönem"],
-];
-
 export default function Home() {
   return (
     <>
@@ -132,18 +126,16 @@ export default function Home() {
       <section className="section-space">
         <div className="container-shell">
           <Reveal><SectionHeading eyebrow="Son Gelişmeler" title="Garajdan haberler." /></Reveal>
-          <div className="mt-12">
-            {news.map(([date, tag, title], i) => (
-              <Reveal key={title} delay={i * .05}>
-                <Link href="/news" className="group grid gap-4 border-t border-white/15 py-7 transition hover:border-burgundy md:grid-cols-[140px_120px_1fr_auto] md:items-center">
-                  <span className="text-xs tracking-[.12em] text-white/35">{date}</span>
-                  <span className="text-[10px] font-bold uppercase tracking-[.2em] text-green">{tag}</span>
-                  <h3 className="font-display text-xl font-medium uppercase transition group-hover:text-[#F5F4EF] md:text-2xl">{title}</h3>
-                  <ArrowRight className="text-burgundy transition group-hover:translate-x-2" size={19} />
-                </Link>
-              </Reveal>
-            ))}
-          </div>
+          <Reveal className="mt-12 border-y border-white/15 py-10">
+            <Link href="/news" className="group flex flex-col justify-between gap-6 md:flex-row md:items-center">
+              <div>
+                <p className="text-[10px] font-bold uppercase tracking-[.22em] text-green">Hazırlanıyor</p>
+                <h3 className="mt-3 font-display text-3xl font-semibold uppercase">Haberler çok yakında.</h3>
+                <p className="mt-3 text-sm leading-7 text-white/45">Takımımızın gerçek gelişmelerini yakında paylaşacağız.</p>
+              </div>
+              <ArrowRight className="shrink-0 text-burgundy transition group-hover:translate-x-2" size={22} />
+            </Link>
+          </Reveal>
         </div>
       </section>
 

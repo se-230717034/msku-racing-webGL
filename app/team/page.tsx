@@ -1,8 +1,17 @@
-import { CalendarDays, Code2, Cpu, Wrench } from "lucide-react";
+import { BriefcaseBusiness, CalendarDays, Code2, Cpu, Wrench } from "lucide-react";
 import { PageHero } from "@/components/page-hero";
 import { Reveal } from "@/components/motion-reveal";
 
 const teams = [
+  {
+    name: "Yönetim",
+    description: "Takımın genel koordinasyonu, karar süreçleri ve departmanlar arası yönetimi.",
+    icon: BriefcaseBusiness,
+    members: [
+      "Hayriye Serra Altınoluk",
+      "Ali Arslan Kaya",
+    ],
+  },
   {
     name: "Elektronik Ekibi",
     description: "Araç elektroniği, kablolama, veri toplama ve kontrol sistemleri.",
@@ -10,7 +19,7 @@ const teams = [
     members: [
       "Ufuk Çok",
       "Mahmut Can Aşar",
-      "Eylül Deniz Kudüs",
+      "Eylül Deniz Kudu",
       "Alper Salih Günaydın",
       "Barış Bağcı",
       "Ebrar Azra Arslan",
@@ -60,14 +69,14 @@ export default function TeamPage() {
     <>
       <PageHero
         eyebrow="Takımımız"
-        title="Dört ekip. Tek hedef."
+        title="Yönetim ve dört ekip. Tek hedef."
         description="Amper'i tasarlayan, geliştiren ve takımın sürdürülebilirliğini sağlayan MSKÜ Racing üyeleri."
       />
 
       <section className="section-space">
         <div className="container-shell grid gap-5 lg:grid-cols-2">
           {teams.map(({ name, description, icon: Icon, members }, teamIndex) => (
-            <Reveal key={name} delay={teamIndex * .06}>
+            <Reveal key={name} delay={teamIndex * .06} className={teamIndex === 0 ? "lg:col-span-2" : ""}>
               <article className="h-full border border-white/10 bg-[#0D1425]">
                 <header className="flex items-start justify-between gap-6 border-b border-white/10 p-7 md:p-8">
                   <div>
@@ -89,7 +98,7 @@ export default function TeamPage() {
                     <p className="text-[10px] font-bold uppercase tracking-[.2em] text-white/35">Ekip üyeleri</p>
                     <span className="font-display text-sm text-burgundy">{members.length} kişi</span>
                   </div>
-                  <ul className="grid gap-px overflow-hidden border border-white/10 bg-white/10 sm:grid-cols-2">
+                  <ul className="grid gap-px overflow-hidden border border-white/10 bg-white/10">
                     {members.map((member, memberIndex) => (
                       <li key={`${name}-${member}`} className="flex items-center gap-3 bg-[#0A1020] px-4 py-4 text-sm">
                         <span className="font-display text-[10px] text-university">

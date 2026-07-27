@@ -1,10 +1,11 @@
 import Link from "next/link";
 import {
+  Activity,
   ArrowRight,
   CalendarDays,
   Code2,
   Cpu,
-  Layers3,
+  Radio,
   Wrench,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -44,7 +45,7 @@ export default function Home() {
               <span className="block text-burgundy">Racing</span>
             </h1>
             <p className="mt-8 font-display text-2xl font-medium tracking-[-.025em] text-[#F5F4EF] md:text-3xl">
-              Geleceği Tasarla. Sınırları Zorla.
+              Geleceğin Arabasını Tasarlıyoruz.
             </p>
             <p className="mt-4 max-w-xl leading-7 text-white/55">
               Muğla Sıtkı Koçman Üniversitesi Formula Student Takımı
@@ -62,14 +63,42 @@ export default function Home() {
               <div className="absolute inset-5 border border-university/35" />
               <div className="absolute right-5 top-5 h-px w-1/3 bg-burgundy" />
               <div className="absolute bottom-5 left-5 h-px w-1/4 bg-green/70" />
-              <div className="absolute left-1/2 top-1/2 flex -translate-x-1/2 -translate-y-1/2 flex-col items-center text-center">
-                <span className="mb-5 grid size-14 place-items-center border border-white/15 text-university">
-                  <Layers3 size={24} />
-                </span>
-                <p className="text-[10px] font-bold uppercase tracking-[.28em] text-white/30">Araç render alanı</p>
-                <p className="mt-3 max-w-xs text-xs leading-6 text-white/20">Nihai araç görseli daha sonra bu alana yerleştirilecektir.</p>
+              <div className="relative z-10 flex min-h-[390px] flex-col p-9 md:min-h-[540px] md:p-12">
+                <div className="flex items-start justify-between gap-6 border-b border-white/10 pb-6">
+                  <div>
+                    <div className="flex items-center gap-3">
+                      <Activity size={18} className="text-burgundy" />
+                      <p className="text-[10px] font-bold uppercase tracking-[.28em] text-white/45">Canlı Telemetri Sistemi</p>
+                    </div>
+                    <p className="mt-3 font-display text-2xl font-semibold uppercase tracking-[-.03em]">Amper Araç Verileri</p>
+                  </div>
+                  <span className="flex shrink-0 items-center gap-2 border border-white/10 px-3 py-2 text-[9px] font-bold uppercase tracking-[.18em] text-white/35">
+                    <span className="size-1.5 bg-burgundy" />
+                    Bağlantı bekleniyor
+                  </span>
+                </div>
+
+                <div className="mt-7 grid grid-cols-2 gap-px border border-white/10 bg-white/10">
+                  {["Araç Hızı", "Batarya", "Motor Sıcaklığı", "Tur Zamanı"].map((label) => (
+                    <div key={label} className="min-h-24 bg-[#09101E] p-4 md:min-h-28 md:p-5">
+                      <p className="text-[9px] font-bold uppercase tracking-[.2em] text-white/35">{label}</p>
+                      <div className="mt-7 h-px w-12 bg-university/55" aria-label={`${label} verisi bekleniyor`} />
+                    </div>
+                  ))}
+                </div>
+
+                <div className="relative mt-6 flex-1 overflow-hidden border border-white/10 bg-[#09101E]">
+                  <div className="absolute inset-0 bg-grid-dark bg-[size:32px_32px] opacity-40" />
+                  <div className="absolute inset-x-5 top-1/2 h-px bg-white/10" />
+                  <div className="absolute inset-y-5 left-1/3 w-px bg-white/10" />
+                  <div className="absolute inset-y-5 left-2/3 w-px bg-white/10" />
+                  <div className="relative flex h-full min-h-24 items-center justify-center">
+                    <Radio size={18} className="text-green/60" />
+                    <p className="ml-3 text-[9px] font-bold uppercase tracking-[.22em] text-white/25">Telemetri akışı bekleniyor</p>
+                  </div>
+                </div>
               </div>
-              <span className="absolute bottom-8 right-8 font-display text-7xl font-semibold uppercase text-white/[.035]">Amper</span>
+              <span className="pointer-events-none absolute bottom-8 right-8 font-display text-7xl font-semibold uppercase text-white/[.025]">Amper</span>
             </div>
           </Reveal>
         </div>

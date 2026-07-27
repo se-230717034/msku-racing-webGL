@@ -18,12 +18,12 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="tr" className="dark" suppressHydrationWarning>
+    <html lang="tr" className="light" suppressHydrationWarning>
       <head>
         <script
           dangerouslySetInnerHTML={{
             __html:
-              "try{if(localStorage.getItem('msku-racing-theme')==='light'){document.documentElement.classList.remove('dark');document.documentElement.classList.add('light')}}catch(e){}",
+              "try{if(localStorage.getItem('msku-racing-theme')==='dark'){document.documentElement.classList.remove('light');document.documentElement.classList.add('dark')}}catch(e){}",
           }}
         />
       </head>

@@ -6,7 +6,7 @@ import { Moon, Sun } from "lucide-react";
 const THEME_KEY = "msku-racing-theme";
 
 export function ThemeToggle() {
-  const [isLight, setIsLight] = useState(false);
+  const [isLight, setIsLight] = useState(true);
 
   useEffect(() => {
     setIsLight(document.documentElement.classList.contains("light"));

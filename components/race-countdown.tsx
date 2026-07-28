@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { CalendarDays } from "lucide-react";
+import { useLanguage } from "./language-provider";
 
 const targetDate = new Date("2027-09-20T00:00:00+03:00").getTime();
 
@@ -23,15 +24,16 @@ function calculateCountdown(): CountdownValue {
   };
 }
 
-const units: Array<{ key: keyof CountdownValue; label: string }> = [
-  { key: "days", label: "Gün" },
-  { key: "hours", label: "Saat" },
-  { key: "minutes", label: "Dakika" },
-  { key: "seconds", label: "Saniye" },
+const units: Array<{ key: keyof CountdownValue; tr: string; en: string }> = [
+  { key: "days", tr: "Gün", en: "Days" },
+  { key: "hours", tr: "Saat", en: "Hours" },
+  { key: "minutes", tr: "Dakika", en: "Minutes" },
+  { key: "seconds", tr: "Saniye", en: "Seconds" },
 ];
 
 export function RaceCountdown() {
   const [countdown, setCountdown] = useState<CountdownValue | null>(null);
+  const { language, translate } = useLanguage();
 
   useEffect(() => {
     const update = () => setCountdown(calculateCountdown());
@@ -51,21 +53,21 @@ export function RaceCountdown() {
             <CalendarDays className="mt-1 shrink-0 text-university" size={22} />
             <div>
               <h2 id="race-countdown-title" className="font-display text-3xl font-semibold uppercase tracking-[-.035em]">
-                Yarışa kalan süre
+                {translate("Yarışa kalan süre", "Time until the race")}
               </h2>
             </div>
           </div>
         </div>
 
-        <div className="grid grid-cols-2 gap-2 sm:grid-cols-4" aria-label="Yarışa kalan süre">
-          {units.map(({ key, label }) => (
+        <div className="grid grid-cols-2 gap-2 sm:grid-cols-4" aria-label={translate("Yarışa kalan süre", "Time until the race")}>
+          {units.map(({ key, tr, en }) => (
             <div key={key} className="relative overflow-hidden border border-white/10 bg-[#0A1020] px-5 py-5 text-center">
               <span className="absolute inset-x-0 top-0 h-0.5 bg-university" />
               <strong className="block font-display text-4xl font-semibold tabular-nums text-white md:text-5xl">
                 {countdown ? String(countdown[key]).padStart(2, "0") : "--"}
               </strong>
               <span className="mt-2 block text-[10px] font-bold uppercase tracking-[.2em] text-white/45">
-                {label}
+                {language === "tr" ? tr : en}
               </span>
             </div>
           ))}

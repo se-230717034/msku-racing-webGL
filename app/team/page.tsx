@@ -1,11 +1,16 @@
+"use client";
+
 import { BriefcaseBusiness, CalendarDays, Code2, Cpu, ExternalLink, Linkedin, Wrench } from "lucide-react";
 import { PageHero } from "@/components/page-hero";
 import { Reveal } from "@/components/motion-reveal";
+import { useLanguage } from "@/components/language-provider";
 
 const teams = [
   {
-    name: "Yönetim",
-    description: "Takımın genel koordinasyonu, karar süreçleri ve departmanlar arası yönetimi.",
+    trName: "Yönetim",
+    enName: "Management",
+    trDescription: "Takımın genel koordinasyonu, karar süreçleri ve departmanlar arası yönetimi.",
+    enDescription: "Overall team coordination, decision-making and cross-department management.",
     icon: BriefcaseBusiness,
     members: [
       "Prof. Dr. Ali Arslan Kaya",
@@ -13,8 +18,10 @@ const teams = [
     ],
   },
   {
-    name: "Elektronik Ekibi",
-    description: "Araç elektroniği, kablolama, veri toplama ve kontrol sistemleri.",
+    trName: "Elektronik Ekibi",
+    enName: "Electronics Team",
+    trDescription: "Araç elektroniği, kablolama, veri toplama ve kontrol sistemleri.",
+    enDescription: "Vehicle electronics, wiring, data acquisition and control systems.",
     icon: Cpu,
     members: [
       "Ufuk Çok",
@@ -28,8 +35,10 @@ const teams = [
     ],
   },
   {
-    name: "Yazılım Ekibi",
-    description: "Gömülü yazılım, telemetri, veri analizi ve takımın dijital sistemleri.",
+    trName: "Yazılım Ekibi",
+    enName: "Software Team",
+    trDescription: "Gömülü yazılım, telemetri, veri analizi ve takımın dijital sistemleri.",
+    enDescription: "Embedded software, telemetry, data analysis and the team's digital systems.",
     icon: Code2,
     members: [
       "Aslı Ceren Yılmaz",
@@ -39,8 +48,10 @@ const teams = [
     ],
   },
   {
-    name: "Mekanik Ekip",
-    description: "Şasi, süspansiyon, aktarma, üretim ve aracın mekanik bütünlüğü.",
+    trName: "Mekanik Ekip",
+    enName: "Mechanical Team",
+    trDescription: "Şasi, süspansiyon, aktarma, üretim ve aracın mekanik bütünlüğü.",
+    enDescription: "Chassis, suspension, drivetrain, manufacturing and vehicle mechanical integrity.",
     icon: Wrench,
     members: [
       "Halil İbrahim Yılmaz",
@@ -51,8 +62,10 @@ const teams = [
     ],
   },
   {
-    name: "Organizasyon Ekibi",
-    description: "Etkinlik, iletişim, sponsorluk ve takım organizasyonu.",
+    trName: "Organizasyon Ekibi",
+    enName: "Organization Team",
+    trDescription: "Etkinlik, iletişim, sponsorluk ve takım organizasyonu.",
+    enDescription: "Events, communications, sponsorship and team organization.",
     icon: CalendarDays,
     members: [
       "Eylül Deniz Kudu",
@@ -88,28 +101,32 @@ const universityProfiles: Record<string, string> = {
 };
 
 export default function TeamPage() {
+  const { language, translate } = useLanguage();
+
   return (
     <>
       <PageHero
-        eyebrow="Takımımız"
-        title="Yönetim ve dört ekip. Tek hedef."
-        description="Amper'i tasarlayan, geliştiren ve takımın sürdürülebilirliğini sağlayan MSKU RACING üyeleri."
+        eyebrow={translate("Takımımız", "Our Team")}
+        title={translate("Yönetim ve dört ekip. Tek hedef.", "Management and four teams. One goal.")}
+        description={translate("Amper'i tasarlayan, geliştiren ve takımın sürdürülebilirliğini sağlayan MSKU RACING üyeleri.", "The MSKU RACING members who design and develop Amper while ensuring the team's sustainability.")}
       />
 
       <section className="section-space">
         <div className="container-shell grid gap-5 lg:grid-cols-2">
-          {teams.map(({ name, description, icon: Icon, members }, teamIndex) => (
-            <Reveal key={name} delay={teamIndex * .06} className={teamIndex === 0 ? "lg:col-span-2" : ""}>
+          {teams.map(({ trName, enName, trDescription, enDescription, icon: Icon, members }, teamIndex) => {
+            const name = language === "tr" ? trName : enName;
+            return (
+            <Reveal key={trName} delay={teamIndex * .06} className={teamIndex === 0 ? "lg:col-span-2" : ""}>
               <article className="h-full border border-white/10 bg-[#0D1425]">
                 <header className="flex items-start justify-between gap-6 border-b border-white/10 p-7 md:p-8">
                   <div>
                     <p className="text-[10px] font-bold uppercase tracking-[.22em] text-green">
-                      Ekip 0{teamIndex + 1}
+                      {translate("Ekip", "Team")} 0{teamIndex + 1}
                     </p>
                     <h2 className="mt-4 font-display text-3xl font-semibold uppercase tracking-[-.035em]">
                       {name}
                     </h2>
-                    <p className="mt-3 max-w-lg text-sm leading-7 text-white/45">{description}</p>
+                    <p className="mt-3 max-w-lg text-sm leading-7 text-white/45">{language === "tr" ? trDescription : enDescription}</p>
                   </div>
                   <span className="grid size-12 shrink-0 place-items-center border border-university/50 bg-university/10 text-white/70">
                     <Icon size={22} />
@@ -118,8 +135,8 @@ export default function TeamPage() {
 
                 <div className="p-7 md:p-8">
                   <div className="mb-5 flex items-center justify-between">
-                    <p className="text-[10px] font-bold uppercase tracking-[.2em] text-white/35">Ekip üyeleri</p>
-                    <span className="font-display text-sm text-burgundy">{members.length} kişi</span>
+                    <p className="text-[10px] font-bold uppercase tracking-[.2em] text-white/35">{translate("Ekip üyeleri", "Team members")}</p>
+                    <span className="font-display text-sm text-burgundy">{members.length} {translate("kişi", "people")}</span>
                   </div>
                   <ul className="grid gap-px overflow-hidden border border-white/10 bg-white/10">
                     {members.map((member, memberIndex) => {
@@ -137,7 +154,7 @@ export default function TeamPage() {
                               href={profileUrl}
                               target="_blank"
                               rel="noreferrer"
-                              aria-label={`${member} ${universityUrl ? "üniversite personel sayfasını" : "LinkedIn profilini"} aç`}
+                              aria-label={`${member} ${universityUrl ? translate("üniversite personel sayfasını aç", "open university staff page") : translate("LinkedIn profilini aç", "open LinkedIn profile")}`}
                               className="group/member flex min-w-0 flex-1 items-center justify-between gap-3 text-white/75 transition-colors hover:text-burgundy"
                             >
                               <span>{member}</span>
@@ -163,7 +180,7 @@ export default function TeamPage() {
                 </div>
               </article>
             </Reveal>
-          ))}
+          )})}
         </div>
       </section>
     </>

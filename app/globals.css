@@ -91,8 +91,15 @@ html.light .theme-toggle {
   background: rgba(37, 43, 135, .05);
 }
 
+html.light .language-toggle {
+  color: rgba(8, 13, 26, .68);
+  border-color: rgba(37, 43, 135, .2);
+  background: rgba(37, 43, 135, .05);
+}
+
 html.light .site-header .hover\:text-white:hover,
-html.light .theme-toggle.hover\:text-white:hover {
+html.light .theme-toggle.hover\:text-white:hover,
+html.light .language-toggle.hover\:text-white:hover {
   color: #252B87 !important;
 }
 

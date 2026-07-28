@@ -105,6 +105,18 @@ html.light .bg-\[\#B51237\].text-white {
   color: #FFFFFF;
 }
 
+html.light .faq-question {
+  color: #080D1A;
+}
+
+html.light .faq-question:hover {
+  color: #A00026;
+}
+
+html.light .faq-answer {
+  color: rgba(8, 13, 26, .7);
+}
+
 html.light .site-footer,
 html.light .theme-fixed-dark {
   color: #F5F4EF;

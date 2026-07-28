@@ -5,28 +5,28 @@ import { ContactForm } from "@/components/forms";
 
 const faqs = [
   {
-    question: "MSKU RACING nedir?",
-    answer: "Muğla Sıtkı Koçman Üniversitesi öğrencileri tarafından kurulan, araç tasarımını ve üretimini üstlenen Formula Student takımıdır.",
+    question: "Formula Student nedir?",
+    answer: "Formula Student, üniversite öğrencilerinin kendi yarış araçlarını tasarlayıp ürettiği uluslararası bir mühendislik yarışmasıdır. Takımlar; mühendislik tasarımı, maliyet analizi, iş planı sunumu ve pist performansı gibi birçok farklı alanda değerlendirilir.",
   },
   {
-    question: "Takımın geliştirdiği aracın adı nedir?",
-    answer: "Takımımızın geliştirdiği Formula Student aracının adı Amper'dir.",
+    question: "MSKU Racing nedir?",
+    answer: "MSKU Racing, Muğla Sıtkı Koçman Üniversitesi'nin resmi Formula Student takımıdır. Takımımız, teorik mühendislik bilgisini gerçek bir yarış aracı üzerinde uygulayarak yenilikçi çözümler geliştirmeyi ve üniversitemizi ulusal ve uluslararası platformlarda temsil etmeyi amaçlamaktadır.",
   },
   {
-    question: "Takımda hangi ekipler bulunuyor?",
-    answer: "MSKU RACING; Mekanik, Elektronik, Yazılım ve Organizasyon ekiplerinden oluşur. Ekip üyelerini Takım sayfamızda inceleyebilirsiniz.",
+    question: "Formula Student sadece hız yarışı mıdır?",
+    answer: "Hayır. Formula Student yalnızca en hızlı aracı belirlemeyi amaçlayan bir yarış değildir. Takımlar; araç tasarımı, üretim kalitesi, maliyet yönetimi, iş planı sunumu ve dinamik sürüş performansı gibi birçok farklı kriter üzerinden değerlendirilir.",
   },
   {
-    question: "Takıma nasıl katılabilirim?",
-    answer: "Yeni üye duyurularımızı LinkedIn hesabımızdan takip edebilir veya iletişim formu üzerinden ilgilendiğiniz ekibi belirterek bize ulaşabilirsiniz.",
+    question: "Takım hangi alanlarda faaliyet göstermektedir?",
+    answer: "MSKU Racing; araç tasarımı, üretim, test süreçleri ve proje yönetimi gibi birçok alanda çalışmalar yürütmektedir. Takım içerisinde mekanik, elektronik, yazılım, üretim ve organizasyon süreçleri koordineli şekilde ilerletilmektedir.",
   },
   {
     question: "Nasıl sponsor olabilirim?",
-    answer: "Sponsorluk ve iş birliği talepleriniz için iletişim formunu kullanabilir ya da mskuracing@gmail.com adresine doğrudan e-posta gönderebilirsiniz.",
+    answer: "Takımımıza destek olmak isteyen kurum ve kuruluşlar, iletişim sayfamızdaki formu doldurarak veya e-posta adresimiz üzerinden bizimle iletişime geçebilir. Sponsorluk paketleri ve iş birliği fırsatları hakkında detaylı bilgi paylaşılmaktadır.",
   },
   {
-    question: "Takım nerede çalışmalarını sürdürüyor?",
-    answer: "Çalışmalarımızı Muğla Sıtkı Koçman Üniversitesi Mühendislik Fakültesi, Kötekli Yerleşkesi'nde sürdürüyoruz.",
+    question: "MSKU Racing'i nasıl takip edebilirim?",
+    answer: "Takımımızın güncel çalışmalarını, etkinliklerini ve yarış hazırlıklarını web sitemiz ile Instagram, LinkedIn ve diğer resmi sosyal medya hesaplarımız üzerinden takip edebilirsiniz.",
   },
 ];
 
@@ -100,22 +100,22 @@ export default function ContactPage() {
                 <h2 className="mt-4 font-display text-3xl font-semibold uppercase tracking-[-.035em] md:text-4xl">
                   Sıkça sorulan sorular
                 </h2>
-                <p className="mt-5 max-w-md text-sm leading-7 text-white/45">
-                  Takımımız, aracımız, üyelik ve sponsorluk hakkında en çok sorulan soruların yanıtları.
+                <p className="faq-answer mt-5 max-w-md text-sm leading-7 text-white/45">
+                  Formula Student, takımımız, çalışmalarımız ve sponsorluk hakkında en çok sorulan soruların yanıtları.
                 </p>
               </div>
 
               <div className="border-t border-white/10">
                 {faqs.map(({ question, answer }) => (
                   <details key={question} className="group border-b border-white/10">
-                    <summary className="flex cursor-pointer list-none items-center justify-between gap-6 py-6 font-display text-base font-semibold uppercase tracking-[-.01em] text-white/80 transition hover:text-white [&::-webkit-details-marker]:hidden">
+                    <summary className="faq-question flex cursor-pointer list-none items-center justify-between gap-6 py-6 font-display text-base font-semibold uppercase tracking-[-.01em] text-white/80 transition hover:text-burgundy [&::-webkit-details-marker]:hidden">
                       <span>{question}</span>
                       <ChevronDown
                         size={19}
                         className="shrink-0 text-burgundy transition-transform duration-300 group-open:rotate-180"
                       />
                     </summary>
-                    <p className="max-w-2xl pb-6 pr-10 text-sm leading-7 text-white/50">
+                    <p className="faq-answer max-w-2xl pb-6 pr-10 text-sm leading-7 text-white/50">
                       {answer}
                     </p>
                   </details>

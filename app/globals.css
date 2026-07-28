@@ -61,6 +61,7 @@ html.light .text-white { color: #080D1A; }
 html.light .text-white\/75 { color: rgba(8, 13, 26, .78); }
 html.light .text-white\/70 { color: rgba(8, 13, 26, .74); }
 html.light .text-white\/65 { color: rgba(8, 13, 26, .68); }
+html.light .text-white\/60 { color: rgba(8, 13, 26, .72); }
 html.light .text-white\/55 { color: rgba(8, 13, 26, .62); }
 html.light .text-white\/50 { color: rgba(8, 13, 26, .56); }
 html.light .text-white\/45 { color: rgba(8, 13, 26, .54); }
@@ -140,6 +141,8 @@ html.light .site-footer .text-white\/70,
 html.light .theme-fixed-dark .text-white\/70 { color: rgba(245, 244, 239, .74); }
 html.light .site-footer .text-white\/65,
 html.light .theme-fixed-dark .text-white\/65 { color: rgba(245, 244, 239, .68); }
+html.light .site-footer .text-white\/60,
+html.light .theme-fixed-dark .text-white\/60 { color: rgba(245, 244, 239, .72); }
 html.light .site-footer .text-white\/55,
 html.light .theme-fixed-dark .text-white\/55 { color: rgba(245, 244, 239, .62); }
 html.light .site-footer .text-white\/50,

@@ -5,6 +5,7 @@ import { PageHero } from "@/components/page-hero";
 import { Reveal } from "@/components/motion-reveal";
 import { SectionHeading } from "@/components/section-heading";
 import { useLanguage } from "@/components/language-provider";
+import { VehicleTelemetry } from "@/components/vehicle-telemetry";
 
 const specs = [
   ["Güç ünitesi", "Powertrain", "Elektrikli, arkadan itiş", "Electric, rear-wheel drive"],
@@ -26,7 +27,24 @@ export default function CarPage() {
       <section className="theme-fixed-dark relative min-h-[600px] overflow-hidden border-b border-white/10">
         <Image src="/images/msku-racing-hero.png" alt={translate("MSKU RACING Amper prototipi", "MSKU RACING Amper prototype")} fill sizes="100vw" className="object-cover object-[68%_center] opacity-45 saturate-[.7]" />
         <div className="absolute inset-0 bg-gradient-to-r from-background via-background/55 to-transparent" />
+        <div className="vehicle-cover" aria-hidden="true">
+          <span />
+        </div>
         <div className="container-shell relative flex min-h-[600px] items-center"><Reveal><p className="max-w-2xl font-display text-4xl font-medium uppercase leading-tight tracking-[-.04em] md:text-6xl">{translate("Daha az kütle.", "Less mass.")}<br /><span className="text-burgundy">{translate("Daha fazla geri bildirim.", "More feedback.")}</span><br />{translate("Net sonuçlar.", "Clear results.")}</p></Reveal></div>
+      </section>
+      <section className="section-space border-b border-white/10">
+        <div className="container-shell">
+          <Reveal>
+            <SectionHeading
+              eyebrow={translate("Canlı sistemler", "Live Systems")}
+              title={translate("Amper'i verilerle izle.", "Follow Amper through data.")}
+              copy={translate("Araç telemetrisi devreye alındığında hız, batarya, sıcaklık ve tur verileri bu alanda görüntülenecek.", "When vehicle telemetry goes live, speed, battery, temperature and lap data will appear here.")}
+            />
+          </Reveal>
+          <Reveal delay={.08} className="mt-12">
+            <VehicleTelemetry />
+          </Reveal>
+        </div>
       </section>
       <section className="section-space"><div className="container-shell">
         <Reveal><SectionHeading eyebrow={translate("Teknik genel bakış", "Technical Overview")} title={translate("Ölçülebilir mühendislik.", "Measurable engineering.")} copy={translate("Amper'in güncel geliştirme hedefleri. Nihai değerler doğrulama çalışmalarıyla gelişecektir.", "Amper's current development targets. Final values will evolve through validation work.")} /></Reveal>

@@ -38,69 +38,6 @@ body {
   background-size: 8px 8px;
 }
 
-.vehicle-cover {
-  position: absolute;
-  z-index: 1;
-  right: 3%;
-  bottom: 8%;
-  width: min(67vw, 1120px);
-  height: 66%;
-  clip-path: polygon(1% 82%, 7% 56%, 20% 42%, 36% 31%, 46% 13%, 68% 16%, 84% 33%, 94% 52%, 100% 84%, 94% 96%, 8% 96%);
-  border-radius: 46% 34% 18% 20% / 54% 45% 24% 28%;
-  background:
-    linear-gradient(105deg, transparent 0 17%, rgba(255,255,255,.08) 28%, transparent 38%),
-    linear-gradient(150deg, #151c6d 0%, #252B87 34%, #11184f 58%, #79001f 78%, #A00026 100%);
-  box-shadow: 0 28px 54px rgba(0,0,0,.62), inset 0 -22px 38px rgba(0,0,0,.34), inset 0 1px rgba(255,255,255,.16);
-  filter: saturate(.9);
-}
-
-.vehicle-cover::before,
-.vehicle-cover::after {
-  content: "";
-  position: absolute;
-  pointer-events: none;
-}
-
-.vehicle-cover::before {
-  inset: 6% 8% 12%;
-  background:
-    linear-gradient(80deg, transparent 0 20%, rgba(255,255,255,.09) 21%, transparent 27%),
-    linear-gradient(100deg, transparent 0 48%, rgba(0,0,0,.26) 49%, transparent 55%),
-    linear-gradient(72deg, transparent 0 72%, rgba(255,255,255,.07) 73%, transparent 79%);
-  opacity: .8;
-}
-
-.vehicle-cover::after {
-  left: 7%;
-  right: 5%;
-  bottom: 5%;
-  height: 13%;
-  border-bottom: 2px solid rgba(160,0,38,.9);
-  background: linear-gradient(to bottom, transparent, rgba(0,0,0,.42));
-  transform: skewX(-8deg);
-}
-
-.vehicle-cover > span {
-  position: absolute;
-  left: 43%;
-  top: 9%;
-  width: 30%;
-  height: 70%;
-  transform: rotate(-9deg);
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,.1), transparent 42%, rgba(0,0,0,.22), transparent);
-  filter: blur(1px);
-}
-
-@media (max-width: 767px) {
-  .vehicle-cover {
-    right: -16%;
-    bottom: 8%;
-    width: 92vw;
-    height: 58%;
-    opacity: .88;
-  }
-}
-
 input, textarea, select { color-scheme: dark; }
 
 html.light body {

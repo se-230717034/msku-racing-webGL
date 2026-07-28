@@ -25,11 +25,8 @@ export default function CarPage() {
     <>
       <PageHero eyebrow="Amper" title={translate("Sürücü etrafında tasarlandı.", "Designed around the driver.")} description={translate("Kompakt, elektrikli ve her alt sistemi dikkatle geliştirilen Formula Student aracımız.", "Our compact electric Formula Student car, with every subsystem carefully developed.")} />
       <section className="theme-fixed-dark relative min-h-[600px] overflow-hidden border-b border-white/10">
-        <Image src="/images/msku-racing-hero.png" alt={translate("MSKU RACING Amper prototipi", "MSKU RACING Amper prototype")} fill sizes="100vw" className="object-cover object-[68%_center] opacity-45 saturate-[.7]" />
+        <Image src="/images/msku-racing-car-covered.png" alt={translate("Kırık beyaz örtüyle kapatılmış MSKU RACING Amper prototipi", "MSKU RACING Amper prototype covered with an ivory cloth")} fill sizes="100vw" className="object-cover object-[68%_center] opacity-80 saturate-[.85]" priority />
         <div className="absolute inset-0 bg-gradient-to-r from-background via-background/55 to-transparent" />
-        <div className="vehicle-cover" aria-hidden="true">
-          <span />
-        </div>
         <div className="container-shell relative flex min-h-[600px] items-center"><Reveal><p className="max-w-2xl font-display text-4xl font-medium uppercase leading-tight tracking-[-.04em] md:text-6xl">{translate("Daha az kütle.", "Less mass.")}<br /><span className="text-burgundy">{translate("Daha fazla geri bildirim.", "More feedback.")}</span><br />{translate("Net sonuçlar.", "Clear results.")}</p></Reveal></div>
       </section>
       <section className="section-space border-b border-white/10">

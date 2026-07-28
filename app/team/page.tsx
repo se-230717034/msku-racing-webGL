@@ -1,4 +1,4 @@
-import { BriefcaseBusiness, CalendarDays, Code2, Cpu, Linkedin, Wrench } from "lucide-react";
+import { BriefcaseBusiness, CalendarDays, Code2, Cpu, ExternalLink, Linkedin, Wrench } from "lucide-react";
 import { PageHero } from "@/components/page-hero";
 import { Reveal } from "@/components/motion-reveal";
 
@@ -82,6 +82,11 @@ const linkedinProfiles: Record<string, string> = {
   "Selin Kula": "https://www.linkedin.com/in/selin-kula-5b033b2a2/",
 };
 
+const universityProfiles: Record<string, string> = {
+  "Prof. Dr. Ali Arslan Kaya": "https://www.mu.edu.tr/tr/personel/aakaya",
+  "Dr. Öğr. Üyesi Hayriye Serra Altınoluk": "https://www.mu.edu.tr/tr/personel/serraltinoluk",
+};
+
 export default function TeamPage() {
   return (
     <>
@@ -119,25 +124,34 @@ export default function TeamPage() {
                   <ul className="grid gap-px overflow-hidden border border-white/10 bg-white/10">
                     {members.map((member, memberIndex) => {
                       const linkedinUrl = linkedinProfiles[member];
+                      const universityUrl = universityProfiles[member];
+                      const profileUrl = universityUrl ?? linkedinUrl;
 
                       return (
                         <li key={`${name}-${member}`} className="flex items-center gap-3 bg-[#0A1020] px-4 py-4 text-sm">
                           <span className="font-display text-[10px] text-university">
                             {String(memberIndex + 1).padStart(2, "0")}
                           </span>
-                          {linkedinUrl ? (
+                          {profileUrl ? (
                             <a
-                              href={linkedinUrl}
+                              href={profileUrl}
                               target="_blank"
                               rel="noreferrer"
-                              aria-label={`${member} LinkedIn profilini aç`}
+                              aria-label={`${member} ${universityUrl ? "üniversite personel sayfasını" : "LinkedIn profilini"} aç`}
                               className="group/member flex min-w-0 flex-1 items-center justify-between gap-3 text-white/75 transition-colors hover:text-burgundy"
                             >
                               <span>{member}</span>
-                              <Linkedin
-                                size={15}
-                                className="shrink-0 opacity-50 transition-opacity group-hover/member:opacity-100"
-                              />
+                              {universityUrl ? (
+                                <ExternalLink
+                                  size={15}
+                                  className="shrink-0 opacity-50 transition-opacity group-hover/member:opacity-100"
+                                />
+                              ) : (
+                                <Linkedin
+                                  size={15}
+                                  className="shrink-0 opacity-50 transition-opacity group-hover/member:opacity-100"
+                                />
+                              )}
                             </a>
                           ) : (
                             <span className="text-white/75">{member}</span>

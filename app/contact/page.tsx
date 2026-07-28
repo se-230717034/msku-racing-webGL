@@ -50,7 +50,7 @@ export default function ContactPage() {
             </div>
             <div className="aspect-[4/3] w-full md:aspect-[16/7]">
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1890.6177744458782!2d28.373323808424693!3d37.16155784221463!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14bf73c67849a06d%3A0xbb46177fd2b5ee27!2zTcO8aGVuZGlzbGlrIEZha8O8bHRlc2kgfCBNdcSfbGEgU8SxdGvEsSBLb8OnbWFuIMOcbml2ZXJzaXRlc2k!5e0!3m2!1str!2str!4v1785221247184!5m2!1str!2str"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2673.686751958454!2d28.374110269602728!3d37.16298681078372!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14bf73c67849a06d%3A0xbb46177fd2b5ee27!2zTcO8aGVuZGlzbGlrIEZha8O8bHRlc2kgfCBNdcSfbGEgU8SxdGvEsSBLb8OnbWFuIMOcbml2ZXJzaXRlc2k!5e0!3m2!1str!2str!4v1785221642069!5m2!1str!2str"
                 title="Muğla Sıtkı Koçman Üniversitesi Mühendislik Fakültesi konumu"
                 className="h-full w-full border-0"
                 allowFullScreen

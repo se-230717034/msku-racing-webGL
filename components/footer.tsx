@@ -19,7 +19,7 @@ export function Footer() {
         <div className="grid gap-12 lg:grid-cols-[1.3fr_.7fr_.7fr]">
           <div>
             <Logo />
-            <p className="mt-5 max-w-md text-sm leading-7 text-white/45">Muğla Sıtkı Koçman Üniversitesi öğrencileri tarafından geliştirilen, tasarlayan ve üreten Formula Student takımı.</p>
+            <p className="mt-5 max-w-md text-sm leading-7 text-white/45">Muğla Sıtkı Koçman Üniversitesi öğrencileri tarafından kurulan, araç tasarımını ve üretimini üstlenen Formula Student takımı.</p>
           </div>
           <div>
             <p className="eyebrow mb-5">Keşfet</p>

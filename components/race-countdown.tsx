@@ -53,9 +53,6 @@ export function RaceCountdown() {
               <h2 id="race-countdown-title" className="font-display text-3xl font-semibold uppercase tracking-[-.035em]">
                 Yarışa kalan süre
               </h2>
-              <p className="mt-2 text-sm text-white/50">
-                Hedef tarih: 20 Eylül 2027, 00.00
-              </p>
             </div>
           </div>
         </div>

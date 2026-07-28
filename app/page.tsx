@@ -23,9 +23,60 @@ const departments = [
 ];
 
 const targets = [
-  { number: "01", trTitle: "Aracı tamamlamak", enTitle: "Complete the car", trCopy: "Amper'i üretimden dinamik testlere taşımak.", enCopy: "Take Amper from manufacturing to dynamic testing." },
-  { number: "02", trTitle: "Veriyle geliştirmek", enTitle: "Develop with data", trCopy: "Her test turunu ölçülebilir mühendislik kazanımına dönüştürmek.", enCopy: "Turn every test lap into measurable engineering progress." },
-  { number: "03", trTitle: "Yarışmaya hazırlanmak", enTitle: "Prepare for competition", trCopy: "Teknik kontrollerden dayanıklılık etabına kadar eksiksiz hazırlanmak.", enCopy: "Prepare thoroughly from technical inspection to the endurance event." },
+  {
+    number: "01",
+    trTitle: "Tasarımı doğrulamak",
+    enTitle: "Validate the design",
+    trCopy: "Araç mimarisini, alt sistem tasarımlarını ve kritik mühendislik hesaplarını üretim öncesinde tamamlamak ve doğrulamak.",
+    enCopy: "Complete and validate the vehicle architecture, subsystem designs and critical engineering calculations before manufacturing.",
+    trSubtitle: "Tasarım • Simülasyon • Teknik Doğrulama",
+    enSubtitle: "Design • Simulation • Technical Validation",
+  },
+  {
+    number: "02",
+    trTitle: "Üretim sürecini tamamlamak",
+    enTitle: "Complete manufacturing",
+    trCopy: "Şasi, süspansiyon, direksiyon, fren, elektronik ve diğer araç bileşenlerini teknik gereksinimlere uygun şekilde üretmek.",
+    enCopy: "Manufacture the chassis, suspension, steering, brakes, electronics and other vehicle components in line with technical requirements.",
+    trSubtitle: "Üretim • Kalite Kontrol • Tedarik",
+    enSubtitle: "Manufacturing • Quality Control • Supply",
+  },
+  {
+    number: "03",
+    trTitle: "Sistem entegrasyonunu sağlamak",
+    enTitle: "Integrate the systems",
+    trCopy: "Mekanik, elektronik ve yazılım sistemlerini araç üzerinde bir araya getirerek güvenli ve uyumlu şekilde çalışmasını sağlamak.",
+    enCopy: "Bring the mechanical, electronic and software systems together on the vehicle so they operate safely and in harmony.",
+    trSubtitle: "Montaj • Entegrasyon • Devreye Alma",
+    enSubtitle: "Assembly • Integration • Commissioning",
+  },
+  {
+    number: "04",
+    trTitle: "Test ve doğrulama yapmak",
+    enTitle: "Test and validate",
+    trCopy: "Aracı statik, dinamik ve dayanıklılık testlerinden geçirerek güvenlik ve performans hedeflerini doğrulamak.",
+    enCopy: "Validate safety and performance targets through static, dynamic and endurance testing.",
+    trSubtitle: "Güvenlik • Dayanıklılık • Performans",
+    enSubtitle: "Safety • Durability • Performance",
+  },
+  {
+    number: "05",
+    trTitle: "Veriyle geliştirmek",
+    enTitle: "Develop with data",
+    trCopy: "Testlerden elde edilen verileri analiz ederek araç ayarlarını, sistem verimliliğini ve sürüş karakterini geliştirmek.",
+    enCopy: "Analyze test data to improve vehicle setup, system efficiency and driving characteristics.",
+    trSubtitle: "Veri Toplama • Analiz • Optimizasyon",
+    enSubtitle: "Data Collection • Analysis • Optimization",
+  },
+  {
+    number: "06",
+    trTitle: "Yarışa hazırlanmak",
+    enTitle: "Prepare for competition",
+    trCopy: "Teknik kontroller, statik etkinlikler ve dinamik yarışlar için aracı, sürücüyü ve takım operasyonlarını eksiksiz hazırlamak.",
+    enCopy: "Prepare the vehicle, driver and team operations thoroughly for technical inspection, static events and dynamic competition.",
+    trSubtitle: "Teknik Kontrol • Strateji • Yarış Operasyonu",
+    enSubtitle: "Technical Inspection • Strategy • Race Operations",
+  },
 ];
 
 export default function Home() {
@@ -94,11 +145,12 @@ export default function Home() {
         <div className="container-shell">
           <Reveal><SectionHeading eyebrow={translate("Sezon Hedefleri", "Season Goals")} title={translate("Her hedef ölçülebilir.", "Every goal is measurable.")} /></Reveal>
           <div className="mt-12 grid gap-10 lg:grid-cols-3">
-            {targets.map(({ number, trTitle, enTitle, trCopy, enCopy }, i) => (
-              <Reveal key={number} delay={i * .07} className="border-t border-white/15 pt-7">
+            {targets.map(({ number, trTitle, enTitle, trCopy, enCopy, trSubtitle, enSubtitle }, i) => (
+              <Reveal key={number} delay={(i % 3) * .07} className="flex h-full flex-col border-t border-white/15 pt-7">
                 <div className="flex items-start justify-between"><span className="font-display text-5xl font-semibold text-university">{number}</span><span className="mt-2 h-2 w-2 bg-green" /></div>
                 <h3 className="mt-8 font-display text-2xl font-semibold uppercase">{language === "tr" ? trTitle : enTitle}</h3>
                 <p className="mt-4 max-w-sm leading-7 text-white/45">{language === "tr" ? trCopy : enCopy}</p>
+                <p className="mt-7 border-l-2 border-burgundy pl-4 text-[11px] font-bold uppercase leading-5 tracking-[.14em] text-white/60">{language === "tr" ? trSubtitle : enSubtitle}</p>
               </Reveal>
             ))}
           </div>

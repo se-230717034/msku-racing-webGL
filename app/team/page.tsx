@@ -1,4 +1,4 @@
-import { BriefcaseBusiness, CalendarDays, Code2, Cpu, Wrench } from "lucide-react";
+import { BriefcaseBusiness, CalendarDays, Code2, Cpu, Linkedin, Wrench } from "lucide-react";
 import { PageHero } from "@/components/page-hero";
 import { Reveal } from "@/components/motion-reveal";
 
@@ -64,6 +64,24 @@ const teams = [
   },
 ];
 
+const linkedinProfiles: Record<string, string> = {
+  "Ufuk Çok": "https://www.linkedin.com/in/ufuk-%C3%A7ok-9a326734a/",
+  "Mahmut Can Aşar": "https://www.linkedin.com/in/mahmut-can-a%C5%9Far-50a2b93b0/",
+  "Eylül Deniz Kudu": "https://www.linkedin.com/in/eyl%C3%BCldenizkudu/",
+  "Barış Bağcı": "https://www.linkedin.com/in/bar%C4%B1%C5%9F-ba%C4%9Fc%C4%B1-580a5a1ab/",
+  "Ebrar Azra Arslan": "https://www.linkedin.com/in/ebrar-azra-arslan-88a592290/",
+  "Aslı Ceren Yılmaz": "https://www.linkedin.com/in/asl%C4%B1cereny%C4%B1lmaz/",
+  "Şenol Durmuş": "https://www.linkedin.com/in/%C5%9Fenol-durmu%C5%9F-b570613b7/",
+  "Yaşar Kaki": "https://www.linkedin.com/in/yasarkaki/",
+  "Halil İbrahim Yılmaz": "https://www.linkedin.com/in/halil-ibrahim-y%C4%B1lmaz-7a2a35229/",
+  "Sertan Kurt": "https://www.linkedin.com/in/sertan-kurt-59bb6a185/",
+  "Ata Üstün": "https://www.linkedin.com/in/ata-ustun/",
+  "Tuğra Temur": "https://www.linkedin.com/in/tu%C4%9Fra-temur-8508732a3/",
+  "Zişan Günay": "https://www.linkedin.com/in/zi%C5%9Fan-g%C3%BCnay-9bb27b286/",
+  "Şule Nilay Aktaş": "https://www.linkedin.com/in/nilay-aktas-95b1aa3ab/",
+  "Selin Kula": "https://www.linkedin.com/in/selin-kula-5b033b2a2/",
+};
+
 export default function TeamPage() {
   return (
     <>
@@ -99,14 +117,34 @@ export default function TeamPage() {
                     <span className="font-display text-sm text-burgundy">{members.length} kişi</span>
                   </div>
                   <ul className="grid gap-px overflow-hidden border border-white/10 bg-white/10">
-                    {members.map((member, memberIndex) => (
-                      <li key={`${name}-${member}`} className="flex items-center gap-3 bg-[#0A1020] px-4 py-4 text-sm">
-                        <span className="font-display text-[10px] text-university">
-                          {String(memberIndex + 1).padStart(2, "0")}
-                        </span>
-                        <span className="text-white/75">{member}</span>
-                      </li>
-                    ))}
+                    {members.map((member, memberIndex) => {
+                      const linkedinUrl = linkedinProfiles[member];
+
+                      return (
+                        <li key={`${name}-${member}`} className="flex items-center gap-3 bg-[#0A1020] px-4 py-4 text-sm">
+                          <span className="font-display text-[10px] text-university">
+                            {String(memberIndex + 1).padStart(2, "0")}
+                          </span>
+                          {linkedinUrl ? (
+                            <a
+                              href={linkedinUrl}
+                              target="_blank"
+                              rel="noreferrer"
+                              aria-label={`${member} LinkedIn profilini aç`}
+                              className="group/member flex min-w-0 flex-1 items-center justify-between gap-3 text-white/75 transition-colors hover:text-burgundy"
+                            >
+                              <span>{member}</span>
+                              <Linkedin
+                                size={15}
+                                className="shrink-0 opacity-50 transition-opacity group-hover/member:opacity-100"
+                              />
+                            </a>
+                          ) : (
+                            <span className="text-white/75">{member}</span>
+                          )}
+                        </li>
+                      );
+                    })}
                   </ul>
                 </div>
               </article>

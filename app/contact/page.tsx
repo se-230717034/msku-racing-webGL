@@ -1,7 +1,34 @@
-import { Mail, MapPin } from "lucide-react";
+import { ChevronDown, Mail, MapPin } from "lucide-react";
 import { PageHero } from "@/components/page-hero";
 import { Reveal } from "@/components/motion-reveal";
 import { ContactForm } from "@/components/forms";
+
+const faqs = [
+  {
+    question: "MSKU RACING nedir?",
+    answer: "Muğla Sıtkı Koçman Üniversitesi öğrencileri tarafından kurulan, araç tasarımını ve üretimini üstlenen Formula Student takımıdır.",
+  },
+  {
+    question: "Takımın geliştirdiği aracın adı nedir?",
+    answer: "Takımımızın geliştirdiği Formula Student aracının adı Amper'dir.",
+  },
+  {
+    question: "Takımda hangi ekipler bulunuyor?",
+    answer: "MSKU RACING; Mekanik, Elektronik, Yazılım ve Organizasyon ekiplerinden oluşur. Ekip üyelerini Takım sayfamızda inceleyebilirsiniz.",
+  },
+  {
+    question: "Takıma nasıl katılabilirim?",
+    answer: "Yeni üye duyurularımızı LinkedIn hesabımızdan takip edebilir veya iletişim formu üzerinden ilgilendiğiniz ekibi belirterek bize ulaşabilirsiniz.",
+  },
+  {
+    question: "Nasıl sponsor olabilirim?",
+    answer: "Sponsorluk ve iş birliği talepleriniz için iletişim formunu kullanabilir ya da mskuracing@gmail.com adresine doğrudan e-posta gönderebilirsiniz.",
+  },
+  {
+    question: "Takım nerede çalışmalarını sürdürüyor?",
+    answer: "Çalışmalarımızı Muğla Sıtkı Koçman Üniversitesi Mühendislik Fakültesi, Kötekli Yerleşkesi'nde sürdürüyoruz.",
+  },
+];
 
 export default function ContactPage() {
   return (
@@ -63,6 +90,37 @@ export default function ContactPage() {
                 loading="lazy"
                 referrerPolicy="strict-origin-when-cross-origin"
               />
+            </div>
+          </Reveal>
+
+          <Reveal delay={.25} className="mt-20">
+            <div className="grid gap-10 lg:grid-cols-[.65fr_1.35fr] lg:gap-16">
+              <div>
+                <p className="eyebrow">Merak edilenler</p>
+                <h2 className="mt-4 font-display text-3xl font-semibold uppercase tracking-[-.035em] md:text-4xl">
+                  Sıkça sorulan sorular
+                </h2>
+                <p className="mt-5 max-w-md text-sm leading-7 text-white/45">
+                  Takımımız, aracımız, üyelik ve sponsorluk hakkında en çok sorulan soruların yanıtları.
+                </p>
+              </div>
+
+              <div className="border-t border-white/10">
+                {faqs.map(({ question, answer }) => (
+                  <details key={question} className="group border-b border-white/10">
+                    <summary className="flex cursor-pointer list-none items-center justify-between gap-6 py-6 font-display text-base font-semibold uppercase tracking-[-.01em] text-white/80 transition hover:text-white [&::-webkit-details-marker]:hidden">
+                      <span>{question}</span>
+                      <ChevronDown
+                        size={19}
+                        className="shrink-0 text-burgundy transition-transform duration-300 group-open:rotate-180"
+                      />
+                    </summary>
+                    <p className="max-w-2xl pb-6 pr-10 text-sm leading-7 text-white/50">
+                      {answer}
+                    </p>
+                  </details>
+                ))}
+              </div>
             </div>
           </Reveal>
         </div>

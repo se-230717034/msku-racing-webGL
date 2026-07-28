@@ -10,6 +10,7 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Reveal } from "@/components/motion-reveal";
+import { RaceCountdown } from "@/components/race-countdown";
 import { SectionHeading } from "@/components/section-heading";
 
 const departments = [
@@ -103,6 +104,8 @@ export default function Home() {
           </Reveal>
         </div>
       </section>
+
+      <RaceCountdown />
 
       <section className="section-space border-y border-white/10">
         <div className="container-shell">

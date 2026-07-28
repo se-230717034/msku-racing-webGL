@@ -21,7 +21,13 @@ export default function ContactPage() {
                   <MapPin className="mt-1 shrink-0 text-burgundy" size={20} />
                   <div>
                     <strong className="font-display uppercase">Yerleşke</strong>
-                    <p className="mt-2 text-sm leading-7 text-white/45">Muğla Sıtkı Koçman Üniversitesi<br />Kötekli Yerleşkesi, Muğla</p>
+                    <p className="mt-2 text-sm leading-7 text-white/45">
+                      Muğla Sıtkı Koçman Üniversitesi
+                      <br />
+                      Mühendislik Fakültesi
+                      <br />
+                      Kötekli Yerleşkesi, Muğla
+                    </p>
                   </div>
                 </div>
                 <div className="flex gap-4">

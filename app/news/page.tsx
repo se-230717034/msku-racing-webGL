@@ -8,7 +8,7 @@ export default function NewsPage() {
       <PageHero
         eyebrow="Haberler"
         title="Çok yakında."
-        description="MSKÜ Racing'den gelişmeler, üretim notları ve takım duyuruları yakında burada yayınlanacak."
+        description="MSKU RACING'den gelişmeler, üretim notları ve takım duyuruları yakında burada yayınlanacak."
       />
       <section className="section-space">
         <div className="container-shell">

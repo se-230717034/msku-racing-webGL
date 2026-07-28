@@ -42,7 +42,7 @@ export default function Home() {
             </div>
             <h1 className="font-display text-[clamp(4rem,9vw,8.75rem)] font-semibold uppercase leading-[.82] tracking-[-.075em]">
               MSKU
-              <span className="block text-burgundy">Racing</span>
+              <span className="block text-burgundy">RACING</span>
             </h1>
             <p className="mt-8 font-display text-2xl font-medium tracking-[-.025em] text-[#F5F4EF] md:text-3xl">
               Geleceğin Arabasını Tasarlıyoruz.
@@ -174,7 +174,7 @@ export default function Home() {
         <div className="container-shell relative flex flex-col items-start justify-between gap-8 py-16 md:flex-row md:items-center">
           <div>
             <div className="flex items-center gap-3"><CalendarDays size={16} className="text-green" /><p className="text-xs font-bold uppercase tracking-[.22em] text-white/65">Birlikte daha ileri</p></div>
-            <h2 className="mt-4 font-display text-4xl font-semibold uppercase tracking-[-.04em] md:text-5xl">MSKÜ Racing ile iletişime geçin.</h2>
+            <h2 className="mt-4 font-display text-4xl font-semibold uppercase tracking-[-.04em] md:text-5xl">MSKU RACING ile iletişime geçin.</h2>
           </div>
           <Button asChild className="shrink-0 bg-burgundy hover:bg-[#B51237]"><Link href="/contact">Bize Ulaşın <ArrowRight size={16} /></Link></Button>
         </div>

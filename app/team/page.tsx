@@ -70,7 +70,7 @@ export default function TeamPage() {
       <PageHero
         eyebrow="Takımımız"
         title="Yönetim ve dört ekip. Tek hedef."
-        description="Amper'i tasarlayan, geliştiren ve takımın sürdürülebilirliğini sağlayan MSKÜ Racing üyeleri."
+        description="Amper'i tasarlayan, geliştiren ve takımın sürdürülebilirliğini sağlayan MSKU RACING üyeleri."
       />
 
       <section className="section-space">

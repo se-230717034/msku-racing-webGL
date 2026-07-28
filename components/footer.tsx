@@ -48,7 +48,7 @@ export function Footer() {
           </div>
         </div>
         <div className="mt-14 flex flex-col gap-3 border-t border-white/10 pt-6 text-[11px] uppercase tracking-[.14em] text-white/30 sm:flex-row sm:items-center sm:justify-between">
-          <p>© 2026 MSKÜ Racing. Tüm hakları saklıdır.</p>
+          <p>© 2026 MSKU RACING. Tüm hakları saklıdır.</p>
           <a href="https://www.mu.edu.tr" target="_blank" className="flex items-center gap-1 hover:text-white">Muğla Sıtkı Koçman Üniversitesi <ArrowUpRight size={12} /></a>
         </div>
       </div>

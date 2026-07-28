@@ -6,7 +6,7 @@ import { Check } from "lucide-react";
 export default function JoinPage() {
   return (
     <>
-      <PageHero eyebrow="MSKÜ Racing'e katıl" title="Yeteneğin için bir yer var." description="Motor sporları deneyimi şart değil. Merakını, disiplinini ve öğrenme isteğini yanında getir." />
+      <PageHero eyebrow="MSKU RACING'e katıl" title="Yeteneğin için bir yer var." description="Motor sporları deneyimi şart değil. Merakını, disiplinini ve öğrenme isteğini yanında getir." />
       <section className="section-space"><div className="container-shell grid gap-14 lg:grid-cols-[.75fr_1.25fr]">
         <Reveal>
           <p className="eyebrow">Seni ne bekliyor?</p>

@@ -8,7 +8,7 @@ const manrope = Manrope({ subsets: ["latin"], variable: "--font-manrope" });
 const space = Space_Grotesk({ subsets: ["latin"], variable: "--font-space" });
 
 export const metadata: Metadata = {
-  title: { default: "MSKÜ Racing", template: "%s — MSKÜ Racing" },
+  title: { default: "MSKU RACING", template: "%s — MSKU RACING" },
   description: "Muğla Sıtkı Koçman Üniversitesi Formula Student Takımı.",
   icons: {
     icon: "/images/team-logo.png",

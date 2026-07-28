@@ -8,8 +8,8 @@ const teams = [
     description: "Takımın genel koordinasyonu, karar süreçleri ve departmanlar arası yönetimi.",
     icon: BriefcaseBusiness,
     members: [
-      "Hayriye Serra Altınoluk",
-      "Ali Arslan Kaya",
+      "Prof. Dr. Ali Arslan Kaya",
+      "Dr. Öğr. Üyesi Hayriye Serra Altınoluk",
     ],
   },
   {

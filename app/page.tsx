@@ -20,6 +20,7 @@ import { useLanguage } from "@/components/language-provider";
 import { GamePreview } from "@/components/game-preview";
 import { SponsorMarquee } from "@/components/sponsor-marquee";
 import { ContactForm } from "@/components/forms";
+import { RaceIntro } from "@/components/race-intro";
 
 const departments = [
   { trTitle: "Mekanik Ekip", enTitle: "Mechanical Team", trCopy: "Şasi, süspansiyon, aktarma ve üretim süreçleri.", enCopy: "Chassis, suspension, drivetrain and manufacturing processes.", icon: Wrench },
@@ -90,6 +91,7 @@ export default function Home() {
 
   return (
     <>
+      <RaceIntro />
       <section id="home" className="home-hero theme-fixed-dark relative min-h-[100svh] scroll-mt-20 overflow-hidden border-b border-white/10 bg-[#050913] pt-[72px] xl:pt-[76px]">
         <Image
           src="/images/msku-racing-hero.png"
@@ -102,8 +104,9 @@ export default function Home() {
         <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(3,6,13,.98)_0%,rgba(3,6,13,.86)_34%,rgba(3,6,13,.22)_72%,rgba(3,6,13,.38)_100%)]" />
         <div className="absolute inset-0 bg-[linear-gradient(0deg,rgba(3,6,13,.96)_0%,transparent_42%)]" />
         <div className="absolute inset-0 bg-grid-dark bg-[size:72px_72px] opacity-25 [mask-image:linear-gradient(to_right,black,transparent_72%)]" />
+        <div className="hero-speed-lines absolute inset-0" aria-hidden="true" />
         <div className="absolute -left-28 top-[12%] size-[440px] rounded-full border border-white/10 md:size-[620px]" />
-        <div className="absolute -left-10 top-[22%] size-[280px] rounded-full border border-burgundy/35 md:size-[420px]" />
+        <div className="hero-orbit absolute -left-10 top-[22%] size-[280px] rounded-full border border-burgundy/35 md:size-[420px]" />
 
         <div className="container-shell relative grid min-h-[calc(100svh-72px)] items-end gap-10 pb-9 pt-16 lg:grid-cols-[1fr_390px] lg:pb-10 xl:min-h-[calc(100svh-76px)]">
           <div className="relative z-10 pb-5 lg:pb-10">
@@ -112,8 +115,8 @@ export default function Home() {
               <p className="text-[10px] font-bold uppercase tracking-[.26em] text-white/60">{translate("Muğla Sıtkı Koçman Üniversitesi", "Muğla Sıtkı Koçman University")}</p>
             </div>
             <h1 className="hero-title max-w-[900px] font-display text-[clamp(4.4rem,10.8vw,10.5rem)] font-semibold uppercase leading-[.76] tracking-[-.085em]">
-              MSKU
-              <span className="block text-burgundy">RACING</span>
+              <span className="hero-line block overflow-hidden"><span className="block">MSKU</span></span>
+              <span className="hero-line block overflow-hidden text-burgundy"><span className="block">RACING</span></span>
             </h1>
             <div className="hero-actions mt-9 max-w-2xl border-l border-burgundy pl-5 md:pl-7">
               <p className="font-display text-xl font-medium uppercase tracking-[-.02em] text-white md:text-3xl">

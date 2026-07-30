@@ -11,6 +11,73 @@ body {
   transition: color .25s ease, background-color .25s ease;
   overflow-x: clip;
 }
+
+.race-intro {
+  position: fixed;
+  inset: 0;
+  z-index: 120;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  color: #f5f4ef;
+  pointer-events: all;
+}
+
+.race-intro-panel {
+  position: absolute;
+  inset-inline: 0;
+  height: 51%;
+  background:
+    linear-gradient(100deg, transparent 0 46%, rgba(160,0,38,.16) 46% 47%, transparent 47%),
+    #03060d;
+}
+
+.race-intro-panel-top { top: 0; }
+.race-intro-panel-bottom { bottom: 0; }
+
+.race-intro-content {
+  position: relative;
+  z-index: 2;
+  width: min(88vw, 920px);
+}
+
+.race-intro-mark {
+  font-family: var(--font-space);
+  font-size: clamp(3.8rem, 11vw, 9.5rem);
+  font-weight: 700;
+  line-height: .8;
+  letter-spacing: -.085em;
+  text-transform: uppercase;
+}
+
+.race-intro-mark span { color: #a00026; }
+
+.race-intro-rule {
+  height: 2px;
+  margin-top: 1.6rem;
+  background: linear-gradient(90deg, #252b87, #a00026 72%, #f5f4ef);
+  transform-origin: left center;
+}
+
+.race-intro-meta {
+  display: flex;
+  justify-content: space-between;
+  padding-top: .8rem;
+  font-size: .62rem;
+  font-weight: 700;
+  letter-spacing: .24em;
+}
+
+.race-intro-flash {
+  position: absolute;
+  inset: 50% 0 auto;
+  z-index: 3;
+  height: 2px;
+  background: #f5f4ef;
+  box-shadow: 0 0 35px 8px rgba(160,0,38,.8);
+  opacity: 0;
+  transform: scaleX(0);
+}
 main { overflow: clip; }
 ::selection { background: #A00026; color: #F5F4EF; }
 
@@ -285,6 +352,45 @@ body::-webkit-scrollbar-thumb { background: #a00026; border: 2px solid #03060d; 
   pointer-events: none;
 }
 
+.hero-speed-lines {
+  overflow: hidden;
+  opacity: .28;
+  pointer-events: none;
+  -webkit-mask-image: linear-gradient(to right, transparent 8%, black 54%, transparent 94%);
+  mask-image: linear-gradient(to right, transparent 8%, black 54%, transparent 94%);
+}
+
+.hero-speed-lines::before,
+.hero-speed-lines::after {
+  content: "";
+  position: absolute;
+  inset: 8% -25%;
+  background: repeating-linear-gradient(102deg, transparent 0 92px, rgba(245,244,239,.18) 93px, transparent 95px 188px);
+  transform: translateX(-18%) skewX(-16deg);
+  animation: hero-speed 7s linear infinite;
+}
+
+.hero-speed-lines::after {
+  opacity: .45;
+  transform: translateX(-8%) skewX(-16deg) scaleY(.65);
+  animation-duration: 11s;
+  animation-direction: reverse;
+}
+
+.hero-orbit {
+  animation: orbit-pulse 5s ease-in-out infinite;
+  box-shadow: 0 0 90px rgba(160,0,38,.08);
+}
+
+@keyframes hero-speed {
+  to { translate: 25% 0; }
+}
+
+@keyframes orbit-pulse {
+  0%, 100% { scale: 1; opacity: .75; }
+  50% { scale: 1.08; opacity: 1; }
+}
+
 .hero-preview .game-preview {
   box-shadow: 0 30px 100px rgba(0,0,0,.42);
 }
@@ -304,6 +410,11 @@ body::-webkit-scrollbar-thumb { background: #a00026; border: 2px solid #03060d; 
   font-weight: 700;
   letter-spacing: .2em;
   color: #a00026;
+}
+
+.section-title {
+  transform-origin: left bottom;
+  will-change: transform, clip-path;
 }
 
 .kinetic-strip {
@@ -502,6 +613,12 @@ details > p {
   .home-hero { min-height: auto; }
   .home-hero .hero-media { object-position: 69% center; opacity: .78; }
   .home-hero::after { bottom: -1rem; font-size: 13rem; }
+  .hero-speed-lines { opacity: .12; }
+  .hero-speed-lines::before,
+  .hero-speed-lines::after { animation-duration: 16s; }
+  .race-intro-content { width: calc(100vw - 2.25rem); }
+  .race-intro-mark { font-size: clamp(3.4rem, 18vw, 5.4rem); }
+  .race-intro-meta { font-size: .52rem; letter-spacing: .14em; }
   .hero-preview { margin-top: .5rem; }
   .hero-preview .game-preview { min-height: 340px; }
   .page-hero .track-line { opacity: .55; }
@@ -540,4 +657,5 @@ details > p {
     transform: none !important;
     overflow-x: auto;
   }
+  .race-intro { display: none; }
 }

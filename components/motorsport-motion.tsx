@@ -13,6 +13,7 @@ export function MotorsportMotion() {
   useLayoutEffect(() => {
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const mobile = window.matchMedia("(max-width: 767px)").matches;
+    const introDelay = pathname === "/" && !mobile ? 1.45 : 0;
 
     if (reducedMotion) {
       gsap.set(".gsap-reveal, .hero-title, .hero-kicker, .hero-actions", {
@@ -28,20 +29,37 @@ export function MotorsportMotion() {
         gsap.fromTo(
           ".hero-kicker",
           { opacity: 0, x: -18 },
-          { opacity: 1, x: 0, duration: 0.65, ease: "power3.out" },
+          { opacity: 1, x: 0, duration: 0.65, ease: "power3.out", delay: introDelay },
         );
         gsap.fromTo(
-          ".hero-title",
-          { opacity: 0, yPercent: 18 },
-          { opacity: 1, yPercent: 0, duration: mobile ? 0.75 : 1.05, ease: "power4.out", delay: 0.08 },
+          ".hero-line > span",
+          { yPercent: 112, rotate: mobile ? 0 : 4, skewX: mobile ? 0 : -6 },
+          { yPercent: 0, rotate: 0, skewX: 0, duration: mobile ? 0.78 : 1.08, stagger: .12, ease: "power4.out", delay: introDelay + .04 },
         );
         gsap.fromTo(
           ".hero-actions",
           { opacity: 0, y: 18 },
-          { opacity: 1, y: 0, duration: 0.7, ease: "power3.out", delay: 0.3 },
+          { opacity: 1, y: 0, duration: 0.7, ease: "power3.out", delay: introDelay + .32 },
         );
 
-        document.querySelectorAll<HTMLElement>(".gsap-reveal").forEach((element) => {
+        if (!mobile) {
+          gsap.fromTo(
+            ".hero-preview",
+            { opacity: 0, x: 90, rotateY: -12, transformPerspective: 1000 },
+            { opacity: 1, x: 0, rotateY: 0, duration: 1.1, ease: "power4.out", delay: introDelay + .25 },
+          );
+          gsap.to(".hero-preview", {
+            y: -12,
+            rotateZ: .35,
+            duration: 3.2,
+            repeat: -1,
+            yoyo: true,
+            ease: "sine.inOut",
+            delay: introDelay + 1.25,
+          });
+        }
+
+        document.querySelectorAll<HTMLElement>(".gsap-reveal:not(.hero-preview)").forEach((element) => {
           const delay = Number(element.dataset.delay ?? 0);
           gsap.fromTo(
             element,
@@ -57,6 +75,36 @@ export function MotorsportMotion() {
                 start: mobile ? "top 94%" : "top 88%",
                 once: true,
               },
+            },
+          );
+        });
+
+        document.querySelectorAll<HTMLElement>(".section-title").forEach((element) => {
+          gsap.fromTo(
+            element,
+            { clipPath: "inset(0 0 100% 0)", yPercent: 24, rotateX: mobile ? 0 : -18, transformPerspective: 900 },
+            {
+              clipPath: "inset(0 0 0% 0)",
+              yPercent: 0,
+              rotateX: 0,
+              duration: mobile ? .7 : 1.05,
+              ease: "power4.out",
+              scrollTrigger: { trigger: element, start: mobile ? "top 94%" : "top 86%", once: true },
+            },
+          );
+        });
+
+        gsap.utils.toArray<HTMLElement>(".section-index").forEach((element) => {
+          gsap.fromTo(
+            element,
+            { opacity: 0, x: -32, letterSpacing: ".8em" },
+            {
+              opacity: 1,
+              x: 0,
+              letterSpacing: ".2em",
+              duration: .8,
+              ease: "power3.out",
+              scrollTrigger: { trigger: element, start: "top 92%", once: true },
             },
           );
         });
@@ -93,10 +141,11 @@ export function MotorsportMotion() {
 
           gsap.fromTo(
             ".story-media",
-            { scale: 1.12, clipPath: "inset(8% 6% 8% 6%)" },
+            { scale: 1.22, clipPath: "inset(14% 9% 14% 9%)", filter: "saturate(.35) contrast(1.18)" },
             {
               scale: 1,
               clipPath: "inset(0% 0% 0% 0%)",
+              filter: "saturate(1) contrast(1)",
               ease: "none",
               scrollTrigger: {
                 trigger: ".scroll-story",
@@ -109,9 +158,10 @@ export function MotorsportMotion() {
 
           gsap.fromTo(
             ".story-copy",
-            { y: 70 },
+            { y: 130, rotateX: -8, transformPerspective: 900 },
             {
-              y: -25,
+              y: -35,
+              rotateX: 0,
               ease: "none",
               scrollTrigger: {
                 trigger: ".scroll-story",
@@ -121,6 +171,25 @@ export function MotorsportMotion() {
               },
             },
           );
+
+          document.querySelectorAll<HTMLElement>(".gallery-panel").forEach((element, index) => {
+            gsap.fromTo(
+              element,
+              { xPercent: index === 0 ? -18 : 18, scale: .84, rotate: index === 0 ? -2.5 : 2.5 },
+              {
+                xPercent: 0,
+                scale: 1,
+                rotate: 0,
+                ease: "none",
+                scrollTrigger: {
+                  trigger: "#gallery",
+                  start: "top bottom",
+                  end: "center 48%",
+                  scrub: .9,
+                },
+              },
+            );
+          });
 
         }
 

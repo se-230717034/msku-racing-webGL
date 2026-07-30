@@ -11,19 +11,20 @@ import { useLanguage } from "./language-provider";
 import { cn } from "@/lib/utils";
 
 const nav = [
-  { tr: "Ana Sayfa", en: "Home", href: "/" },
-  { tr: "Araç", en: "Car", href: "/car" },
-  { tr: "Takım", en: "Team", href: "/team" },
-  { tr: "Sponsorlar", en: "Sponsors", href: "/sponsors" },
-  { tr: "Haberler", en: "News", href: "/news" },
-  { tr: "Galeri", en: "Gallery", href: "/gallery" },
-  { tr: "İletişim", en: "Contact", href: "/contact" },
+  { tr: "Ana Sayfa", en: "Home", id: "home" },
+  { tr: "Araç", en: "Car", id: "car" },
+  { tr: "Takım", en: "Team", id: "team" },
+  { tr: "Sponsorlar", en: "Sponsors", id: "sponsors" },
+  { tr: "Haberler", en: "News", id: "news" },
+  { tr: "Galeri", en: "Gallery", id: "gallery" },
+  { tr: "İletişim", en: "Contact", id: "contact" },
 ];
 
-function NavLink({ label, href, active, mobile = false }: { label: string; href: string; active: boolean; mobile?: boolean }) {
+function NavLink({ label, href, active, mobile = false, onNavigate }: { label: string; href: string; active: boolean; mobile?: boolean; onNavigate?: () => void }) {
   return (
     <Link
       href={href}
+      onClick={onNavigate}
       className={cn(
         "relative flex items-center font-bold uppercase text-white/55 transition hover:text-white",
         mobile ? "group justify-between border-b border-white/10 py-4 font-display text-[clamp(1.65rem,8vw,2.5rem)] tracking-[-.04em]" : "justify-center px-3 py-2 text-[11px] tracking-[.14em]",
@@ -41,6 +42,7 @@ export function Header() {
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
   const { language, translate } = useLanguage();
+  const sectionHref = (id: string) => `${pathname === "/" ? "" : "/"}#${id}`;
 
   useEffect(() => setMenuOpen(false), [pathname]);
 
@@ -57,8 +59,8 @@ export function Header() {
         <Logo />
         <div className="flex items-center gap-3">
           <nav className="hidden items-center gap-1 xl:flex" aria-label={translate("Ana navigasyon", "Main navigation")}>
-            {nav.map(({ tr, en, href }) => (
-              <NavLink key={href} label={language === "tr" ? tr : en} href={href} active={pathname === href} />
+            {nav.map(({ tr, en, id }) => (
+              <NavLink key={id} label={language === "tr" ? tr : en} href={sectionHref(id)} active={id === "home" && pathname === "/"} />
             ))}
           </nav>
           <LanguageToggle />
@@ -84,8 +86,8 @@ export function Header() {
         )}
       >
         <nav className="mx-auto max-w-2xl" aria-label={translate("Mobil navigasyon", "Mobile navigation")}>
-          {nav.map(({ tr, en, href }) => (
-            <NavLink key={href} label={language === "tr" ? tr : en} href={href} active={pathname === href} mobile />
+          {nav.map(({ tr, en, id }) => (
+            <NavLink key={id} label={language === "tr" ? tr : en} href={sectionHref(id)} active={id === "home" && pathname === "/"} mobile onNavigate={() => setMenuOpen(false)} />
           ))}
           <Link href="/join" className="mt-7 flex items-center justify-between bg-burgundy px-5 py-4 text-xs font-bold uppercase tracking-[.18em] text-white">
             {translate("Takıma katıl", "Join the team")}

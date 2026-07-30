@@ -33,9 +33,9 @@ export function Footer() {
           <div>
             <p className="eyebrow mb-5">{translate("Keşfet", "Explore")}</p>
             <div className="grid grid-cols-2 gap-3 text-sm text-white/55">
-              <Link href="/">{translate("Ana Sayfa", "Home")}</Link><Link href="/team">{translate("Takım", "Team")}</Link>
-              <Link href="/car">{translate("Araç", "Car")}</Link><Link href="/sponsors">{translate("Sponsorlar", "Sponsors")}</Link>
-              <Link href="/news">{translate("Haberler", "News")}</Link><Link href="/contact">{translate("İletişim", "Contact")}</Link>
+              <Link href="/#home">{translate("Ana Sayfa", "Home")}</Link><Link href="/#team">{translate("Takım", "Team")}</Link>
+              <Link href="/#car">{translate("Araç", "Car")}</Link><Link href="/#sponsors">{translate("Sponsorlar", "Sponsors")}</Link>
+              <Link href="/#news">{translate("Haberler", "News")}</Link><Link href="/#contact">{translate("İletişim", "Contact")}</Link>
             </div>
           </div>
           <div>

@@ -122,16 +122,6 @@ export function MotorsportMotion() {
             },
           );
 
-          gsap.to(".kinetic-word", {
-            xPercent: -18,
-            ease: "none",
-            scrollTrigger: {
-              trigger: ".kinetic-strip",
-              start: "top bottom",
-              end: "bottom top",
-              scrub: 0.8,
-            },
-          });
         }
 
         gsap.to(".scroll-progress", {

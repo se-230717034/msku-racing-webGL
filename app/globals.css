@@ -313,8 +313,17 @@ body::-webkit-scrollbar-thumb { background: #a00026; border: 2px solid #03060d; 
   padding-block: .9rem;
 }
 
-.kinetic-word {
+.kinetic-track {
+  display: flex;
   width: max-content;
+  animation: kinetic-scroll 24s linear infinite;
+  will-change: transform;
+}
+
+.kinetic-word {
+  flex: none;
+  width: max-content;
+  padding-right: .35em;
   font-family: var(--font-space);
   font-size: clamp(2.1rem, 6vw, 5.4rem);
   font-weight: 700;
@@ -322,12 +331,16 @@ body::-webkit-scrollbar-thumb { background: #a00026; border: 2px solid #03060d; 
   letter-spacing: -.055em;
   white-space: nowrap;
   color: #f5f4ef;
-  transform: translateX(-2%);
 }
 
 .kinetic-word span {
   padding-inline: .35em;
   color: #050913;
+}
+
+@keyframes kinetic-scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
 }
 
 .sponsor-marquee-window {
@@ -500,7 +513,7 @@ details > p {
   .scroll-story > .container-shell { min-height: 680px; }
   .story-media { object-position: 68% center; }
   .kinetic-strip { padding-block: .7rem; }
-  .kinetic-word { transform: translateX(-4%); }
+  .kinetic-track { animation-duration: 34s; }
   .sponsor-marquee-window { mask-image: none; -webkit-mask-image: none; }
   .sponsor-marquee-track { gap: .75rem; animation-duration: 58s; }
   .sponsor-marquee-reverse { animation-duration: 64s; }

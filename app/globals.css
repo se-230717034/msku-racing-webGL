@@ -297,6 +297,109 @@ body::-webkit-scrollbar-thumb { background: #a00026; border: 2px solid #03060d; 
   background: linear-gradient(135deg, rgba(255,255,255,.04), transparent 38%);
 }
 
+.section-index {
+  flex: 0 0 auto;
+  font-family: var(--font-space);
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .2em;
+  color: #a00026;
+}
+
+.kinetic-strip {
+  overflow: hidden;
+  border-block: 1px solid rgba(245,244,239,.1);
+  background: #a00026;
+  padding-block: .9rem;
+}
+
+.kinetic-word {
+  width: max-content;
+  font-family: var(--font-space);
+  font-size: clamp(2.1rem, 6vw, 5.4rem);
+  font-weight: 700;
+  line-height: .86;
+  letter-spacing: -.055em;
+  white-space: nowrap;
+  color: #f5f4ef;
+  transform: translateX(-2%);
+}
+
+.kinetic-word span {
+  padding-inline: .35em;
+  color: #050913;
+}
+
+.sponsor-marquee-window {
+  overflow: hidden;
+  padding-block: .35rem;
+  -webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+  mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+}
+
+.sponsor-marquee-track {
+  display: flex;
+  width: max-content;
+  gap: 1rem;
+  padding-inline: .5rem;
+  animation: sponsor-scroll 42s linear infinite;
+  will-change: transform;
+}
+
+.sponsor-marquee-reverse {
+  animation-name: sponsor-scroll-reverse;
+  animation-duration: 48s;
+}
+
+.sponsor-marquee-track:hover {
+  animation-play-state: paused;
+}
+
+.sponsor-marquee-card {
+  position: relative;
+  flex: 0 0 290px;
+  min-height: 156px;
+  overflow: hidden;
+  border: 1px solid rgba(245,244,239,.11);
+  background:
+    linear-gradient(135deg, rgba(37,43,135,.16), transparent 55%),
+    rgba(255,255,255,.025);
+  padding: 1.35rem;
+  transition: border-color .3s ease, transform .3s ease, background-color .3s ease;
+}
+
+.sponsor-marquee-card::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0;
+  height: 2px;
+  background: linear-gradient(90deg, #252b87, #a00026, transparent);
+  transform: scaleX(.35);
+  transform-origin: left;
+  transition: transform .35s ease;
+}
+
+.sponsor-marquee-card:hover {
+  z-index: 2;
+  transform: translateY(-5px);
+  border-color: rgba(160,0,38,.55);
+  background-color: rgba(160,0,38,.06);
+}
+
+.sponsor-marquee-card:hover::after {
+  transform: scaleX(1);
+}
+
+@keyframes sponsor-scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(calc(-50% - .5rem)); }
+}
+
+@keyframes sponsor-scroll-reverse {
+  from { transform: translateX(calc(-50% - .5rem)); }
+  to { transform: translateX(0); }
+}
+
 .page-hero {
   background:
     radial-gradient(circle at 88% 30%, rgba(160,0,38,.12), transparent 30rem),
@@ -393,6 +496,15 @@ details > p {
   .motorsport-button { min-height: 50px; padding-inline: 1.25rem; }
   .premium-card:hover { transform: none; }
   .site-footer::before { padding-top: 1.6rem; font-size: 3.4rem; }
+  .scroll-story { min-height: 680px; }
+  .scroll-story > .container-shell { min-height: 680px; }
+  .story-media { object-position: 68% center; }
+  .kinetic-strip { padding-block: .7rem; }
+  .kinetic-word { transform: translateX(-4%); }
+  .sponsor-marquee-window { mask-image: none; -webkit-mask-image: none; }
+  .sponsor-marquee-track { gap: .75rem; animation-duration: 58s; }
+  .sponsor-marquee-reverse { animation-duration: 64s; }
+  .sponsor-marquee-card { flex-basis: 235px; min-height: 138px; padding: 1.1rem; }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -409,5 +521,10 @@ details > p {
   .hero-actions {
     opacity: 1 !important;
     transform: none !important;
+  }
+  .sponsor-marquee-track {
+    animation: none !important;
+    transform: none !important;
+    overflow-x: auto;
   }
 }

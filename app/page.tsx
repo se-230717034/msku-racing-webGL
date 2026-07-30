@@ -15,6 +15,7 @@ import { RaceCountdown } from "@/components/race-countdown";
 import { SectionHeading } from "@/components/section-heading";
 import { useLanguage } from "@/components/language-provider";
 import { GamePreview } from "@/components/game-preview";
+import { SponsorMarquee } from "@/components/sponsor-marquee";
 
 const departments = [
   { trTitle: "Mekanik Ekip", enTitle: "Mechanical Team", trCopy: "Şasi, süspansiyon, aktarma ve üretim süreçleri.", enCopy: "Chassis, suspension, drivetrain and manufacturing processes.", icon: Wrench },
@@ -134,8 +135,49 @@ export default function Home() {
 
       <RaceCountdown />
 
-      <section className="section-space border-y border-white/10">
+      <section id="about" className="scroll-story theme-fixed-dark relative min-h-[760px] overflow-hidden border-b border-white/10 bg-[#03060d]">
+        <Image
+          src="/images/msku-racing-car-covered.png"
+          alt={translate("Örtü altındaki MSKU RACING Amper Formula Student aracı", "MSKU RACING Amper Formula Student car under cover")}
+          fill
+          sizes="100vw"
+          className="story-media object-cover object-[68%_center] opacity-75"
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#03060d] via-[#03060d]/78 to-[#03060d]/15" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#03060d] via-transparent to-[#03060d]/55" />
+        <div className="container-shell relative flex min-h-[760px] items-end py-20 md:items-center md:py-28">
+          <div className="story-copy max-w-3xl">
+            <div className="flex items-center gap-4">
+              <span className="section-index">01</span>
+              <span className="h-px w-16 bg-burgundy" />
+              <p className="text-[10px] font-bold uppercase tracking-[.24em] text-white/45">{translate("Araç geliştirme programı", "Vehicle development programme")}</p>
+            </div>
+            <h2 className="mt-8 font-display text-[clamp(3.4rem,8vw,8rem)] font-semibold uppercase leading-[.82] tracking-[-.065em]">
+              {translate("Fikirden", "From idea")}
+              <span className="block text-burgundy">{translate("piste.", "to track.")}</span>
+            </h2>
+            <p className="mt-7 max-w-xl text-base leading-8 text-white/55 md:text-lg">
+              {translate(
+                "Mekanik, elektronik, yazılım ve organizasyon ekipleri Amper'i tasarlamak, üretmek, entegre etmek ve doğrulamak için tek bir akışta çalışır.",
+                "Mechanical, electronics, software and organization teams work in one flow to design, manufacture, integrate and validate Amper.",
+              )}
+            </p>
+            <Button asChild variant="outline" className="mt-8">
+              <Link href="/car">{translate("Amper'i incele", "Explore Amper")} <ArrowRight size={16} /></Link>
+            </Button>
+          </div>
+        </div>
+      </section>
+
+      <div className="kinetic-strip theme-fixed-dark" aria-hidden="true">
+        <div className="kinetic-word">
+          {translate("TASARIM", "DESIGN")} <span>•</span> {translate("ÜRETİM", "MANUFACTURING")} <span>•</span> {translate("ENTEGRASYON", "INTEGRATION")} <span>•</span> {translate("TEST", "TESTING")} <span>•</span>
+        </div>
+      </div>
+
+      <section id="team-structure" className="section-space border-y border-white/10">
         <div className="container-shell">
+          <div className="mb-9 flex items-center gap-4"><span className="section-index">02</span><span className="h-px flex-1 bg-white/10" /></div>
           <Reveal><SectionHeading eyebrow={translate("Takım Yapısı", "Team Structure")} title={translate("Dört ekip. Tek hedef.", "Four teams. One goal.")} copy={translate("Mekanik, elektronik, yazılım ve organizasyon ekipleri Amper için birlikte çalışır.", "Mechanical, electronics, software and organization teams work together for Amper.")} /></Reveal>
           <div className="mt-12 grid gap-px overflow-hidden border border-white/10 bg-white/10 md:grid-cols-2 lg:grid-cols-4">
             {departments.map(({ trTitle, enTitle, trCopy, enCopy, icon: Icon }, i) => (
@@ -153,8 +195,9 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="section-space bg-[#0D1425]">
+      <section id="goals" className="section-space bg-[#0D1425]">
         <div className="container-shell">
+          <div className="mb-9 flex items-center gap-4"><span className="section-index">03</span><span className="h-px flex-1 bg-white/10" /></div>
           <Reveal><SectionHeading eyebrow={translate("Sezon Hedefleri", "Season Goals")} title={translate("Her hedef ölçülebilir.", "Every goal is measurable.")} /></Reveal>
           <div className="mt-12 grid gap-10 lg:grid-cols-3">
             {targets.map(({ number, trTitle, enTitle, trCopy, enCopy, trSubtitle, enSubtitle }, i) => (
@@ -169,29 +212,22 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="section-space bg-[#F5F4EF] text-[#080D1A]">
+      <section id="sponsors" className="section-space overflow-hidden bg-[#050913] text-white">
         <div className="container-shell">
+          <div className="mb-9 flex items-center gap-4"><span className="section-index">04</span><span className="h-px flex-1 bg-white/10" /></div>
           <Reveal className="flex flex-col justify-between gap-7 md:flex-row md:items-end">
-            <div><p className="text-xs font-bold uppercase tracking-[.24em] text-burgundy">{translate("Sponsorlarımız", "Our Sponsors")}</p><h2 className="mt-5 font-display text-4xl font-semibold uppercase tracking-[-.04em] sm:text-5xl">{translate("Mühendisliğe güç verenler.", "Powering engineering.")}</h2></div>
-            <Link href="/sponsors" className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[.18em] text-university">{translate("İş birliği seçenekleri", "Partnership options")} <ArrowRight size={15} /></Link>
+            <div><p className="text-xs font-bold uppercase tracking-[.24em] text-burgundy">{translate("Sponsorlarımız", "Our Sponsors")}</p><h2 className="mt-5 max-w-4xl font-display text-4xl font-semibold uppercase leading-[.92] tracking-[-.04em] sm:text-5xl lg:text-7xl">{translate("Mühendisliğe güç verenler.", "Powering engineering.")}</h2></div>
+            <Link href="/sponsors" className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[.18em] text-burgundy">{translate("İş birliği seçenekleri", "Partnership options")} <ArrowRight size={15} /></Link>
           </Reveal>
-          <div className="mt-12 grid grid-cols-2 gap-px border border-[#080D1A]/15 bg-[#080D1A]/15 md:grid-cols-3">
-            {[
-              translate("Elmas Sponsor 01", "Diamond Sponsor 01"),
-              translate("Elmas Sponsor 02", "Diamond Sponsor 02"),
-              translate("Altın Sponsor 01", "Gold Sponsor 01"),
-              translate("Altın Sponsor 02", "Gold Sponsor 02"),
-              translate("Gümüş Sponsor 01", "Silver Sponsor 01"),
-              translate("Gümüş Sponsor 02", "Silver Sponsor 02"),
-            ].map((label) => (
-              <div key={label} className="group grid min-h-36 place-items-center bg-[#F5F4EF] p-5 text-center transition hover:bg-white"><span className="text-[10px] font-bold uppercase tracking-[.2em] text-[#080D1A]/30 transition group-hover:text-burgundy">{label}<small className="mt-2 block font-normal tracking-[.1em]">{translate("Logo alanı", "Logo area")}</small></span></div>
-            ))}
+          <div className="relative left-1/2 mt-14 w-screen -translate-x-1/2">
+            <SponsorMarquee />
           </div>
         </div>
       </section>
 
-      <section className="section-space">
+      <section id="news" className="section-space">
         <div className="container-shell">
+          <div className="mb-9 flex items-center gap-4"><span className="section-index">05</span><span className="h-px flex-1 bg-white/10" /></div>
           <Reveal><SectionHeading eyebrow={translate("Son Gelişmeler", "Latest Updates")} title={translate("Garajdan haberler.", "News from the garage.")} /></Reveal>
           <Reveal className="mt-12 border-y border-white/15 py-10">
             <Link href="/news" className="group flex flex-col justify-between gap-6 md:flex-row md:items-center">

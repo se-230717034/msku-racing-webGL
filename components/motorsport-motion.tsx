@@ -90,6 +90,48 @@ export function MotorsportMotion() {
               },
             });
           });
+
+          gsap.fromTo(
+            ".story-media",
+            { scale: 1.12, clipPath: "inset(8% 6% 8% 6%)" },
+            {
+              scale: 1,
+              clipPath: "inset(0% 0% 0% 0%)",
+              ease: "none",
+              scrollTrigger: {
+                trigger: ".scroll-story",
+                start: "top 85%",
+                end: "bottom 35%",
+                scrub: 0.8,
+              },
+            },
+          );
+
+          gsap.fromTo(
+            ".story-copy",
+            { y: 70 },
+            {
+              y: -25,
+              ease: "none",
+              scrollTrigger: {
+                trigger: ".scroll-story",
+                start: "top bottom",
+                end: "bottom top",
+                scrub: 0.8,
+              },
+            },
+          );
+
+          gsap.to(".kinetic-word", {
+            xPercent: -18,
+            ease: "none",
+            scrollTrigger: {
+              trigger: ".kinetic-strip",
+              start: "top bottom",
+              end: "bottom top",
+              scrub: 0.8,
+            },
+          });
         }
 
         gsap.to(".scroll-progress", {

@@ -3,13 +3,15 @@
 @tailwind utilities;
 
 * { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; overflow-x: hidden; }
 body {
   margin: 0;
   color: #F5F4EF;
   background: #080D1A;
   transition: color .25s ease, background-color .25s ease;
+  overflow-x: clip;
 }
+main { overflow: clip; }
 ::selection { background: #A00026; color: #F5F4EF; }
 
 @layer utilities {
@@ -162,3 +164,250 @@ html.light .theme-fixed-dark .border-white\/15 { border-color: rgba(245, 244, 23
 html.light .theme-fixed-dark .bg-white\/10 { background-color: rgba(245, 244, 239, .08); }
 html.light .theme-fixed-dark .bg-\[\#09101E\] { background-color: #09101E; }
 html.light .theme-fixed-dark.bg-\[\#0B1222\] { background-color: #0B1222; }
+
+/* Motorsport redesign */
+:root {
+  --surface: #080d1a;
+  --surface-deep: #03060d;
+  --surface-raised: #0d1425;
+  --line: rgba(245, 244, 239, .12);
+}
+
+body {
+  background-image:
+    radial-gradient(circle at 78% 8%, rgba(37, 43, 135, .18), transparent 28rem),
+    linear-gradient(180deg, #050913 0%, #080d1a 46%, #050913 100%);
+}
+
+body::-webkit-scrollbar { width: 9px; }
+body::-webkit-scrollbar-track { background: #03060d; }
+body::-webkit-scrollbar-thumb { background: #a00026; border: 2px solid #03060d; }
+
+.scroll-progress {
+  position: fixed;
+  inset: 0 0 auto;
+  z-index: 70;
+  height: 3px;
+  background: linear-gradient(90deg, #252b87, #a00026 65%, #f5f4ef);
+  transform: scaleX(0);
+  transform-origin: left center;
+  pointer-events: none;
+}
+
+.site-header {
+  transition: background-color .3s ease, border-color .3s ease, box-shadow .3s ease;
+}
+
+.site-header::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 -1px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(160, 0, 38, .8), transparent);
+  opacity: .45;
+}
+
+.site-header.mobile-menu-open {
+  background: #050913;
+}
+
+.mobile-menu-panel {
+  background:
+    radial-gradient(circle at 90% 12%, rgba(160,0,38,.18), transparent 19rem),
+    #050913;
+  isolation: isolate;
+}
+
+.motorsport-button {
+  position: relative;
+  overflow: hidden;
+  border-radius: 0;
+  clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
+}
+
+.motorsport-button::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(110deg, transparent 35%, rgba(255,255,255,.18), transparent 65%);
+  transform: translateX(-120%);
+  transition: transform .55s ease;
+}
+
+.motorsport-button:hover::after { transform: translateX(120%); }
+
+.premium-card {
+  position: relative;
+  overflow: hidden;
+  background:
+    linear-gradient(145deg, rgba(255,255,255,.035), transparent 48%),
+    #0d1425;
+  transition: transform .35s ease, border-color .35s ease, background-color .35s ease;
+}
+
+.premium-card::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto auto 0;
+  width: 40%;
+  height: 2px;
+  background: linear-gradient(90deg, #a00026, transparent);
+}
+
+.premium-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(160, 0, 38, .5);
+}
+
+.form-field {
+  border-radius: 0;
+  min-height: 54px;
+  background:
+    linear-gradient(90deg, rgba(37,43,135,.06), transparent 38%),
+    rgba(255,255,255,.025);
+}
+
+.form-field:focus {
+  box-shadow: inset 3px 0 0 #a00026, 0 0 0 1px rgba(160,0,38,.35);
+}
+
+.home-hero::after {
+  content: "48";
+  position: absolute;
+  right: -1vw;
+  bottom: -8vw;
+  font-family: var(--font-space);
+  font-size: clamp(12rem, 30vw, 34rem);
+  font-weight: 700;
+  line-height: .75;
+  letter-spacing: -.1em;
+  color: rgba(245,244,239,.025);
+  pointer-events: none;
+}
+
+.hero-preview .game-preview {
+  box-shadow: 0 30px 100px rgba(0,0,0,.42);
+}
+
+.hero-preview .game-preview::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(135deg, rgba(255,255,255,.04), transparent 38%);
+}
+
+.page-hero {
+  background:
+    radial-gradient(circle at 88% 30%, rgba(160,0,38,.12), transparent 30rem),
+    linear-gradient(135deg, #050913, #0b1222 68%, #080d1a);
+}
+
+.track-line { box-shadow: inset 0 0 80px rgba(37,43,135,.04); }
+
+.display-title,
+.page-hero h1 {
+  text-wrap: balance;
+  max-width: 18ch;
+}
+
+.section-space {
+  position: relative;
+}
+
+.section-space::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: max(1.25rem, calc((100vw - 1440px) / 2 + 3rem));
+  width: 48px;
+  height: 1px;
+  background: #a00026;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: .65rem;
+}
+
+.eyebrow::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  background: currentColor;
+  transform: rotate(45deg);
+}
+
+details[open] {
+  background: linear-gradient(90deg, rgba(160,0,38,.08), transparent 70%);
+}
+
+details summary {
+  padding-inline: 1rem;
+}
+
+details > p {
+  padding-left: 1rem;
+}
+
+.site-footer {
+  position: relative;
+  background:
+    linear-gradient(135deg, rgba(37,43,135,.18), transparent 38%),
+    #03060d;
+}
+
+.site-footer::before {
+  content: "MSKU RACING";
+  display: block;
+  overflow: hidden;
+  border-bottom: 1px solid rgba(255,255,255,.08);
+  padding: 2rem max(1.25rem, calc((100vw - 1440px) / 2 + 3rem)) 1.25rem;
+  font-family: var(--font-space);
+  font-size: clamp(3.25rem, 11vw, 10rem);
+  font-weight: 700;
+  line-height: .78;
+  letter-spacing: -.08em;
+  color: rgba(245,244,239,.045);
+  white-space: nowrap;
+}
+
+@media (max-width: 1023px) {
+  .hero-preview {
+    width: min(100%, 560px);
+  }
+}
+
+@media (max-width: 767px) {
+  .container-shell { padding-left: 1.125rem; padding-right: 1.125rem; }
+  .section-space { padding-top: 4.5rem; padding-bottom: 4.5rem; }
+  .display-title { font-size: clamp(3rem, 14vw, 4.65rem); line-height: .88; }
+  .home-hero { min-height: auto; }
+  .home-hero .hero-media { object-position: 69% center; opacity: .78; }
+  .home-hero::after { bottom: -1rem; font-size: 13rem; }
+  .hero-preview { margin-top: .5rem; }
+  .hero-preview .game-preview { min-height: 340px; }
+  .page-hero .track-line { opacity: .55; }
+  .page-hero { min-height: auto; }
+  .motorsport-button { min-height: 50px; padding-inline: 1.25rem; }
+  .premium-card:hover { transform: none; }
+  .site-footer::before { padding-top: 1.6rem; font-size: 3.4rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    scroll-behavior: auto !important;
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+  }
+  .gsap-reveal,
+  .hero-title,
+  .hero-kicker,
+  .hero-actions {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}

@@ -5,7 +5,7 @@ import { AlertCircle, CheckCircle2, LoaderCircle, Send } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useLanguage } from "./language-provider";
 
-const field = "w-full rounded-xl border border-white/10 bg-white/[.04] px-4 py-3.5 text-sm outline-none transition placeholder:text-white/25 focus:border-accent/70 focus:bg-white/[.06]";
+const field = "form-field w-full border border-white/10 bg-white/[.04] px-4 py-3.5 text-sm outline-none transition placeholder:text-white/25 focus:border-accent/70 focus:bg-white/[.06]";
 const contactEndpoint = "https://formspree.io/f/mqernppb";
 
 export function JoinForm() {

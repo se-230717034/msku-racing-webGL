@@ -4,13 +4,27 @@ import "./globals.css";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { LanguageProvider } from "@/components/language-provider";
+import { MotorsportMotion } from "@/components/motorsport-motion";
 
 const manrope = Manrope({ subsets: ["latin"], variable: "--font-manrope" });
 const space = Space_Grotesk({ subsets: ["latin"], variable: "--font-space" });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://msku-racing-preview.vercel.app"),
   title: { default: "MSKU RACING", template: "%s — MSKU RACING" },
   description: "Muğla Sıtkı Koçman Üniversitesi Formula Student Takımı.",
+  openGraph: {
+    title: "MSKU RACING",
+    description: "Muğla Sıtkı Koçman Üniversitesi Formula Student Takımı.",
+    type: "website",
+    images: [{ url: "/og.png", width: 1792, height: 1024, alt: "MSKU RACING Formula Student Team" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "MSKU RACING",
+    description: "Muğla Sıtkı Koçman Üniversitesi Formula Student Takımı.",
+    images: ["/og.png"],
+  },
   icons: {
     icon: "/images/team-logo.png",
     apple: "/images/team-logo.png",
@@ -19,18 +33,19 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="tr" className="light" suppressHydrationWarning>
+    <html lang="tr" className="dark" suppressHydrationWarning>
       <head>
         <script
           dangerouslySetInnerHTML={{
             __html:
-              "try{if(localStorage.getItem('msku-racing-theme')==='dark'){document.documentElement.classList.remove('light');document.documentElement.classList.add('dark')}if(localStorage.getItem('msku-racing-language')==='en'){document.documentElement.lang='en'}}catch(e){}",
+              "try{var t=localStorage.getItem('msku-racing-theme');if(t==='light'){document.documentElement.classList.remove('dark');document.documentElement.classList.add('light')}if(localStorage.getItem('msku-racing-language')==='en'){document.documentElement.lang='en'}}catch(e){}",
           }}
         />
       </head>
       <body className={`${manrope.variable} ${space.variable} font-sans antialiased`}>
         <div className="noise" />
         <LanguageProvider>
+          <MotorsportMotion />
           <Header />
           <main>{children}</main>
           <Footer />

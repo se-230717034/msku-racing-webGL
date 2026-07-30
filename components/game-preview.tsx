@@ -7,13 +7,13 @@ export function GamePreview() {
   const { translate } = useLanguage();
 
   return (
-    <div className="theme-fixed-dark carbon-subtle relative min-h-[390px] overflow-hidden border border-white/15 bg-[#0B1222] md:min-h-[540px]">
+    <div className="theme-fixed-dark carbon-subtle game-preview relative min-h-[360px] overflow-hidden border border-white/15 bg-[#0B1222]/90 backdrop-blur-md md:min-h-[420px]">
       <div className="absolute inset-5 border border-university/35" />
       <div className="absolute right-5 top-5 h-px w-1/3 bg-burgundy" />
       <div className="absolute bottom-5 left-5 h-px w-1/4 bg-green/70" />
       <div className="absolute inset-0 bg-grid-dark bg-[size:40px_40px] opacity-25" />
 
-      <div className="relative z-10 flex min-h-[390px] flex-col p-9 md:min-h-[540px] md:p-12">
+      <div className="relative z-10 flex min-h-[360px] flex-col p-6 md:min-h-[420px] md:p-8">
         <div className="flex items-start justify-between gap-5 border-b border-white/10 pb-6">
           <div>
             <div className="flex items-center gap-3">
@@ -32,11 +32,11 @@ export function GamePreview() {
           </span>
         </div>
 
-        <div className="relative flex flex-1 items-center justify-center py-8">
-          <div className="absolute h-44 w-72 rounded-[50%] border border-dashed border-university/35 md:h-52 md:w-96" />
-          <div className="absolute h-28 w-52 rounded-[50%] border border-burgundy/30 md:h-32 md:w-72" />
-          <div className="relative grid size-28 place-items-center border border-white/15 bg-[#09101E] shadow-[0_0_60px_rgba(37,43,135,.22)]">
-            <Gamepad2 size={42} className="text-white/65" />
+        <div className="relative flex flex-1 items-center justify-center py-6">
+          <div className="absolute h-32 w-56 rounded-[50%] border border-dashed border-university/35 md:h-40 md:w-72" />
+          <div className="absolute h-20 w-40 rounded-[50%] border border-burgundy/30 md:h-24 md:w-52" />
+          <div className="relative grid size-24 place-items-center border border-white/15 bg-[#09101E] shadow-[0_0_60px_rgba(37,43,135,.22)]">
+            <Gamepad2 size={34} className="text-white/65" />
             <span className="absolute -right-2 -top-2 grid size-7 place-items-center bg-burgundy text-white">
               <Sparkles size={13} />
             </span>

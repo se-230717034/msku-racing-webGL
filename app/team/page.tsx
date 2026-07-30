@@ -119,7 +119,7 @@ export default function TeamPage() {
             const name = language === "tr" ? trName : enName;
             return (
             <Reveal key={trName} delay={teamIndex * .06} className={teamIndex === 0 ? "lg:col-span-2" : ""}>
-              <article className="h-full border border-white/10 bg-[#0D1425]">
+              <article className="premium-card h-full border border-white/10 bg-[#0D1425]">
                 <header className="flex items-start justify-between gap-6 border-b border-white/10 p-7 md:p-8">
                   <div>
                     <p className="text-[10px] font-bold uppercase tracking-[.22em] text-green">

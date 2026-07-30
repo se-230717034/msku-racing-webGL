@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import {
   ArrowRight,
   CalendarDays,
@@ -84,40 +85,51 @@ export default function Home() {
 
   return (
     <>
-      <section className="relative min-h-[780px] overflow-hidden border-b border-white/10 pt-[140px] xl:min-h-screen xl:pt-[76px]">
-        <div className="absolute inset-0 bg-grid-dark bg-[size:64px_64px] opacity-60 [mask-image:linear-gradient(to_bottom,black,transparent_92%)]" />
-        <div className="absolute left-0 top-[22%] h-px w-[42%] bg-university/70" />
-        <div className="absolute left-[38%] top-[22%] h-px w-16 bg-burgundy" />
-        <div className="absolute bottom-[18%] right-0 h-px w-[28%] bg-green/70" />
+      <section className="home-hero theme-fixed-dark relative min-h-[100svh] overflow-hidden border-b border-white/10 bg-[#050913] pt-[72px] xl:pt-[76px]">
+        <Image
+          src="/images/msku-racing-hero.png"
+          alt={translate("Gece pit alanında MSKU RACING Formula Student aracı", "MSKU RACING Formula Student car in a night-time pit lane")}
+          fill
+          sizes="100vw"
+          className="hero-media object-cover object-[68%_center]"
+          priority
+        />
+        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(3,6,13,.98)_0%,rgba(3,6,13,.86)_34%,rgba(3,6,13,.22)_72%,rgba(3,6,13,.38)_100%)]" />
+        <div className="absolute inset-0 bg-[linear-gradient(0deg,rgba(3,6,13,.96)_0%,transparent_42%)]" />
+        <div className="absolute inset-0 bg-grid-dark bg-[size:72px_72px] opacity-25 [mask-image:linear-gradient(to_right,black,transparent_72%)]" />
+        <div className="absolute -left-28 top-[12%] size-[440px] rounded-full border border-white/10 md:size-[620px]" />
+        <div className="absolute -left-10 top-[22%] size-[280px] rounded-full border border-burgundy/35 md:size-[420px]" />
 
-        <div className="container-shell relative grid min-h-[calc(100vh-140px)] items-center gap-14 py-16 lg:grid-cols-[.9fr_1.1fr] xl:min-h-[calc(100vh-76px)] xl:py-20">
-          <Reveal className="relative z-10">
-            <div className="mb-7 flex items-center gap-3">
-              <span className="h-2 w-2 bg-green" />
-              <p className="text-[11px] font-bold uppercase tracking-[.24em] text-white/55">{translate("Muğla Sıtkı Koçman Üniversitesi", "Muğla Sıtkı Koçman University")}</p>
+        <div className="container-shell relative grid min-h-[calc(100svh-72px)] items-end gap-10 pb-9 pt-16 lg:grid-cols-[1fr_390px] lg:pb-10 xl:min-h-[calc(100svh-76px)]">
+          <div className="relative z-10 pb-5 lg:pb-10">
+            <div className="hero-kicker mb-7 flex items-center gap-3">
+              <span className="h-px w-12 bg-burgundy" />
+              <p className="text-[10px] font-bold uppercase tracking-[.26em] text-white/60">{translate("Muğla Sıtkı Koçman Üniversitesi", "Muğla Sıtkı Koçman University")}</p>
             </div>
-            <h1 className="font-display text-[clamp(4rem,9vw,8.75rem)] font-semibold uppercase leading-[.82] tracking-[-.075em]">
+            <h1 className="hero-title max-w-[900px] font-display text-[clamp(4.4rem,10.8vw,10.5rem)] font-semibold uppercase leading-[.76] tracking-[-.085em]">
               MSKU
               <span className="block text-burgundy">RACING</span>
             </h1>
-            <p className="mt-8 font-display text-2xl font-medium tracking-[-.025em] text-[#F5F4EF] md:text-3xl">
-              {translate("Geleceğin Arabasını Tasarlıyoruz.", "Designing the Car of the Future.")}
-            </p>
-            <p className="mt-4 max-w-xl leading-7 text-white/55">
-              {translate("Muğla Sıtkı Koçman Üniversitesi Formula Student Takımı", "Muğla Sıtkı Koçman University Formula Student Team")}
-            </p>
-            <div className="mt-9 flex flex-wrap gap-3">
-              <Button asChild size="lg"><Link href="/car">{translate("Aracı Keşfet", "Explore the Car")} <ArrowRight size={16} /></Link></Button>
-              <Button asChild variant="outline" size="lg"><Link href="/sponsors">{translate("Sponsorumuz Ol", "Become a Sponsor")}</Link></Button>
+            <div className="hero-actions mt-9 max-w-2xl border-l border-burgundy pl-5 md:pl-7">
+              <p className="font-display text-xl font-medium uppercase tracking-[-.02em] text-white md:text-3xl">
+                {translate("Geleceğin Arabasını Tasarlıyoruz.", "Designing the Car of the Future.")}
+              </p>
+              <p className="mt-3 max-w-xl text-sm leading-7 text-white/55 md:text-base">
+                {translate("Muğla Sıtkı Koçman Üniversitesi Formula Student Takımı", "Muğla Sıtkı Koçman University Formula Student Team")}
+              </p>
+              <div className="mt-7 flex flex-wrap gap-3">
+                <Button asChild size="lg"><Link href="/car">{translate("Aracı Keşfet", "Explore the Car")} <ArrowRight size={16} /></Link></Button>
+                <Button asChild variant="outline" size="lg"><Link href="/sponsors">{translate("Sponsorumuz Ol", "Become a Sponsor")}</Link></Button>
+              </div>
             </div>
-          </Reveal>
+          </div>
 
-          <Reveal delay={.08} className="relative">
-            <div className="absolute -left-5 top-10 h-[72%] w-1 bg-university" />
-            <div className="absolute -left-5 top-[82%] h-10 w-1 bg-burgundy" />
+          <Reveal delay={.32} className="hero-preview relative z-10">
             <GamePreview />
           </Reveal>
         </div>
+        <div className="absolute bottom-0 left-0 h-1 w-[42%] bg-university" />
+        <div className="absolute bottom-0 left-[42%] h-1 w-[12%] bg-burgundy" />
       </section>
 
       <RaceCountdown />
@@ -128,7 +140,7 @@ export default function Home() {
           <div className="mt-12 grid gap-px overflow-hidden border border-white/10 bg-white/10 md:grid-cols-2 lg:grid-cols-4">
             {departments.map(({ trTitle, enTitle, trCopy, enCopy, icon: Icon }, i) => (
               <Reveal key={trTitle} delay={i * .05} className="h-full">
-                <div className="group relative h-full min-h-72 bg-[#0B1222] p-7 transition hover:bg-university/15">
+                <div className="premium-card group relative h-full min-h-72 bg-[#0B1222] p-7 transition hover:bg-university/15">
                   <span className="absolute inset-x-0 top-0 h-1 bg-university transition group-hover:bg-burgundy" />
                   <div className="flex items-center justify-between"><Icon className="text-white/55" size={24} /><span className="text-[10px] font-bold tracking-[.2em] text-green">0{i + 1}</span></div>
                   <h3 className="mt-20 font-display text-2xl font-semibold uppercase">{language === "tr" ? trTitle : enTitle}</h3>
@@ -146,7 +158,7 @@ export default function Home() {
           <Reveal><SectionHeading eyebrow={translate("Sezon Hedefleri", "Season Goals")} title={translate("Her hedef ölçülebilir.", "Every goal is measurable.")} /></Reveal>
           <div className="mt-12 grid gap-10 lg:grid-cols-3">
             {targets.map(({ number, trTitle, enTitle, trCopy, enCopy, trSubtitle, enSubtitle }, i) => (
-              <Reveal key={number} delay={(i % 3) * .07} className="flex h-full flex-col border-t border-white/15 pt-7">
+              <Reveal key={number} delay={(i % 3) * .07} className="premium-card flex h-full flex-col border border-white/10 bg-[#0A1020]/55 p-7">
                 <div className="flex items-start justify-between"><span className="font-display text-5xl font-semibold text-university">{number}</span><span className="mt-2 h-2 w-2 bg-green" /></div>
                 <h3 className="mt-8 font-display text-2xl font-semibold uppercase">{language === "tr" ? trTitle : enTitle}</h3>
                 <p className="mt-4 max-w-sm leading-7 text-white/45">{language === "tr" ? trCopy : enCopy}</p>
@@ -172,7 +184,7 @@ export default function Home() {
               translate("Gümüş Sponsor 01", "Silver Sponsor 01"),
               translate("Gümüş Sponsor 02", "Silver Sponsor 02"),
             ].map((label) => (
-              <div key={label} className="grid min-h-36 place-items-center bg-[#F5F4EF] p-5 text-center"><span className="text-[10px] font-bold uppercase tracking-[.2em] text-[#080D1A]/30">{label}<small className="mt-2 block font-normal tracking-[.1em]">{translate("Logo alanı", "Logo area")}</small></span></div>
+              <div key={label} className="group grid min-h-36 place-items-center bg-[#F5F4EF] p-5 text-center transition hover:bg-white"><span className="text-[10px] font-bold uppercase tracking-[.2em] text-[#080D1A]/30 transition group-hover:text-burgundy">{label}<small className="mt-2 block font-normal tracking-[.1em]">{translate("Logo alanı", "Logo area")}</small></span></div>
             ))}
           </div>
         </div>

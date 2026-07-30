@@ -17,7 +17,7 @@ export default function NewsPage() {
       />
       <section className="section-space">
         <div className="container-shell">
-          <Reveal className="grid min-h-[360px] place-items-center border border-white/10 bg-[#0D1425] text-center">
+          <Reveal className="premium-card grid min-h-[360px] place-items-center border border-white/10 bg-[#0D1425] text-center">
             <div className="max-w-xl px-6">
               <span className="mx-auto grid size-14 place-items-center border border-university/50 bg-university/10 text-white/70">
                 <CalendarClock size={24} />

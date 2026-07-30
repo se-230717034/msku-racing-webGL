@@ -61,7 +61,7 @@ export function RaceCountdown() {
 
         <div className="grid grid-cols-2 gap-2 sm:grid-cols-4" aria-label={translate("Yarışa kalan süre", "Time until the race")}>
           {units.map(({ key, tr, en }) => (
-            <div key={key} className="relative overflow-hidden border border-white/10 bg-[#0A1020] px-5 py-5 text-center">
+            <div key={key} className="premium-card relative overflow-hidden border border-white/10 bg-[#0A1020] px-5 py-5 text-center">
               <span className="absolute inset-x-0 top-0 h-0.5 bg-university" />
               <strong className="block font-display text-4xl font-semibold tabular-nums text-white md:text-5xl">
                 {countdown ? String(countdown[key]).padStart(2, "0") : "--"}

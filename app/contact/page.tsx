@@ -86,12 +86,12 @@ export default function ContactPage() {
                 </div>
               </div>
             </Reveal>
-            <Reveal delay={.1} className="rounded-sm border border-white/10 bg-white/[.025] p-6 md:p-9">
+            <Reveal delay={.1} className="premium-card border border-white/10 bg-white/[.025] p-6 md:p-9">
               <ContactForm />
             </Reveal>
           </div>
 
-          <Reveal delay={.2} className="mt-14 overflow-hidden border border-white/10 bg-white/[.025]">
+          <Reveal delay={.2} className="premium-card mt-14 overflow-hidden border border-white/10 bg-white/[.025]">
             <div className="border-b border-white/10 p-6 md:px-9 md:py-7">
               <p className="eyebrow">{translate("Konum", "Location")}</p>
               <h2 className="mt-3 font-display text-2xl font-semibold uppercase tracking-[-.025em] md:text-3xl">

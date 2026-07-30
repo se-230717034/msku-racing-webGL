@@ -27,7 +27,7 @@ export default function JoinPage() {
           </div>
           <p className="mt-9 border-l-2 border-burgundy pl-5 text-sm leading-7 text-white/40">{translate("Başvurular tüm bölümlerdeki aktif MSKÜ öğrencilerine açıktır. Pozisyonlar ve kontenjanlar sezon boyunca değişebilir.", "Applications are open to active MSKU students from all departments. Positions and availability may change throughout the season.")}</p>
         </Reveal>
-        <Reveal delay={.1} className="rounded-2xl border border-white/10 bg-white/[.025] p-6 md:p-9"><JoinForm /></Reveal>
+        <Reveal delay={.1} className="premium-card border border-white/10 bg-white/[.025] p-6 md:p-9"><JoinForm /></Reveal>
       </div></section>
     </>
   );

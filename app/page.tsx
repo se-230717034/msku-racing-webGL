@@ -223,10 +223,8 @@ export default function Home() {
                           <ul>
                             {group.members.map((member, memberIndex) => {
                               const profileUrl = getMemberProfile(member);
-                              const initials = member.split(" ").filter(Boolean).slice(-2).map((part) => part[0]).join("");
                               const content = (
                                 <>
-                                  <span className="team-member-avatar">{initials}</span>
                                   <span>{member}</span>
                                   <small>{String(memberIndex + 1).padStart(2, "0")}</small>
                                   {profileUrl && <ArrowUpRight size={14} />}

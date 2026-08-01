@@ -5,6 +5,7 @@ import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { LanguageProvider } from "@/components/language-provider";
 import { MotorsportMotion } from "@/components/motorsport-motion";
+import { ScrollRacer } from "@/components/scroll-racer";
 
 const manrope = Manrope({ subsets: ["latin"], variable: "--font-manrope" });
 const space = Space_Grotesk({ subsets: ["latin"], variable: "--font-space" });
@@ -46,6 +47,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <div className="noise" />
         <LanguageProvider>
           <MotorsportMotion />
+          <ScrollRacer />
           <Header />
           <main>{children}</main>
           <Footer />

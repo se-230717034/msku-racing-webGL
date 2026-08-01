@@ -245,9 +245,147 @@ body {
     linear-gradient(180deg, #050913 0%, #080d1a 46%, #050913 100%);
 }
 
-body::-webkit-scrollbar { width: 9px; }
+html { scrollbar-width: thin; scrollbar-color: rgba(160,0,38,.2) #03060d; }
+body::-webkit-scrollbar { width: 4px; }
 body::-webkit-scrollbar-track { background: #03060d; }
-body::-webkit-scrollbar-thumb { background: #a00026; border: 2px solid #03060d; }
+body::-webkit-scrollbar-thumb { background: rgba(160,0,38,.24); }
+
+.scroll-racer {
+  --scroll-racer-y: 0px;
+  position: fixed;
+  z-index: 65;
+  top: 88px;
+  right: 4px;
+  bottom: 24px;
+  width: 34px;
+  opacity: 0;
+  pointer-events: none;
+  touch-action: none;
+  user-select: none;
+  transition: opacity .3s ease;
+}
+
+.scroll-racer.is-visible { opacity: 1; pointer-events: auto; }
+.scroll-racer:focus-visible { outline: 1px solid rgba(245,244,239,.55); outline-offset: 3px; }
+
+.scroll-racer-track {
+  position: absolute;
+  inset: 0 16px;
+  background: linear-gradient(180deg, rgba(37,43,135,.7), rgba(160,0,38,.8) 62%, rgba(245,244,239,.16));
+  box-shadow: 0 0 12px rgba(160,0,38,.15);
+}
+
+.scroll-racer-vehicle {
+  position: absolute;
+  left: 1px;
+  top: 0;
+  width: 32px;
+  height: 52px;
+  color: #f5f4ef;
+  filter: drop-shadow(0 5px 6px rgba(0,0,0,.7)) drop-shadow(0 0 5px rgba(160,0,38,.55));
+  transform: translate3d(0, var(--scroll-racer-y), 0);
+  transition: transform .1s linear;
+  cursor: grab;
+  will-change: transform;
+}
+
+.scroll-racer:active .scroll-racer-vehicle,
+.scroll-racer.is-dragging .scroll-racer-vehicle { cursor: grabbing; transition: none; }
+
+.formula-body {
+  position: absolute;
+  z-index: 3;
+  top: 5px;
+  left: 11px;
+  width: 10px;
+  height: 42px;
+  border: 1px solid rgba(245,244,239,.5);
+  background: linear-gradient(180deg, #252b87 0 24%, #080d1a 24% 61%, #a00026 61% 100%);
+  clip-path: polygon(18% 0, 82% 0, 100% 35%, 82% 67%, 65% 100%, 35% 100%, 18% 67%, 0 35%);
+}
+
+.formula-engine-cover {
+  position: absolute;
+  top: 4px;
+  left: 3px;
+  width: 2px;
+  height: 12px;
+  background: rgba(245,244,239,.72);
+}
+
+.formula-cockpit {
+  position: absolute;
+  top: 15px;
+  left: 1px;
+  width: 6px;
+  height: 10px;
+  border: 1px solid rgba(245,244,239,.34);
+  border-radius: 50% 50% 42% 42%;
+  background: #01040a;
+  box-shadow: inset 0 2px 2px rgba(245,244,239,.18);
+}
+
+.formula-body small {
+  position: absolute;
+  top: 27px;
+  left: 0;
+  width: 8px;
+  font-family: var(--font-space);
+  font-size: 4px;
+  font-weight: 800;
+  line-height: 1;
+  text-align: center;
+}
+
+.formula-nose {
+  position: absolute;
+  left: 3px;
+  bottom: -2px;
+  width: 2px;
+  height: 14px;
+  background: #d20a3d;
+}
+
+.formula-wing {
+  position: absolute;
+  z-index: 4;
+  left: 2px;
+  width: 28px;
+  border: 1px solid rgba(245,244,239,.34);
+  background: #a00026;
+  box-shadow: 0 1px 0 #03060d;
+}
+
+.formula-wing-rear { top: 2px; height: 5px; }
+.formula-wing-front { bottom: 1px; height: 4px; background: #252b87; clip-path: polygon(0 0, 42% 22%, 58% 22%, 100% 0, 96% 100%, 4% 100%); }
+
+.formula-wheel {
+  position: absolute;
+  z-index: 2;
+  width: 6px;
+  border: 1px solid rgba(245,244,239,.18);
+  border-radius: 2px;
+  background: #02040a;
+  box-shadow: inset 1px 0 rgba(245,244,239,.14), inset -1px 0 rgba(245,244,239,.14);
+}
+
+.formula-wheel-rear-left { top: 9px; left: 2px; height: 12px; }
+.formula-wheel-rear-right { top: 9px; right: 2px; height: 12px; }
+.formula-wheel-front-left { bottom: 7px; left: 3px; height: 10px; }
+.formula-wheel-front-right { right: 3px; bottom: 7px; height: 10px; }
+
+.formula-sidepod {
+  position: absolute;
+  z-index: 2;
+  top: 21px;
+  width: 8px;
+  height: 14px;
+  border: 1px solid rgba(245,244,239,.3);
+  background: linear-gradient(180deg, #252b87, #a00026);
+}
+
+.formula-sidepod-left { left: 6px; clip-path: polygon(0 15%, 100% 0, 100% 100%, 30% 78%); }
+.formula-sidepod-right { right: 6px; clip-path: polygon(0 0, 100% 15%, 70% 78%, 0 100%); }
 
 .scroll-progress {
   position: fixed;
@@ -271,6 +409,18 @@ body::-webkit-scrollbar-thumb { background: #a00026; border: 2px solid #03060d; 
   height: 1px;
   background: linear-gradient(90deg, transparent, rgba(160, 0, 38, .8), transparent);
   opacity: .45;
+}
+
+.nav-active-indicator {
+  position: absolute;
+  left: 0;
+  bottom: -23px;
+  height: 2px;
+  pointer-events: none;
+  background: #a00026;
+  box-shadow: 0 0 16px rgba(160,0,38,.48);
+  transform-origin: left center;
+  transition: transform .48s cubic-bezier(.16,1,.3,1), width .42s cubic-bezier(.16,1,.3,1), opacity .2s ease;
 }
 
 .site-header.mobile-menu-open {
@@ -964,8 +1114,8 @@ html.light .race-control .text-white\/35 { color: rgba(245,244,239,.42); }
 .team-member-panel li > a,
 .team-member-panel li > div {
   display: grid;
-  grid-template-columns: 34px minmax(0, 1fr) auto auto;
-  gap: .7rem;
+  grid-template-columns: minmax(0, 1fr) auto auto;
+  gap: .85rem;
   align-items: center;
   min-height: 62px;
   padding: .65rem .9rem;
@@ -983,19 +1133,6 @@ html.light .race-control .text-white\/35 { color: rgba(245,244,239,.42); }
   font-family: var(--font-space);
   font-size: .5rem;
   color: rgba(245,244,239,.25);
-}
-
-.team-member-avatar {
-  display: grid;
-  width: 30px;
-  height: 30px;
-  place-items: center;
-  border: 1px solid rgba(37,43,135,.6);
-  background: rgba(37,43,135,.12);
-  font-family: var(--font-space);
-  font-size: .56rem;
-  font-weight: 700;
-  color: rgba(245,244,239,.72);
 }
 
 .season-timeline {
@@ -1158,6 +1295,7 @@ html.light .race-control .text-white\/35 { color: rgba(245,244,239,.42); }
 }
 
 @media (max-width: 767px) {
+  .scroll-racer { display: none; }
   .race-intro { display: none; }
   .container-shell { padding-left: 1.125rem; padding-right: 1.125rem; }
   .section-space { padding-top: 4.5rem; padding-bottom: 4.5rem; }

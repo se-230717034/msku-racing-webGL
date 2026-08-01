@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { Menu, X } from "lucide-react";
 import { Logo } from "./logo";
 import { LanguageToggle } from "./language-toggle";
@@ -20,9 +20,10 @@ const nav = [
   { tr: "İletişim", en: "Contact", id: "contact" },
 ];
 
-function NavLink({ label, href, active, mobile = false, onNavigate }: { label: string; href: string; active: boolean; mobile?: boolean; onNavigate?: () => void }) {
+function NavLink({ label, href, active, mobile = false, onNavigate, linkRef }: { label: string; href: string; active: boolean; mobile?: boolean; onNavigate?: () => void; linkRef?: (node: HTMLAnchorElement | null) => void }) {
   return (
     <Link
+      ref={linkRef}
       href={href}
       onClick={onNavigate}
       className={cn(
@@ -33,7 +34,7 @@ function NavLink({ label, href, active, mobile = false, onNavigate }: { label: s
     >
       {label}
       {mobile && <span className="text-xs tracking-[.16em] text-burgundy transition-transform group-hover:translate-x-1">↗</span>}
-      {active && <span className={cn("absolute bottom-0 h-0.5 bg-burgundy", mobile ? "inset-x-0" : "-bottom-[23px] inset-x-3")} />}
+      {mobile && active && <span className="absolute inset-x-0 bottom-0 h-0.5 bg-burgundy" />}
     </Link>
   );
 }
@@ -41,10 +42,71 @@ function NavLink({ label, href, active, mobile = false, onNavigate }: { label: s
 export function Header() {
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState("home");
+  const [navIndicator, setNavIndicator] = useState({ x: 0, width: 0, visible: false });
+  const desktopNavRef = useRef<HTMLElement>(null);
+  const desktopLinkRefs = useRef<Record<string, HTMLAnchorElement | null>>({});
   const { language, translate } = useLanguage();
   const sectionHref = (id: string) => `${pathname === "/" ? "" : "/"}#${id}`;
 
   useEffect(() => setMenuOpen(false), [pathname]);
+
+  useEffect(() => {
+    if (pathname !== "/") {
+      const pageId = pathname.split("/").filter(Boolean)[0];
+      setActiveSection(nav.some(({ id }) => id === pageId) ? pageId : "");
+      return;
+    }
+
+    let frame = 0;
+    const updateActiveSection = () => {
+      frame = 0;
+      const marker = window.scrollY + window.innerHeight * .34;
+      let current = "home";
+
+      nav.forEach(({ id }) => {
+        const section = document.getElementById(id);
+        if (section && section.offsetTop <= marker) current = id;
+      });
+
+      setActiveSection(current);
+    };
+    const requestUpdate = () => {
+      if (!frame) frame = window.requestAnimationFrame(updateActiveSection);
+    };
+
+    updateActiveSection();
+    window.addEventListener("scroll", requestUpdate, { passive: true });
+    window.addEventListener("resize", requestUpdate);
+    return () => {
+      if (frame) window.cancelAnimationFrame(frame);
+      window.removeEventListener("scroll", requestUpdate);
+      window.removeEventListener("resize", requestUpdate);
+    };
+  }, [pathname]);
+
+  useLayoutEffect(() => {
+    const updateIndicator = () => {
+      const navElement = desktopNavRef.current;
+      const activeLink = desktopLinkRefs.current[activeSection];
+      if (!navElement || !activeLink) {
+        setNavIndicator((current) => ({ ...current, visible: false }));
+        return;
+      }
+
+      const navRect = navElement.getBoundingClientRect();
+      const linkRect = activeLink.getBoundingClientRect();
+      setNavIndicator({ x: linkRect.left - navRect.left + 12, width: Math.max(0, linkRect.width - 24), visible: true });
+    };
+
+    const frame = window.requestAnimationFrame(updateIndicator);
+    window.addEventListener("resize", updateIndicator);
+    document.fonts?.ready.then(updateIndicator);
+    return () => {
+      window.cancelAnimationFrame(frame);
+      window.removeEventListener("resize", updateIndicator);
+    };
+  }, [activeSection, language, pathname]);
 
   useEffect(() => {
     document.body.style.overflow = menuOpen ? "hidden" : "";
@@ -58,10 +120,15 @@ export function Header() {
       <div className="container-shell flex h-[72px] items-center justify-between xl:h-[76px]">
         <Logo />
         <div className="flex items-center gap-3">
-          <nav className="hidden items-center gap-1 xl:flex" aria-label={translate("Ana navigasyon", "Main navigation")}>
+          <nav ref={desktopNavRef} className="relative hidden items-center gap-1 xl:flex" aria-label={translate("Ana navigasyon", "Main navigation")}>
             {nav.map(({ tr, en, id }) => (
-              <NavLink key={id} label={language === "tr" ? tr : en} href={sectionHref(id)} active={id === "home" && pathname === "/"} />
+              <NavLink key={id} label={language === "tr" ? tr : en} href={sectionHref(id)} active={id === activeSection} linkRef={(node) => { desktopLinkRefs.current[id] = node; }} />
             ))}
+            <span
+              className="nav-active-indicator"
+              style={{ width: navIndicator.width, transform: `translateX(${navIndicator.x}px)`, opacity: navIndicator.visible ? 1 : 0 }}
+              aria-hidden="true"
+            />
           </nav>
           <LanguageToggle />
           <ThemeToggle />
@@ -87,7 +154,7 @@ export function Header() {
       >
         <nav className="mx-auto max-w-2xl" aria-label={translate("Mobil navigasyon", "Mobile navigation")}>
           {nav.map(({ tr, en, id }) => (
-            <NavLink key={id} label={language === "tr" ? tr : en} href={sectionHref(id)} active={id === "home" && pathname === "/"} mobile onNavigate={() => setMenuOpen(false)} />
+            <NavLink key={id} label={language === "tr" ? tr : en} href={sectionHref(id)} active={id === activeSection} mobile onNavigate={() => setMenuOpen(false)} />
           ))}
           <Link href="/join" className="mt-7 flex items-center justify-between bg-burgundy px-5 py-4 text-xs font-bold uppercase tracking-[.18em] text-white">
             {translate("Takıma katıl", "Join the team")}

@@ -42,13 +42,20 @@ export function MotorsportMotion() {
           { opacity: 1, y: 0, duration: 0.7, ease: "power3.out", delay: introDelay + .32 },
         );
 
-        if (!mobile) {
+        gsap.fromTo(
+          ".hero-focus-frame",
+          { opacity: 0, scale: 1.035 },
+          { opacity: 1, scale: 1, duration: mobile ? .75 : 1.25, ease: "power3.out", delay: introDelay + .18 },
+        );
+
+        const heroPreview = document.querySelector<HTMLElement>(".hero-preview");
+        if (!mobile && heroPreview) {
           gsap.fromTo(
-            ".hero-preview",
+            heroPreview,
             { opacity: 0, x: 90, rotateY: -12, transformPerspective: 1000 },
             { opacity: 1, x: 0, rotateY: 0, duration: 1.1, ease: "power4.out", delay: introDelay + .25 },
           );
-          gsap.to(".hero-preview", {
+          gsap.to(heroPreview, {
             y: -12,
             rotateZ: .35,
             duration: 3.2,
@@ -140,37 +147,121 @@ export function MotorsportMotion() {
           });
 
           gsap.fromTo(
-            ".story-media",
-            { scale: 1.22, clipPath: "inset(14% 9% 14% 9%)", filter: "saturate(.35) contrast(1.18)" },
+            ".vehicle-media",
+            { scale: 1.16, filter: "saturate(.4) contrast(1.18)" },
             {
-              scale: 1,
-              clipPath: "inset(0% 0% 0% 0%)",
+              scale: 1.03,
+              yPercent: 6,
               filter: "saturate(1) contrast(1)",
               ease: "none",
               scrollTrigger: {
-                trigger: ".scroll-story",
-                start: "top 85%",
-                end: "bottom 35%",
-                scrub: 0.8,
+                trigger: ".vehicle-lab",
+                start: "top bottom",
+                end: "bottom top",
+                scrub: 1,
               },
             },
           );
 
           gsap.fromTo(
-            ".story-copy",
-            { y: 130, rotateX: -8, transformPerspective: 900 },
+            ".vehicle-title",
+            { xPercent: -10 },
             {
-              y: -35,
-              rotateX: 0,
+              xPercent: 5,
               ease: "none",
               scrollTrigger: {
-                trigger: ".scroll-story",
+                trigger: ".vehicle-lab",
                 start: "top bottom",
                 end: "bottom top",
-                scrub: 0.8,
+                scrub: 1,
               },
             },
           );
+
+          gsap.fromTo(
+            ".vehicle-watermark",
+            { xPercent: -14, opacity: .015 },
+            {
+              xPercent: 8,
+              opacity: .06,
+              ease: "none",
+              scrollTrigger: {
+                trigger: ".vehicle-lab",
+                start: "top bottom",
+                end: "bottom top",
+                scrub: 1.1,
+              },
+            },
+          );
+
+          document.querySelectorAll<HTMLElement>(".vehicle-stage").forEach((element) => {
+            gsap.fromTo(
+              element,
+              { opacity: .22, x: 54 },
+              {
+                opacity: 1,
+                x: 0,
+                ease: "none",
+                scrollTrigger: {
+                  trigger: element,
+                  start: "top 72%",
+                  end: "center 42%",
+                  scrub: .7,
+                },
+              },
+            );
+          });
+
+          document.querySelectorAll<HTMLElement>(".team-discipline-motion").forEach((element, index) => {
+            gsap.fromTo(
+              element,
+              { xPercent: index % 2 === 0 ? 10 : -6 },
+              {
+                xPercent: 0,
+                ease: "power2.out",
+                scrollTrigger: {
+                  trigger: element,
+                  start: "top 90%",
+                  end: "top 58%",
+                  scrub: .6,
+                },
+              },
+            );
+          });
+
+          gsap.fromTo(
+            ".timeline-progress",
+            { scaleY: 0 },
+            {
+              scaleY: 1,
+              ease: "none",
+              scrollTrigger: {
+                trigger: ".season-timeline",
+                start: "top 72%",
+                end: "bottom 72%",
+                scrub: .6,
+              },
+            },
+          );
+
+          gsap.fromTo(
+            ".race-control-board",
+            { clipPath: "inset(0 100% 0 0)" },
+            {
+              clipPath: "inset(0 0% 0 0)",
+              duration: 1.15,
+              ease: "power4.inOut",
+              scrollTrigger: { trigger: ".race-control", start: "top 82%", once: true },
+            },
+          );
+
+          gsap.to(".race-game-stage", {
+            y: -10,
+            duration: 3.6,
+            repeat: -1,
+            yoyo: true,
+            ease: "sine.inOut",
+          });
 
           document.querySelectorAll<HTMLElement>(".gallery-panel").forEach((element, index) => {
             gsap.fromTo(

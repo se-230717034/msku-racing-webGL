@@ -300,7 +300,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="gallery" className="gallery-scene section-space scroll-mt-20 overflow-hidden border-t border-white/10 bg-[#0D1425]">
+      <section id="gallery" className="gallery-scene theme-fixed-dark section-space scroll-mt-20 overflow-hidden border-t border-white/10 bg-[#0D1425]">
         <div className="container-shell">
           <div className="mb-9 flex items-center gap-4"><span className="section-index">06</span><span className="h-px flex-1 bg-white/10" /></div>
           <Reveal><SectionHeading eyebrow={translate("Galeri", "Gallery")} title={translate("Atölyeden piste.", "From workshop to track.")} copy={translate("Gerçek takım ve araç fotoğraflarımız eklendikçe bu akışta yayınlanacak.", "Real team and vehicle photos will appear in this flow as they are added.")} /></Reveal>

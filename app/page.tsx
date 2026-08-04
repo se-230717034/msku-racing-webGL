@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
+import dynamic from "next/dynamic";
 import { useState, type CSSProperties } from "react";
 import { ArrowRight, ArrowUpRight, BriefcaseBusiness, CalendarDays, Code2, Cpu, Images, Mail, MapPin, Wrench } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -13,6 +14,18 @@ import { SponsorMarquee } from "@/components/sponsor-marquee";
 import { ContactForm } from "@/components/forms";
 import { RaceIntro } from "@/components/race-intro";
 import { getMemberProfile, teamGroups } from "@/lib/team-data";
+
+const HeroProjectorScene = dynamic(
+  () =>
+    import(
+      "@/components/hero-projector-scene"
+    ).then(
+      (module) => module.HeroProjectorScene
+    ),
+  {
+    ssr: false,
+  }
+);
 
 const departments = [
   { trTitle: "Yönetim", enTitle: "Management", trCopy: "Genel koordinasyon, karar süreçleri ve departmanlar arası yönetim.", enCopy: "Overall coordination, decision-making and cross-department management.", icon: BriefcaseBusiness, groupIndex: 0 },
@@ -88,16 +101,9 @@ export default function Home() {
       <RaceIntro />
 
       <section id="home" className="home-hero cinematic-hero theme-fixed-dark relative min-h-[100svh] scroll-mt-20 overflow-hidden bg-[#03060d] pt-[72px] xl:pt-[76px]">
-        <Image
-          src="/images/msku-racing-hero.png"
-          alt={translate("Gece pit alanında MSKU RACING Formula Student aracı", "MSKU RACING Formula Student car in a night-time pit lane")}
-          fill
-          sizes="100vw"
-          className="hero-media object-cover object-[67%_center]"
-          priority
-        />
-        <div className="hero-image-wash absolute inset-0" />
-        <div className="absolute inset-0 bg-grid-dark bg-[size:72px_72px] opacity-20 [mask-image:linear-gradient(to_right,black,transparent_82%)]" />
+        <HeroProjectorScene />
+        <div className="hero-image-wash absolute inset-0 z-[2]" />
+        <div className="absolute inset-0 z-[3] bg-grid-dark bg-[size:72px_72px] opacity-20 [mask-image:linear-gradient(to_right,black,transparent_82%)]" />
         <div className="hero-speed-lines absolute inset-0" aria-hidden="true" />
         <div className="hero-orbit absolute -left-28 top-[18%] size-[360px] rounded-full border border-burgundy/30 md:size-[620px]" />
         <div className="hero-focus-frame" aria-hidden="true" />
@@ -131,7 +137,6 @@ export default function Home() {
               <Button asChild variant="outline" size="lg"><Link href="#sponsors">{translate("Sponsorumuz Ol", "Become a Sponsor")}</Link></Button>
             </div>
           </div>
-
           <div className="hero-scroll-cue absolute bottom-10 right-5 z-20 hidden items-center gap-4 text-[9px] font-bold uppercase tracking-[.22em] text-white/45 lg:flex lg:right-12">
             <span>{translate("Kaydır", "Scroll")}</span><span className="h-px w-20 bg-white/25" />
           </div>

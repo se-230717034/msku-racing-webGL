@@ -7,13 +7,13 @@ export function GamePreview() {
   const { translate } = useLanguage();
 
   return (
-    <div className="theme-fixed-dark carbon-subtle game-preview relative min-h-[360px] overflow-hidden border border-white/15 bg-[#0B1222]/90 backdrop-blur-md md:min-h-[420px]">
+    <div className="theme-fixed-dark carbon-subtle game-preview relative h-full min-h-[360px] overflow-hidden border border-white/15 bg-[#0B1222]/90 backdrop-blur-md md:min-h-[420px]">
       <div className="absolute inset-5 border border-university/35" />
       <div className="absolute right-5 top-5 h-px w-1/3 bg-burgundy" />
       <div className="absolute bottom-5 left-5 h-px w-1/4 bg-green/70" />
       <div className="absolute inset-0 bg-grid-dark bg-[size:40px_40px] opacity-25" />
 
-      <div className="relative z-10 flex min-h-[360px] flex-col p-6 md:min-h-[420px] md:p-8">
+      <div className="relative z-10 flex h-full min-h-[360px] flex-col p-6 md:min-h-[420px] md:p-8">
         <div className="flex items-start justify-between gap-5 border-b border-white/10 pb-6">
           <div>
             <div className="flex items-center gap-3">

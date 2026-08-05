@@ -45,7 +45,7 @@ export function RaceCountdown() {
   }, []);
 
   return (
-    <section aria-labelledby="race-countdown-title" className="race-control theme-fixed-dark relative overflow-hidden border-b border-white/10 bg-[#080d1a]">
+    <section aria-labelledby="race-countdown-title" className="race-control relative overflow-hidden border-b border-white/10 bg-[#080d1a]">
       <div className="race-control-grid absolute inset-0" />
       <span className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-burgundy to-transparent" />
       <div className="container-shell relative grid gap-8 py-16 lg:grid-cols-[1.3fr_.7fr] lg:items-stretch lg:py-20">

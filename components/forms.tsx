@@ -12,7 +12,7 @@ export function JoinForm() {
   const [sent,setSent] = useState(false);
   const { translate } = useLanguage();
   function submit(e:FormEvent){ e.preventDefault(); setSent(true); }
-  if(sent) return <div className="rounded-sm border border-burgundy/40 bg-burgundy/10 p-8"><CheckCircle2 className="text-green" size={32}/><h3 className="mt-5 font-display text-2xl font-semibold uppercase">{translate("Başvurunuz alındı.", "Your application has been received.")}</h3><p className="mt-3 leading-7 text-white/50">{translate("İlginiz için teşekkürler. Takımımız başvurunuzu değerlendirdikten sonra size dönüş yapacak.", "Thank you for your interest. Our team will contact you after reviewing your application.")}</p></div>;
+  if(sent) return <div className="rounded-sm border border-burgundy/40 bg-burgundy/10 p-8"><CheckCircle2 className="text-green" size={32}/><h3 className="mt-5 font-display text-2xl font-semibold uppercase">{translate("Başvurunuz alındı", "Your application has been received")}</h3><p className="mt-3 leading-7 text-white/50">{translate("İlginiz için teşekkürler. Takımımız başvurunuzu değerlendirdikten sonra size dönüş yapacak.", "Thank you for your interest. Our team will contact you after reviewing your application.")}</p></div>;
   return <form onSubmit={submit} className="grid gap-4">
     <div className="grid gap-4 sm:grid-cols-2"><input required className={field} placeholder={translate("Ad soyad", "Full name")} /><input required type="email" className={field} placeholder={translate("Üniversite e-postası", "University email")} /></div>
     <div className="grid gap-4 sm:grid-cols-2"><input required className={field} placeholder={translate("Bölüm", "Department")} /><select required className={field} defaultValue=""><option value="" disabled>{translate("İlgilendiğiniz ekip", "Team of interest")}</option><option>{translate("Mekanik Ekip", "Mechanical Team")}</option><option>{translate("Elektronik Ekip", "Electronics Team")}</option><option>{translate("Yazılım Ekibi", "Software Team")}</option><option>{translate("Organizasyon Ekibi", "Organization Team")}</option></select></div>
@@ -50,7 +50,7 @@ export function ContactForm() {
     return (
       <div role="status" className="rounded-sm border border-burgundy/40 bg-burgundy/10 p-8">
         <CheckCircle2 className="text-green" size={32} />
-        <h3 className="mt-5 font-display text-2xl font-semibold uppercase">{translate("Mesajınız gönderildi.", "Your message has been sent.")}</h3>
+        <h3 className="mt-5 font-display text-2xl font-semibold uppercase">{translate("Mesajınız gönderildi", "Your message has been sent")}</h3>
         <p className="mt-3 leading-7 text-white/50">{translate("Mesajınızı aldık. En kısa sürede size dönüş yapacağız.", "We have received your message and will get back to you as soon as possible.")}</p>
         <Button type="button" onClick={() => setStatus("idle")} className="mt-6">
           {translate("Yeni mesaj gönder", "Send another message")}

@@ -1,9 +1,30 @@
 "use client";
 
-import { Images } from "lucide-react";
+import Image from "next/image";
 import { PageHero } from "@/components/page-hero";
 import { Reveal } from "@/components/motion-reveal";
 import { useLanguage } from "@/components/language-provider";
+
+const galleryItems = [
+  {
+    src: "/images/gallery/takim-masa-foto.jpeg",
+    width: 1600,
+    height: 1200,
+    tr: "MSKU Racing takım buluşması",
+    en: "MSKU Racing team gathering",
+    categoryTr: "Takım ruhu",
+    categoryEn: "Team spirit",
+  },
+  {
+    src: "/images/gallery/takim-ayakta-foto.jpeg",
+    width: 1536,
+    height: 2048,
+    tr: "MSKU Racing ekip fotoğrafı",
+    en: "MSKU Racing team photo",
+    categoryTr: "MSKU Racing ekibi",
+    categoryEn: "MSKU Racing team",
+  },
+];
 
 export default function GalleryPage() {
   const { translate } = useLanguage();
@@ -12,21 +33,51 @@ export default function GalleryPage() {
     <>
       <PageHero
         eyebrow={translate("Galeri", "Gallery")}
-        title={translate("Çok yakında.", "Coming soon.")}
-        description={translate("Atölye, takım ve araç çalışmalarımızdan gerçek fotoğraflar yakında bu sayfada yer alacak.", "Real photos from our workshop, team and vehicle development will be featured here soon.")}
+        title={translate("Takımın hikâyesi", "The story of the team")}
+        description={translate(
+          "MSKU Racing yolculuğundan takım ruhunu yansıtan kareler.",
+          "Moments that reflect the team spirit throughout the MSKU Racing journey."
+        )}
       />
-      <section className="section-space">
+
+      <section className="theme-fixed-dark section-space border-t border-white/10 bg-[#080D1A]">
         <div className="container-shell">
-          <Reveal className="premium-card carbon-subtle grid min-h-[420px] place-items-center border border-white/10 bg-[#0D1425] text-center">
-            <div className="max-w-xl px-6">
-              <span className="mx-auto grid size-14 place-items-center border border-university/50 bg-university/10 text-white/70">
-                <Images size={24} />
-              </span>
-              <p className="mt-7 text-[10px] font-bold uppercase tracking-[.24em] text-green">{translate("Galeri hazırlanıyor", "Gallery in progress")}</p>
-              <h2 className="mt-4 font-display text-4xl font-semibold uppercase tracking-[-.04em]">{translate("Fotoğraflar çok yakında.", "Photos coming soon.")}</h2>
-              <p className="mt-4 leading-7 text-white/45">{translate("Gerçek takım ve araç görselleri eklendiğinde galeri burada yayınlanacak.", "The gallery will be published here once real team and vehicle images are added.")}</p>
-            </div>
-          </Reveal>
+          <div className="mb-10 flex items-center justify-between gap-6 border-b border-white/10 pb-5">
+            <p className="eyebrow">{translate("MSKU Racing arşivi", "MSKU Racing archive")}</p>
+            <span className="text-[10px] font-bold uppercase tracking-[.2em] text-white/40">
+              {galleryItems.length} {translate("fotoğraf", "photos")}
+            </span>
+          </div>
+
+          <div className="mx-auto columns-1 gap-4 md:columns-2">
+            {galleryItems.map((item, index) => (
+              <Reveal
+                key={item.src}
+                delay={index * 0.08}
+                className="mb-4 break-inside-avoid"
+              >
+                <figure className="group relative overflow-hidden border border-white/10 bg-[#0D1425]">
+                  <Image
+                    src={item.src}
+                    alt={translate(item.tr, item.en)}
+                    width={item.width}
+                    height={item.height}
+                    sizes="(min-width: 768px) 50vw, 100vw"
+                    className="h-auto w-full object-cover transition duration-700 ease-out group-hover:scale-[1.025]"
+                  />
+                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#03060d]/90 via-transparent to-transparent opacity-80" />
+                  <figcaption className="pointer-events-none absolute inset-x-0 bottom-0 p-5">
+                    <span className="text-[9px] font-bold uppercase tracking-[.2em] text-burgundy">
+                      {String(index + 1).padStart(2, "0")}
+                    </span>
+                    <p className="mt-1 text-xs font-bold uppercase tracking-[.16em] text-white">
+                      {translate(item.categoryTr, item.categoryEn)}
+                    </p>
+                  </figcaption>
+                </figure>
+              </Reveal>
+            ))}
+          </div>
         </div>
       </section>
     </>

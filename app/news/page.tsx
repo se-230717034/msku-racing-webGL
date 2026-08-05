@@ -12,7 +12,7 @@ export default function NewsPage() {
     <>
       <PageHero
         eyebrow={translate("Haberler", "News")}
-        title={translate("Çok yakında.", "Coming soon.")}
+        title={translate("Çok yakında", "Coming soon")}
         description={translate("MSKU RACING'den gelişmeler, üretim notları ve takım duyuruları yakında burada yayınlanacak.", "Updates, manufacturing notes and team announcements from MSKU RACING will be published here soon.")}
       />
       <section className="section-space">
@@ -23,7 +23,7 @@ export default function NewsPage() {
                 <CalendarClock size={24} />
               </span>
               <p className="mt-7 text-[10px] font-bold uppercase tracking-[.24em] text-green">{translate("Hazırlanıyor", "In progress")}</p>
-              <h2 className="mt-4 font-display text-4xl font-semibold uppercase tracking-[-.04em]">{translate("Yeni içerikler çok yakında.", "New content is coming soon.")}</h2>
+              <h2 className="mt-4 font-display text-4xl font-semibold uppercase tracking-[-.04em]">{translate("Yeni içerikler çok yakında", "New content is coming soon")}</h2>
               <p className="mt-4 leading-7 text-white/45">{translate("Takımımızın gerçek gelişmelerini ve duyurularını paylaşmak için bu alanı hazırlıyoruz.", "We are preparing this space to share real updates and announcements from our team.")}</p>
             </div>
           </Reveal>

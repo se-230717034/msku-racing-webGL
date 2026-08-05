@@ -17,7 +17,9 @@ export function HeroProjectorScene() {
     let cancelled = false;
     let renderer: any = null;
     let resizeObserver: ResizeObserver | null = null;
+    let visibilityObserver: IntersectionObserver | null = null;
     let removePointerListeners: (() => void) | null = null;
+    let removeVisibilityListener: (() => void) | null = null;
 
     async function initialiseScene() {
       const THREE = await import("three/webgpu");
@@ -51,7 +53,7 @@ export function HeroProjectorScene() {
       ).matches;
 
       renderer.setPixelRatio(
-        Math.min(window.devicePixelRatio, mobile ? 1 : 1.5)
+        Math.min(window.devicePixelRatio, mobile ? 0.85 : 1.15)
       );
 
       renderer.shadowMap.enabled = true;
@@ -137,7 +139,7 @@ export function HeroProjectorScene() {
 
       platform.position.set(1.25, -1.05, 0);
       platform.receiveShadow = true;
-      platform.castShadow = true;
+      platform.castShadow = false;
 
       scene.add(platform);
 
@@ -229,7 +231,7 @@ export function HeroProjectorScene() {
       projectorLight.distance = 18;
       projectorLight.castShadow = true;
 
-      const shadowSize = mobile ? 512 : 1024;
+      const shadowSize = mobile ? 256 : 512;
 
       projectorLight.shadow.mapSize.width =
         shadowSize;
@@ -265,7 +267,7 @@ export function HeroProjectorScene() {
 
       redLight.position.set(-4, 3.5, 4);
       redLight.target = carGroup;
-      redLight.castShadow = true;
+      redLight.castShadow = false;
 
       scene.add(redLight);
 
@@ -298,7 +300,7 @@ export function HeroProjectorScene() {
 
       keyLight.position.set(2.5, 5.5, 5);
       keyLight.target = carGroup;
-      keyLight.castShadow = true;
+      keyLight.castShadow = false;
 
       scene.add(keyLight);
 
@@ -499,9 +501,21 @@ export function HeroProjectorScene() {
 
       const startTime = performance.now();
       let previousFrameTime = startTime;
+      let lastRenderTime = 0;
+      let heroIsVisible = true;
+      let documentIsVisible = !document.hidden;
+      let animationIsRunning = false;
+      const frameInterval = 1000 / 30;
 
-      renderer.setAnimationLoop(() => {
+      const animate = () => {
         const now = performance.now();
+
+        if (now - lastRenderTime < frameInterval) {
+          return;
+        }
+
+        lastRenderTime = now;
+
         const elapsed = (now - startTime) / 1000;
         const delta = Math.min(
           (now - previousFrameTime) / 1000,
@@ -553,7 +567,55 @@ export function HeroProjectorScene() {
           2.6 + Math.sin(elapsed * 1.1) * 0.7;
 
         renderer.render(scene, camera);
-      });
+      };
+
+      const updateAnimationState = () => {
+        const shouldRun =
+          heroIsVisible && documentIsVisible && !cancelled;
+
+        if (shouldRun === animationIsRunning) {
+          return;
+        }
+
+        animationIsRunning = shouldRun;
+
+        if (shouldRun) {
+          previousFrameTime = performance.now();
+          lastRenderTime = 0;
+          renderer.setAnimationLoop(animate);
+        } else {
+          renderer.setAnimationLoop(null);
+        }
+      };
+
+      visibilityObserver = new IntersectionObserver(
+        ([entry]) => {
+          heroIsVisible = entry.isIntersecting;
+          updateAnimationState();
+        },
+        { threshold: 0.01 }
+      );
+
+      visibilityObserver.observe(container);
+
+      const handleVisibilityChange = () => {
+        documentIsVisible = !document.hidden;
+        updateAnimationState();
+      };
+
+      document.addEventListener(
+        "visibilitychange",
+        handleVisibilityChange
+      );
+
+      removeVisibilityListener = () => {
+        document.removeEventListener(
+          "visibilitychange",
+          handleVisibilityChange
+        );
+      };
+
+      updateAnimationState();
     }
 
     initialiseScene().catch((error) => {
@@ -571,7 +633,9 @@ export function HeroProjectorScene() {
       cancelled = true;
 
       resizeObserver?.disconnect();
+      visibilityObserver?.disconnect();
       removePointerListeners?.();
+      removeVisibilityListener?.();
 
       if (renderer) {
         renderer.setAnimationLoop(null);

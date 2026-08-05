@@ -116,7 +116,7 @@ export default function Home() {
           </div>
 
           <div className="hero-telemetry absolute right-5 top-9 z-20 hidden gap-8 text-right sm:right-8 md:flex lg:right-12 lg:top-14">
-            <div><span>01</span><small>{translate("Araç", "Car")}</small><strong>AMPER</strong></div>
+            <div><span>01</span><small>{translate("Araç", "Car")}</small><strong>AKYAKA</strong></div>
             <div><span>02</span><small>{translate("Program", "Programme")}</small><strong>FS 2027</strong></div>
             <div><span>03</span><small>{translate("Merkez", "Base")}</small><strong>MUĞLA</strong></div>
           </div>
@@ -130,7 +130,7 @@ export default function Home() {
 
           <div className="hero-actions absolute bottom-8 left-5 z-20 max-w-xl border-l border-burgundy pl-5 sm:left-8 lg:bottom-10 lg:left-12">
             <p className="font-display text-xl font-medium uppercase tracking-[-.02em] md:text-2xl">
-              {translate("Geleceğin Arabasını Tasarlıyoruz.", "Designing the Car of the Future.")}
+              {translate("Geleceğin Arabasını Tasarlıyoruz", "Designing the Car of the Future")}
             </p>
             <div className="mt-5 flex flex-wrap gap-3">
               <Button asChild size="lg"><Link href="#car">{translate("Aracı Keşfet", "Explore the Car")} <ArrowRight size={16} /></Link></Button>
@@ -147,20 +147,20 @@ export default function Home() {
 
       <RaceCountdown />
 
-      <section id="car" className="vehicle-lab theme-fixed-dark relative scroll-mt-20 overflow-visible bg-[#03060d]">
+      <section id="car" className="vehicle-lab theme-fixed-dark relative scroll-mt-20 overflow-visible bg-[#252B87]">
         <div className="container-shell py-20 md:py-28">
-          <div className="mb-14 flex items-center gap-4"><span className="section-index">01</span><span className="h-px flex-1 bg-white/10" /><span className="text-[9px] font-bold uppercase tracking-[.24em] text-white/35">AMPER / DEVELOPMENT</span></div>
+          <div className="mb-14 flex items-center gap-4"><span className="section-index">01</span><span className="h-px flex-1 bg-white/10" /><span className="text-[9px] font-bold uppercase tracking-[.24em] text-white/35">AKYAKA / DEVELOPMENT</span></div>
           <div className="vehicle-lab-grid">
             <div className="vehicle-sticky">
-              <span className="vehicle-watermark" aria-hidden="true">AMPER</span>
+              <span className="vehicle-watermark" aria-hidden="true">AKYAKA</span>
               <div className="vehicle-visual">
-                <Image src="/images/msku-racing-car-covered.png" alt={translate("Örtü altındaki MSKU RACING Amper Formula Student aracı", "MSKU RACING Amper Formula Student car under cover")} fill sizes="(min-width: 1024px) 58vw, 100vw" className="vehicle-media object-cover object-[68%_center]" />
+                <Image src="/images/msku-racing-car-covered.png" alt={translate("Örtü altındaki MSKU RACING Akyaka Formula Student aracı", "MSKU RACING Akyaka Formula Student car under cover")} fill sizes="(min-width: 1024px) 58vw, 100vw" className="vehicle-media object-cover object-[68%_center]" />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#03060d] via-transparent to-[#03060d]/25" />
                 <div className="vehicle-scan" />
                 <p className="absolute bottom-5 left-5 text-[9px] font-bold uppercase tracking-[.22em] text-white/45">{translate("Araç geliştirme programı", "Vehicle development programme")}</p>
               </div>
               <h2 className="vehicle-title font-display text-[clamp(4rem,9vw,9rem)] font-semibold uppercase leading-[.78] tracking-[-.075em]">
-                {translate("Fikirden", "From idea")}<span>{translate("piste.", "to track.")}</span>
+                {translate("Fikirden", "From idea")}<span>{translate("piste", "to track")}</span>
               </h2>
             </div>
 
@@ -174,7 +174,7 @@ export default function Home() {
                 </article>
               ))}
               <div className="pb-20">
-                <Button asChild variant="outline"><Link href="/car">{translate("Amper'i ayrıntılı incele", "Explore Amper in detail")} <ArrowRight size={16} /></Link></Button>
+                <Button asChild variant="outline"><Link href="/car">{translate("Akyaka'yı ayrıntılı incele", "Explore Akyaka in detail")} <ArrowRight size={16} /></Link></Button>
               </div>
             </div>
           </div>
@@ -191,12 +191,12 @@ export default function Home() {
         </div>
       </div>
 
-      <section id="team" className="team-scene theme-fixed-dark section-space scroll-mt-20 overflow-hidden border-y border-white/10">
+      <section id="team" className="team-scene section-space scroll-mt-20 overflow-hidden border-y border-white/10">
         <div className="container-shell">
           <div className="mb-9 flex items-center gap-4"><span className="section-index">02</span><span className="h-px flex-1 bg-white/10" /></div>
           <div className="grid gap-10 lg:grid-cols-[.72fr_1.28fr] lg:gap-20">
             <Reveal className="lg:sticky lg:top-28 lg:self-start">
-              <SectionHeading eyebrow={translate("Takım Yapısı", "Team Structure")} title={translate("Dört ekip. Tek hedef.", "Four teams. One goal.")} copy={translate("Mekanik, elektronik, yazılım ve organizasyon ekipleri Amper için birlikte çalışır.", "Mechanical, electronics, software and organization teams work together for Amper.")} />
+              <SectionHeading eyebrow={translate("Takım Yapısı", "Team Structure")} title={translate("Dört ekip Tek hedef", "Four teams One goal")} copy={translate("Mekanik, elektronik, yazılım ve organizasyon ekipleri Akyaka için birlikte çalışır.", "Mechanical, electronics, software and organization teams work together for Akyaka.")} />
               <Link href="/team" className="mt-8 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[.18em] text-burgundy">{translate("Tüm ekibi gör", "Meet the full team")} <ArrowRight size={15} /></Link>
             </Reveal>
             <div className="team-disciplines">
@@ -253,7 +253,7 @@ export default function Home() {
         <div className="container-shell">
           <div className="mb-9 flex items-center gap-4"><span className="section-index">03</span><span className="h-px flex-1 bg-white/10" /></div>
           <div className="grid gap-14 lg:grid-cols-[.62fr_1.38fr] lg:gap-24">
-            <Reveal className="lg:sticky lg:top-28 lg:self-start"><SectionHeading eyebrow={translate("Sezon Hedefleri", "Season Goals")} title={translate("Her hedef ölçülebilir.", "Every goal is measurable.")} /></Reveal>
+            <Reveal className="lg:sticky lg:top-28 lg:self-start"><SectionHeading eyebrow={translate("Sezon Hedefleri", "Season Goals")} title={translate("Her hedef ölçülebilir", "Every goal is measurable")} /></Reveal>
             <div className="season-timeline">
               <div className="timeline-progress" aria-hidden="true" />
               {targets.map(({ number, trTitle, enTitle, trCopy, enCopy, trSubtitle, enSubtitle }) => (
@@ -272,13 +272,13 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="sponsors" className="sponsor-scene section-space scroll-mt-20 overflow-hidden bg-[#F0EFE9] text-[#080D1A]">
+      <section id="sponsors" className="sponsor-scene section-space scroll-mt-20 overflow-hidden bg-[#080D1A] text-[#F5F4EF]">
         <div className="container-shell">
-          <div className="mb-12 flex items-center gap-4"><span className="section-index">04</span><span className="h-px flex-1 bg-[#080D1A]/15" /></div>
+          <div className="mb-12 flex items-center gap-4"><span className="section-index">04</span><span className="sponsor-divider h-px flex-1" /></div>
           <Reveal className="mx-auto max-w-5xl text-center">
             <p className="text-xs font-bold uppercase tracking-[.24em] text-burgundy">{translate("Sponsorlarımız", "Our Sponsors")}</p>
-            <h2 className="mt-6 font-display text-[clamp(3rem,7vw,7rem)] font-semibold uppercase leading-[.82] tracking-[-.065em]">{translate("Mühendisliğe", "Powering")}<span className="block text-university">{translate("güç verenler.", "engineering.")}</span></h2>
-            <p className="mx-auto mt-7 max-w-2xl leading-8 text-[#080D1A]/55">{translate("MSKU RACING'in mühendislik yolculuğuna güç veren iş birlikleri için ayrılmış alan.", "A space for partnerships that power the MSKU RACING engineering journey.")}</p>
+            <h2 className="mt-6 font-display text-[clamp(3rem,7vw,7rem)] font-semibold uppercase leading-[.82] tracking-[-.065em]">{translate("Mühendisliğe", "Powering")}<span className="block text-university">{translate("güç verenler", "engineering")}</span></h2>
+            <p className="sponsor-copy mx-auto mt-7 max-w-2xl leading-8">{translate("MSKU RACING'in mühendislik yolculuğuna güç veren iş birlikleri için ayrılmış alan.", "A space for partnerships that power the MSKU RACING engineering journey.")}</p>
             <Link href="/sponsors" className="mt-7 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[.18em] text-burgundy">{translate("İş birliği seçenekleri", "Partnership options")} <ArrowRight size={15} /></Link>
           </Reveal>
           <div className="relative left-1/2 mt-16 w-screen -translate-x-1/2"><SponsorMarquee /></div>
@@ -288,11 +288,11 @@ export default function Home() {
       <section id="news" className="news-scene section-space scroll-mt-20">
         <div className="container-shell">
           <div className="mb-9 flex items-center gap-4"><span className="section-index">05</span><span className="h-px flex-1 bg-white/10" /></div>
-          <Reveal><SectionHeading eyebrow={translate("Son Gelişmeler", "Latest Updates")} title={translate("Garajdan haberler.", "News from the garage.")} /></Reveal>
+          <Reveal><SectionHeading eyebrow={translate("Son Gelişmeler", "Latest Updates")} title={translate("Garajdan haberler", "News from the garage")} /></Reveal>
           <Reveal className="mt-12">
             <Link href="/news" className="news-editorial group">
               <span className="text-[10px] font-bold uppercase tracking-[.22em] text-green">{translate("Hazırlanıyor", "In progress")}</span>
-              <h3 className="font-display text-[clamp(2.5rem,6vw,6rem)] font-semibold uppercase leading-[.84] tracking-[-.055em]">{translate("Haberler çok yakında.", "News coming soon.")}</h3>
+              <h3 className="font-display text-[clamp(2.5rem,6vw,6rem)] font-semibold uppercase leading-[.84] tracking-[-.055em]">{translate("Haberler çok yakında", "News coming soon")}</h3>
               <p className="max-w-lg text-sm leading-7 text-white/45">{translate("Takımımızın gerçek gelişmelerini yakında paylaşacağız.", "We will soon share real updates from our team.")}</p>
               <ArrowRight className="text-burgundy transition group-hover:translate-x-3" size={28} />
             </Link>
@@ -300,20 +300,20 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="gallery" className="gallery-scene theme-fixed-dark section-space scroll-mt-20 overflow-hidden border-t border-white/10 bg-[#0D1425]">
+      <section id="gallery" className="gallery-scene section-space scroll-mt-20 overflow-hidden border-t border-white/10 bg-[#0D1425]">
         <div className="container-shell">
           <div className="mb-9 flex items-center gap-4"><span className="section-index">06</span><span className="h-px flex-1 bg-white/10" /></div>
-          <Reveal><SectionHeading eyebrow={translate("Galeri", "Gallery")} title={translate("Atölyeden piste.", "From workshop to track.")} copy={translate("Gerçek takım ve araç fotoğraflarımız eklendikçe bu akışta yayınlanacak.", "Real team and vehicle photos will appear in this flow as they are added.")} /></Reveal>
+          <Reveal><SectionHeading eyebrow={translate("Galeri", "Gallery")} title={translate("Atölyeden piste", "From workshop to track")} copy={translate("Gerçek takım ve araç fotoğraflarımız eklendikçe bu akışta yayınlanacak.", "Real team and vehicle photos will appear in this flow as they are added.")} /></Reveal>
           <div className="editorial-gallery mt-14">
             <Reveal className="gallery-panel gallery-panel-main">
-              <Image src="/images/msku-racing-hero.png" alt={translate("MSKU RACING Formula Student aracı", "MSKU RACING Formula Student car")} fill sizes="(min-width: 1024px) 68vw, 100vw" className="gallery-media object-cover" />
+              <Image src="/images/gallery/takim-masa-foto.jpeg" alt={translate("MSKU Racing takım buluşması", "MSKU Racing team gathering")} fill sizes="(min-width: 1024px) 68vw, 100vw" className="gallery-media object-cover" />
               <div className="gallery-shade" />
-              <div className="gallery-caption"><Images size={20} className="text-burgundy" /><p>{translate("Araç geliştirme", "Vehicle development")}</p></div>
+              <div className="gallery-caption"><Images size={20} className="text-burgundy" /><p>{translate("Takım ruhu", "Team spirit")}</p></div>
             </Reveal>
             <Reveal delay={.08} className="gallery-panel gallery-panel-side">
-              <Image src="/images/msku-racing-car-covered.png" alt={translate("Örtü altındaki Amper aracı", "Amper car under cover")} fill sizes="(min-width: 1024px) 32vw, 100vw" className="gallery-media object-cover" />
+              <Image src="/images/gallery/takim-ayakta-foto.jpeg" alt={translate("MSKU Racing ekip fotoğrafı", "MSKU Racing team photo")} fill sizes="(min-width: 1024px) 32vw, 100vw" className="gallery-media object-cover object-center" />
               <div className="gallery-shade" />
-              <div className="gallery-caption"><p>AMPER / 48</p></div>
+              <div className="gallery-caption"><p>{translate("MSKU Racing ekibi", "MSKU Racing team")}</p></div>
             </Reveal>
             <Reveal delay={.12} className="gallery-editorial-copy">
               <span>MSKU RACING</span>
@@ -330,7 +330,7 @@ export default function Home() {
           <div className="grid gap-12 lg:grid-cols-[.7fr_1.3fr]">
             <Reveal>
               <p className="eyebrow">{translate("İletişim", "Contact")}</p>
-              <h2 className="mt-5 font-display text-4xl font-semibold uppercase leading-[.92] tracking-[-.04em] sm:text-5xl">{translate("Bir konuşma başlatalım.", "Let's start a conversation.")}</h2>
+              <h2 className="mt-5 font-display text-4xl font-semibold uppercase leading-[.92] tracking-[-.04em] sm:text-5xl">{translate("Bir konuşma başlatalım", "Let's start a conversation")}</h2>
               <div className="mt-9 space-y-7">
                 <div className="flex gap-4"><MapPin className="mt-1 shrink-0 text-burgundy" size={20} /><p className="text-sm leading-7 text-white/55">Muğla Sıtkı Koçman Üniversitesi<br />{translate("Mühendislik Fakültesi, Kötekli Yerleşkesi", "Faculty of Engineering, Kötekli Campus")}</p></div>
                 <div className="flex gap-4"><Mail className="mt-1 shrink-0 text-burgundy" size={20} /><div className="space-y-2 text-sm"><a className="block text-white/55 hover:text-white" href="mailto:mskuracing@gmail.com">mskuracing@gmail.com</a><a className="block text-white/55 hover:text-white" href="mailto:mskuracingtopluluk@gmail.com">mskuracingtopluluk@gmail.com</a></div></div>
@@ -347,7 +347,7 @@ export default function Home() {
         <div className="container-shell relative flex flex-col items-start justify-between gap-8 py-16 md:flex-row md:items-center">
           <div>
             <div className="flex items-center gap-3"><CalendarDays size={16} className="text-green" /><p className="text-xs font-bold uppercase tracking-[.22em] text-white/65">{translate("Birlikte daha ileri", "Further together")}</p></div>
-            <h2 className="mt-4 font-display text-4xl font-semibold uppercase tracking-[-.04em] md:text-5xl">{translate("MSKU RACING ile iletişime geçin.", "Get in touch with MSKU RACING.")}</h2>
+            <h2 className="mt-4 font-display text-4xl font-semibold uppercase tracking-[-.04em] md:text-5xl">{translate("MSKU RACING ile iletişime geçin", "Get in touch with MSKU RACING")}</h2>
           </div>
           <Button asChild className="shrink-0 bg-burgundy hover:bg-[#B51237]"><Link href="#contact">{translate("Bize Ulaşın", "Contact Us")} <ArrowRight size={16} /></Link></Button>
         </div>

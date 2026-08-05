@@ -23,18 +23,18 @@ export default function CarPage() {
 
   return (
     <>
-      <PageHero eyebrow="Amper" title={translate("Sürücü etrafında tasarlandı.", "Designed around the driver.")} description={translate("Kompakt, elektrikli ve her alt sistemi dikkatle geliştirilen Formula Student aracımız.", "Our compact electric Formula Student car, with every subsystem carefully developed.")} />
+      <PageHero eyebrow="Akyaka" title={translate("Sürücü etrafında tasarlandı", "Designed around the driver")} description={translate("Kompakt, elektrikli ve her alt sistemi dikkatle geliştirilen Formula Student aracımız.", "Our compact electric Formula Student car, with every subsystem carefully developed.")} />
       <section className="theme-fixed-dark relative min-h-[600px] overflow-hidden border-b border-white/10">
-        <Image src="/images/msku-racing-car-covered.png" alt={translate("Kırık beyaz örtüyle kapatılmış MSKU RACING Amper prototipi", "MSKU RACING Amper prototype covered with an ivory cloth")} fill sizes="100vw" className="parallax-media scale-110 object-cover object-[68%_center] opacity-80 saturate-[.85]" priority />
+        <Image src="/images/msku-racing-car-covered.png" alt={translate("Kırık beyaz örtüyle kapatılmış MSKU RACING Akyaka prototipi", "MSKU RACING Akyaka prototype covered with an ivory cloth")} fill sizes="100vw" className="parallax-media scale-110 object-cover object-[68%_center] opacity-80 saturate-[.85]" priority />
         <div className="absolute inset-0 bg-gradient-to-r from-background via-background/55 to-transparent" />
-        <div className="container-shell relative flex min-h-[600px] items-center"><Reveal><p className="max-w-2xl font-display text-4xl font-medium uppercase leading-tight tracking-[-.04em] md:text-6xl">{translate("Daha az kütle.", "Less mass.")}<br /><span className="text-burgundy">{translate("Daha fazla geri bildirim.", "More feedback.")}</span><br />{translate("Net sonuçlar.", "Clear results.")}</p></Reveal></div>
+        <div className="container-shell relative flex min-h-[600px] items-center"><Reveal><p className="max-w-2xl font-display text-4xl font-medium uppercase leading-tight tracking-[-.04em] md:text-6xl">{translate("Daha az kütle", "Less mass")}<br /><span className="text-burgundy">{translate("Daha fazla geri bildirim", "More feedback")}</span><br />{translate("Net sonuçlar", "Clear results")}</p></Reveal></div>
       </section>
       <section className="section-space border-b border-white/10">
         <div className="container-shell">
           <Reveal>
             <SectionHeading
               eyebrow={translate("Canlı sistemler", "Live Systems")}
-              title={translate("Amper'i verilerle izle.", "Follow Amper through data.")}
+              title={translate("Akyaka'yı verilerle izle", "Follow Akyaka through data")}
               copy={translate("Araç telemetrisi devreye alındığında hız, batarya, sıcaklık ve tur verileri bu alanda görüntülenecek.", "When vehicle telemetry goes live, speed, battery, temperature and lap data will appear here.")}
             />
           </Reveal>
@@ -44,7 +44,7 @@ export default function CarPage() {
         </div>
       </section>
       <section className="section-space"><div className="container-shell">
-        <Reveal><SectionHeading eyebrow={translate("Teknik genel bakış", "Technical Overview")} title={translate("Ölçülebilir mühendislik.", "Measurable engineering.")} copy={translate("Amper'in güncel geliştirme hedefleri. Nihai değerler doğrulama çalışmalarıyla gelişecektir.", "Amper's current development targets. Final values will evolve through validation work.")} /></Reveal>
+        <Reveal><SectionHeading eyebrow={translate("Teknik genel bakış", "Technical Overview")} title={translate("Ölçülebilir mühendislik", "Measurable engineering")} copy={translate("Akyaka'nın güncel geliştirme hedefleri. Nihai değerler doğrulama çalışmalarıyla gelişecektir.", "Akyaka's current development targets. Final values will evolve through validation work.")} /></Reveal>
         <div className="mt-12 grid border-t border-white/10 md:grid-cols-2">
           {specs.map(([trLabel, enLabel, trValue, enValue], i) => <Reveal key={trLabel} delay={(i % 2) * .04} className="group flex items-center justify-between gap-5 border-b border-white/10 px-3 py-6 transition hover:bg-white/[.025] md:odd:pr-8 md:even:border-l md:even:pl-8"><span className="text-xs font-bold uppercase tracking-[.16em] text-white/35 transition group-hover:text-burgundy">{language === "tr" ? trLabel : enLabel}</span><strong className="text-right font-display text-lg font-medium">{language === "tr" ? trValue : enValue}</strong></Reveal>)}
         </div>

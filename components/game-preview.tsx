@@ -23,7 +23,7 @@ export function GamePreview() {
               </p>
             </div>
             <p className="mt-3 font-display text-2xl font-semibold uppercase tracking-[-.03em]">
-              {translate("Garajdan piste.", "From garage to track.")}
+              {translate("Garajdan piste", "From garage to track")}
             </p>
           </div>
           <span className="flex shrink-0 items-center gap-2 border border-white/10 px-3 py-2 text-[9px] font-bold uppercase tracking-[.18em] text-white/35">

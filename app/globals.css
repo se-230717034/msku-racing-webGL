@@ -245,6 +245,16 @@ body {
     linear-gradient(180deg, #050913 0%, #080d1a 46%, #050913 100%);
 }
 
+html.light body {
+  color: #080d1a;
+  background-color: #f5f4ef;
+  background-image:
+    radial-gradient(circle at 78% 8%, rgba(37,43,135,.1), transparent 28rem),
+    linear-gradient(180deg, #f8f7f2 0%, #f0efe9 46%, #f8f7f2 100%);
+}
+
+html.light main { color: #080d1a; }
+
 html { scrollbar-width: thin; scrollbar-color: rgba(160,0,38,.2) #03060d; }
 body::-webkit-scrollbar { width: 4px; }
 body::-webkit-scrollbar-track { background: #03060d; }
@@ -434,6 +444,34 @@ body::-webkit-scrollbar-thumb { background: rgba(160,0,38,.24); }
   isolation: isolate;
 }
 
+html.light .site-header.mobile-menu-open {
+  background: rgba(245,244,239,.99);
+}
+
+html.light .mobile-menu-panel {
+  color: #080d1a;
+  border-color: rgba(37,43,135,.16);
+  background:
+    radial-gradient(circle at 90% 12%, rgba(160,0,38,.09), transparent 19rem),
+    #f5f4ef;
+}
+
+html.light .mobile-menu-panel .mobile-nav-link {
+  color: rgba(8,13,26,.68);
+  border-color: rgba(37,43,135,.14);
+}
+
+html.light .mobile-menu-panel .mobile-nav-link:hover,
+html.light .mobile-menu-panel .mobile-nav-link:focus-visible,
+html.light .mobile-menu-panel .mobile-nav-link.text-white {
+  color: #080d1a;
+}
+
+html.light .mobile-menu-panel .mobile-menu-meta {
+  color: rgba(8,13,26,.46);
+  border-color: rgba(37,43,135,.14);
+}
+
 .motorsport-button {
   position: relative;
   overflow: hidden;
@@ -473,6 +511,15 @@ body::-webkit-scrollbar-thumb { background: rgba(160,0,38,.24); }
 .premium-card:hover {
   transform: translateY(-5px);
   border-color: rgba(160, 0, 38, .5);
+}
+
+html.light .premium-card {
+  color: #080d1a;
+  border-color: rgba(37,43,135,.14);
+  background:
+    linear-gradient(145deg, rgba(37,43,135,.045), transparent 48%),
+    #fff;
+  box-shadow: 0 18px 55px rgba(8,13,26,.06);
 }
 
 .form-field {
@@ -977,7 +1024,8 @@ html.light .race-control .text-white\/35 { color: rgba(245,244,239,.42); }
 .vehicle-title {
   position: relative;
   z-index: 2;
-  margin: clamp(-4.5rem, -5vw, -2.5rem) 0 0 clamp(1rem, 3vw, 3rem);
+  margin: clamp(-2rem, -2.25vw, -1rem) 0 0 clamp(1rem, 3vw, 3rem);
+  color: #f5f4ef;
   text-shadow: 0 12px 35px rgba(3,6,13,.75);
 }
 
@@ -1185,6 +1233,11 @@ html.light .race-control .text-white\/35 { color: rgba(245,244,239,.42); }
   border-top: 1px solid rgba(245,244,239,.1);
 }
 
+html.light .timeline-scene::after { color: rgba(37,43,135,.035); }
+html.light .season-timeline::before { background: rgba(37,43,135,.16); }
+html.light .timeline-step { border-color: rgba(37,43,135,.14); }
+html.light .news-editorial { border-color: rgba(37,43,135,.16); }
+
 .timeline-dot {
   position: absolute;
   left: calc(-1 * clamp(3.5rem, 7vw, 7rem) + 7px);
@@ -1213,13 +1266,27 @@ html.light .race-control .text-white\/35 { color: rgba(245,244,239,.42); }
 
 .sponsor-scene .sponsor-marquee-card {
   border: 0;
-  border-block: 1px solid rgba(8,13,26,.12);
+  border-block: 1px solid rgba(245,244,239,.12);
+  background: #0d1425;
+}
+
+.sponsor-scene .sponsor-marquee-card p { color: #f5f4ef; }
+.sponsor-scene .sponsor-marquee-card .text-white\/25 { color: rgba(245,244,239,.34); }
+.sponsor-scene .sponsor-marquee-card:hover { background: #111a2f; border-color: rgba(160,0,38,.55); }
+
+html.light .sponsor-scene {
+  color: #080d1a;
   background: #f0efe9;
 }
 
-.sponsor-scene .sponsor-marquee-card p { color: #080d1a; }
-.sponsor-scene .sponsor-marquee-card .text-white\/25 { color: rgba(8,13,26,.3); }
-.sponsor-scene .sponsor-marquee-card:hover { background: #fff; border-color: rgba(160,0,38,.35); }
+html.light .sponsor-scene .sponsor-marquee-card {
+  border-block-color: rgba(8,13,26,.12);
+  background: #f0efe9;
+}
+
+html.light .sponsor-scene .sponsor-marquee-card p { color: #080d1a; }
+html.light .sponsor-scene .sponsor-marquee-card .text-white\/25 { color: rgba(8,13,26,.3); }
+html.light .sponsor-scene .sponsor-marquee-card:hover { background: #fff; border-color: rgba(160,0,38,.35); }
 
 .news-editorial {
   display: grid;
@@ -1345,7 +1412,7 @@ html.light .race-control .text-white\/35 { color: rgba(245,244,239,.42); }
   .vehicle-watermark { top: -1.8rem; font-size: clamp(4.6rem, 23vw, 6.4rem); }
   .vehicle-scan { animation-duration: 9s; opacity: .6; }
   .vehicle-visual > p { top: 1rem; bottom: auto; }
-  .vehicle-title { margin-top: -2.5rem; margin-left: .6rem; transform: none !important; }
+  .vehicle-title { margin-top: -1rem; margin-left: .6rem; transform: none !important; }
   .vehicle-title span { margin-left: 1.5rem; }
   .vehicle-stage { padding-block: 4rem; opacity: 1 !important; transform: none !important; }
   .vehicle-stage-number { top: 3.4rem; font-size: 5rem; }
@@ -1409,3 +1476,135 @@ html.light .race-control .text-white\/35 { color: rgba(245,244,239,.42); }
   }
   .race-intro { display: none; }
 }
+
+html.light .theme-fixed-dark,
+html.light .site-footer {
+  color: #080d1a;
+}
+
+html.light .theme-fixed-dark .text-white,
+html.light .site-footer .text-white { color: #080d1a; }
+html.light .theme-fixed-dark .text-white\/75,
+html.light .site-footer .text-white\/75 { color: rgba(8,13,26,.78); }
+html.light .theme-fixed-dark .text-white\/70,
+html.light .site-footer .text-white\/70 { color: rgba(8,13,26,.74); }
+html.light .theme-fixed-dark .text-white\/65,
+html.light .site-footer .text-white\/65 { color: rgba(8,13,26,.68); }
+html.light .theme-fixed-dark .text-white\/60,
+html.light .site-footer .text-white\/60 { color: rgba(8,13,26,.72); }
+html.light .theme-fixed-dark .text-white\/55,
+html.light .site-footer .text-white\/55 { color: rgba(8,13,26,.62); }
+html.light .theme-fixed-dark .text-white\/50,
+html.light .site-footer .text-white\/50 { color: rgba(8,13,26,.56); }
+html.light .theme-fixed-dark .text-white\/45,
+html.light .site-footer .text-white\/45 { color: rgba(8,13,26,.54); }
+html.light .theme-fixed-dark .text-white\/35,
+html.light .site-footer .text-white\/35 { color: rgba(8,13,26,.44); }
+html.light .theme-fixed-dark .text-white\/30,
+html.light .site-footer .text-white\/30 { color: rgba(8,13,26,.4); }
+html.light .theme-fixed-dark .text-white\/25,
+html.light .site-footer .text-white\/25 { color: rgba(8,13,26,.34); }
+
+html.light .theme-fixed-dark .border-white\/15,
+html.light .theme-fixed-dark .border-white\/10,
+html.light .site-footer .border-white\/10 { border-color: rgba(37,43,135,.16); }
+html.light .theme-fixed-dark .bg-white\/10 { background-color: rgba(37,43,135,.08); }
+html.light .theme-fixed-dark .bg-\[\#09101E\],
+html.light .theme-fixed-dark.bg-\[\#0B1222\] { background-color: #fff; }
+
+html.light .home-hero,
+html.light .vehicle-lab,
+html.light .team-scene,
+html.light .race-control,
+html.light .gallery-scene,
+html.light #contact {
+  color: #080d1a;
+  background-color: #f8f7f2 !important;
+}
+
+html.light .home-hero {
+  background-image: radial-gradient(circle at 78% 25%, rgba(37,43,135,.1), transparent 30rem);
+}
+
+html.light .home-hero .hero-media {
+  opacity: .28;
+  filter: saturate(.55) contrast(.9);
+}
+
+html.light .hero-image-wash {
+  background:
+    linear-gradient(90deg, rgba(248,247,242,.99) 0%, rgba(248,247,242,.8) 38%, rgba(248,247,242,.3) 72%, rgba(248,247,242,.72) 100%),
+    linear-gradient(0deg, #f8f7f2 0%, transparent 40%, rgba(248,247,242,.5) 100%);
+}
+
+html.light .cinematic-hero .hero-title {
+  color: #080d1a;
+  text-shadow: 0 10px 45px rgba(255,255,255,.9);
+}
+
+html.light .home-hero::after,
+html.light .vehicle-watermark,
+html.light .vehicle-stage-number { color: rgba(37,43,135,.045); }
+html.light .hero-telemetry > div { border-color: rgba(37,43,135,.18); }
+html.light .hero-telemetry small { color: rgba(8,13,26,.42); }
+
+html.light .race-control-grid {
+  background:
+    linear-gradient(rgba(37,43,135,.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(37,43,135,.06) 1px, transparent 1px);
+}
+
+html.light .race-control-board,
+html.light .race-game-stage .game-preview {
+  border-color: rgba(37,43,135,.16);
+  background: rgba(255,255,255,.86);
+  box-shadow: 0 20px 60px rgba(8,13,26,.06);
+}
+
+html.light .race-clock,
+html.light .race-clock-unit { border-color: rgba(37,43,135,.14); }
+html.light .race-clock-unit > span:last-child { color: rgba(8,13,26,.48); }
+
+html.light .vehicle-stage,
+html.light .team-disciplines,
+html.light .team-discipline,
+html.light .team-member-panel li { border-color: rgba(37,43,135,.14); }
+html.light .team-member-panel li:nth-child(odd) { border-color: rgba(37,43,135,.14); }
+html.light .team-discipline-icon,
+html.light .team-discipline-meta > span,
+html.light .team-member-panel small { color: rgba(8,13,26,.46); }
+html.light .team-discipline:hover .team-discipline-icon,
+html.light .team-discipline.is-open .team-discipline-icon { color: #252b87; }
+html.light .team-member-panel li > a:hover { color: #a00026; background: rgba(160,0,38,.07); }
+
+html.light .gallery-scene {
+  background-image: radial-gradient(circle at 76% 22%, rgba(160,0,38,.08), transparent 25rem), linear-gradient(180deg, #fff, #f0efe9);
+}
+
+html.light .gallery-panel { border-color: rgba(37,43,135,.16); }
+html.light .gallery-caption,
+html.light .vehicle-visual,
+html.light .vehicle-visual .text-white\/45 { color: #f5f4ef; }
+html.light .gallery-editorial-copy {
+  color: #080d1a;
+  border: 1px solid rgba(37,43,135,.12);
+  border-left: 2px solid #a00026;
+  background: rgba(255,255,255,.94);
+  box-shadow: 0 20px 55px rgba(8,13,26,.1);
+}
+
+html.light .page-hero {
+  color: #080d1a;
+  background: radial-gradient(circle at 88% 30%, rgba(160,0,38,.08), transparent 30rem), linear-gradient(135deg, #fff, #f0efe9 68%, #f8f7f2);
+}
+
+html.light .site-footer {
+  background: linear-gradient(135deg, rgba(37,43,135,.07), transparent 38%), #fff;
+  border-color: rgba(37,43,135,.14);
+}
+html.light .site-footer::before { color: rgba(37,43,135,.055); border-color: rgba(37,43,135,.12); }
+html.light .theme-fixed-dark.bg-university { background-color: #eef0ff; }
+
+html.light .bg-burgundy.text-white,
+html.light .bg-\[\#B51237\].text-white,
+html.light .theme-fixed-dark .bg-burgundy.text-white { color: #fff; }

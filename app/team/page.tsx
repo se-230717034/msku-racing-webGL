@@ -15,8 +15,8 @@ export default function TeamPage() {
     <>
       <PageHero
         eyebrow={translate("Takımımız", "Our Team")}
-        title={translate("Yönetim ve dört ekip. Tek hedef.", "Management and four teams. One goal.")}
-        description={translate("Amper'i tasarlayan, geliştiren ve takımın sürdürülebilirliğini sağlayan MSKU RACING üyeleri.", "The MSKU RACING members who design and develop Amper while ensuring the team's sustainability.")}
+        title={translate("Yönetim ve dört ekip. Tek hedef", "Management and four teams. One goal")}
+        description={translate("Akyaka'yı tasarlayan, geliştiren ve takımın sürdürülebilirliğini sağlayan MSKU RACING üyeleri.", "The MSKU RACING members who design and develop Akyaka while ensuring the team's sustainability.")}
       />
 
       <section className="section-space">

@@ -27,8 +27,8 @@ export const metadata: Metadata = {
     images: ["/og.png"],
   },
   icons: {
-    icon: "/images/team-logo.png",
-    apple: "/images/team-logo.png",
+    icon: "/images/msku-racing-logo-v2.png",
+    apple: "/images/msku-racing-logo-v2.png",
   },
 };
 

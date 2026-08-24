@@ -28,7 +28,7 @@ function NavLink({ label, href, active, mobile = false, onNavigate, linkRef }: {
       onClick={onNavigate}
       className={cn(
         "relative flex items-center font-bold uppercase text-white/55 transition hover:text-white",
-        mobile ? "group justify-between border-b border-white/10 py-4 font-display text-[clamp(1.65rem,8vw,2.5rem)] tracking-[-.04em]" : "justify-center px-3 py-2 text-[11px] tracking-[.14em]",
+        mobile ? "mobile-nav-link group justify-between border-b border-white/10 py-4 font-display text-[clamp(1.65rem,8vw,2.5rem)] tracking-[-.04em]" : "justify-center px-3 py-2 text-[11px] tracking-[.14em]",
         active && "text-white",
       )}
     >
@@ -161,7 +161,7 @@ export function Header() {
             <span>↗</span>
           </Link>
         </nav>
-        <div className="mx-auto mt-8 flex max-w-2xl items-center justify-between border-t border-white/10 pt-5 text-[10px] uppercase tracking-[.18em] text-white/35">
+        <div className="mobile-menu-meta mx-auto mt-8 flex max-w-2xl items-center justify-between border-t border-white/10 pt-5 text-[10px] uppercase tracking-[.18em] text-white/35">
           <span>Muğla / Türkiye</span>
           <span>Formula Student</span>
         </div>

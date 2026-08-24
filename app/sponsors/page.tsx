@@ -58,7 +58,7 @@ export default function SponsorsPage() {
     <>
       <PageHero
         eyebrow={translate("İş ortaklarımız", "Our Partners")}
-        title={translate("İlerlemek bir takım işidir.", "Progress is a team effort.")}
+        title={translate("İlerlemek bir takım işidir", "Progress is a team effort")}
         description={translate("Sponsorlarımız, öğrenci hedeflerini gerçek üretim, test ve yarışma deneyimine dönüştürmemize destek olur.", "Our sponsors help transform student ambition into real manufacturing, testing and competition experience.")}
       />
 
@@ -117,7 +117,7 @@ export default function SponsorsPage() {
         <div className="container-shell text-center">
           <Reveal>
             <h2 className="mx-auto max-w-4xl font-display text-5xl font-semibold uppercase leading-[.95] tracking-[-.05em] md:text-7xl">
-              {translate("Gelecek neslin arkasında yer alın.", "Stand behind the next generation.")}
+              {translate("Gelecek neslin arkasında yer alın", "Stand behind the next generation")}
             </h2>
             <p className="mx-auto mt-7 max-w-xl leading-8 text-white/50">{translate("Hedeflediğiniz etkiyi birlikte oluşturacak bir iş birliği tasarlayalım.", "Let's design a partnership that creates the impact you are aiming for.")}</p>
             <Button asChild size="lg" className="mt-8"><Link href="/contact">{translate("İş ortağımız olun", "Become our partner")} <ArrowRight size={16} /></Link></Button>

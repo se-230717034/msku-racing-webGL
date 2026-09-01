@@ -32,7 +32,7 @@ export const teamGroups = [
     enName: "Organization Team",
     trDescription: "Etkinlik, iletişim, sponsorluk ve takım organizasyonu.",
     enDescription: "Events, communications, sponsorship and team organization.",
-    members: ["Eylül Deniz Kudu", "Ebrar Azra Arslan", "Şule Nilay Aktaş", "Selin Kula", "Zişan Günay"],
+    members: ["Eylül Deniz Kudu", "Ebrar Azra Arslan", "Şule Nilay Aktaş", "Ekrem Alperen Aksak", "Zişan Günay"],
   },
 ];
 
@@ -54,7 +54,7 @@ const linkedinProfiles: Record<string, string> = {
   "Tuğra Temur": "https://www.linkedin.com/in/tu%C4%9Fra-temur-8508732a3/",
   "Zişan Günay": "https://www.linkedin.com/in/zi%C5%9Fan-g%C3%BCnay-9bb27b286/",
   "Şule Nilay Aktaş": "https://www.linkedin.com/in/nilay-aktas-95b1aa3ab/",
-  "Selin Kula": "https://www.linkedin.com/in/selin-kula-5b033b2a2/",
+  "Ekrem Alperen Aksak": "https://www.linkedin.com/in/ekremalperenaksak/",
 };
 
 const universityProfiles: Record<string, string> = {

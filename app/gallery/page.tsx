@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import { Images } from "lucide-react";
 import { PageHero } from "@/components/page-hero";
 import { Reveal } from "@/components/motion-reveal";
 import { useLanguage } from "@/components/language-provider";
@@ -29,7 +28,6 @@ export default function GalleryPage() {
                 priority
               />
               <div className="gallery-shade" />
-              <div className="gallery-caption"><Images size={20} className="text-burgundy" /><p>{translate("Takım gecesi", "Team night")}</p></div>
             </Reveal>
             <Reveal delay={.08} className="team-gallery-card team-gallery-landscape">
               <Image
@@ -41,7 +39,6 @@ export default function GalleryPage() {
                 priority
               />
               <div className="gallery-shade" />
-              <div className="gallery-caption"><p>{translate("Birlikte daha ileri", "Further together")}</p></div>
             </Reveal>
           </div>
         </div>

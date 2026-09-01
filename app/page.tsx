@@ -3,7 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useState, type CSSProperties } from "react";
-import { ArrowRight, ArrowUpRight, CalendarDays, Code2, Cpu, Images, Mail, MapPin, Wrench } from "lucide-react";
+import { ArrowRight, ArrowUpRight, CalendarDays, Code2, Cpu, Mail, MapPin, Wrench } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Reveal } from "@/components/motion-reveal";
 import { RaceCountdown } from "@/components/race-countdown";
@@ -253,12 +253,10 @@ export default function Home() {
             <Reveal className="gallery-panel gallery-panel-main">
               <Image src="/images/team-night-terrace.jpeg" alt={translate("MSKU RACING takım gecesi grup fotoğrafı", "MSKU RACING team night group photo")} fill sizes="(min-width: 1024px) 42vw, 100vw" className="gallery-media object-cover object-center" />
               <div className="gallery-shade" />
-              <div className="gallery-caption"><Images size={20} className="text-burgundy" /><p>{translate("Takım gecesi", "Team night")}</p></div>
             </Reveal>
             <Reveal delay={.08} className="gallery-panel gallery-panel-side">
               <Image src="/images/team-night-court.jpeg" alt={translate("MSKU RACING ekibinin açık alandaki grup fotoğrafı", "MSKU RACING team group photo outdoors")} fill sizes="(min-width: 1024px) 58vw, 100vw" className="gallery-media object-cover object-center" />
               <div className="gallery-shade" />
-              <div className="gallery-caption"><p>{translate("Birlikte daha ileri", "Further together")}</p></div>
             </Reveal>
             <Reveal delay={.12} className="gallery-editorial-copy">
               <span>MSKU RACING</span>

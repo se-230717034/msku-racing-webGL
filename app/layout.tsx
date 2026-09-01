@@ -7,8 +7,8 @@ import { LanguageProvider } from "@/components/language-provider";
 import { MotorsportMotion } from "@/components/motorsport-motion";
 import { ScrollRacer } from "@/components/scroll-racer";
 
-const manrope = Manrope({ subsets: ["latin"], variable: "--font-manrope" });
-const space = Space_Grotesk({ subsets: ["latin"], variable: "--font-space" });
+const manrope = Manrope({ subsets: ["latin", "latin-ext"], variable: "--font-manrope" });
+const space = Space_Grotesk({ subsets: ["latin", "latin-ext"], variable: "--font-space" });
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://msku-racing-preview.vercel.app"),
@@ -49,7 +49,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
           <MotorsportMotion />
           <ScrollRacer />
           <Header />
-          <main>{children}</main>
+          <main id="site-main">{children}</main>
           <Footer />
         </LanguageProvider>
       </body>

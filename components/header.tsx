@@ -47,7 +47,7 @@ export function Header() {
   const desktopNavRef = useRef<HTMLElement>(null);
   const desktopLinkRefs = useRef<Record<string, HTMLAnchorElement | null>>({});
   const { language, translate } = useLanguage();
-  const sectionHref = (id: string) => `${pathname === "/" ? "" : "/"}#${id}`;
+  const sectionHref = (id: string) => id === "contact" ? "/contact" : `${pathname === "/" ? "" : "/"}#${id}`;
 
   useEffect(() => setMenuOpen(false), [pathname]);
 

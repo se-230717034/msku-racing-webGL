@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { Images } from "lucide-react";
 import { PageHero } from "@/components/page-hero";
 import { Reveal } from "@/components/motion-reveal";
@@ -12,21 +13,37 @@ export default function GalleryPage() {
     <>
       <PageHero
         eyebrow={translate("Galeri", "Gallery")}
-        title={translate("Çok yakında.", "Coming soon.")}
-        description={translate("Atölye, takım ve araç çalışmalarımızdan gerçek fotoğraflar yakında bu sayfada yer alacak.", "Real photos from our workshop, team and vehicle development will be featured here soon.")}
+        title={translate("Birlikte üretiyoruz", "We build together")}
+        description={translate("Takım ruhunu, birlikte geçirdiğimiz anları ve Akyaka'ya uzanan yolculuğumuzu burada paylaşıyoruz.", "We share our team spirit, the moments we spend together and our journey toward Akyaka here.")}
       />
       <section className="section-space">
         <div className="container-shell">
-          <Reveal className="premium-card carbon-subtle grid min-h-[420px] place-items-center border border-white/10 bg-[#0D1425] text-center">
-            <div className="max-w-xl px-6">
-              <span className="mx-auto grid size-14 place-items-center border border-university/50 bg-university/10 text-white/70">
-                <Images size={24} />
-              </span>
-              <p className="mt-7 text-[10px] font-bold uppercase tracking-[.24em] text-green">{translate("Galeri hazırlanıyor", "Gallery in progress")}</p>
-              <h2 className="mt-4 font-display text-4xl font-semibold uppercase tracking-[-.04em]">{translate("Fotoğraflar çok yakında.", "Photos coming soon.")}</h2>
-              <p className="mt-4 leading-7 text-white/45">{translate("Gerçek takım ve araç görselleri eklendiğinde galeri burada yayınlanacak.", "The gallery will be published here once real team and vehicle images are added.")}</p>
-            </div>
-          </Reveal>
+          <div className="team-gallery-grid">
+            <Reveal className="team-gallery-card team-gallery-portrait">
+              <Image
+                src="/images/team-night-terrace.jpeg"
+                alt={translate("MSKU RACING ekibinin terasta çekilmiş grup fotoğrafı", "MSKU RACING team group photo taken on a terrace")}
+                fill
+                sizes="(min-width: 768px) 42vw, 100vw"
+                className="object-cover object-center"
+                priority
+              />
+              <div className="gallery-shade" />
+              <div className="gallery-caption"><Images size={20} className="text-burgundy" /><p>{translate("Takım gecesi", "Team night")}</p></div>
+            </Reveal>
+            <Reveal delay={.08} className="team-gallery-card team-gallery-landscape">
+              <Image
+                src="/images/team-night-court.jpeg"
+                alt={translate("MSKU RACING ekibinin açık alanda çekilmiş grup fotoğrafı", "MSKU RACING team group photo taken outdoors")}
+                fill
+                sizes="(min-width: 768px) 58vw, 100vw"
+                className="object-cover object-center"
+                priority
+              />
+              <div className="gallery-shade" />
+              <div className="gallery-caption"><p>{translate("Birlikte daha ileri", "Further together")}</p></div>
+            </Reveal>
+          </div>
         </div>
       </section>
     </>

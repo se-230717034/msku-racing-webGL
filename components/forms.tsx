@@ -5,20 +5,66 @@ import { AlertCircle, CheckCircle2, LoaderCircle, Send } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useLanguage } from "./language-provider";
 
-const field = "form-field w-full border border-white/10 bg-white/[.04] px-4 py-3.5 text-sm outline-none transition placeholder:text-white/25 focus:border-accent/70 focus:bg-white/[.06]";
+const field = "form-field w-full border border-white/10 bg-white/[.04] px-4 py-3.5 text-sm outline-none transition placeholder:text-white/45 focus:border-accent/70 focus:bg-white/[.06]";
 const contactEndpoint = "https://formspree.io/f/mqernppb";
 
 export function JoinForm() {
-  const [sent,setSent] = useState(false);
+  const [sent, setSent] = useState(false);
   const { translate } = useLanguage();
-  function submit(e:FormEvent){ e.preventDefault(); setSent(true); }
-  if(sent) return <div className="rounded-sm border border-burgundy/40 bg-burgundy/10 p-8"><CheckCircle2 className="text-green" size={32}/><h3 className="mt-5 font-display text-2xl font-semibold uppercase">{translate("Başvurunuz alındı.", "Your application has been received.")}</h3><p className="mt-3 leading-7 text-white/50">{translate("İlginiz için teşekkürler. Takımımız başvurunuzu değerlendirdikten sonra size dönüş yapacak.", "Thank you for your interest. Our team will contact you after reviewing your application.")}</p></div>;
-  return <form onSubmit={submit} className="grid gap-4">
-    <div className="grid gap-4 sm:grid-cols-2"><input required className={field} placeholder={translate("Ad soyad", "Full name")} /><input required type="email" className={field} placeholder={translate("Üniversite e-postası", "University email")} /></div>
-    <div className="grid gap-4 sm:grid-cols-2"><input required className={field} placeholder={translate("Bölüm", "Department")} /><select required className={field} defaultValue=""><option value="" disabled>{translate("İlgilendiğiniz ekip", "Team of interest")}</option><option>{translate("Mekanik Ekip", "Mechanical Team")}</option><option>{translate("Elektronik Ekip", "Electronics Team")}</option><option>{translate("Yazılım Ekibi", "Software Team")}</option><option>{translate("Organizasyon Ekibi", "Organization Team")}</option></select></div>
-    <textarea required rows={6} className={field} placeholder={translate("Bizimle ne üretmek veya öğrenmek istersiniz?", "What would you like to build or learn with us?")} />
-    <Button type="submit" className="mt-2 w-fit">{translate("Başvuruyu gönder", "Submit application")} <Send size={15}/></Button>
-  </form>
+  function submit(e: FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    setSent(true);
+  }
+
+  if (sent) {
+    return (
+      <div className="rounded-sm border border-burgundy/40 bg-burgundy/10 p-8">
+        <CheckCircle2 className="text-green" size={32} />
+        <h3 className="mt-5 font-display text-2xl font-semibold uppercase">{translate("Başvurunuz alındı.", "Your application has been received.")}</h3>
+        <p className="mt-3 leading-7 text-white/50">{translate("İlginiz için teşekkürler. Takımımız başvurunuzu değerlendirdikten sonra size dönüş yapacak.", "Thank you for your interest. Our team will contact you after reviewing your application.")}</p>
+      </div>
+    );
+  }
+
+  return (
+    <form onSubmit={submit} className="join-form grid gap-5">
+      <div className="grid gap-5 sm:grid-cols-2">
+        <label className="form-field-group" htmlFor="join-name">
+          <span className="form-label">{translate("Ad soyad", "Full name")} <b aria-hidden="true">*</b></span>
+          <input id="join-name" required name="name" autoComplete="name" className={field} placeholder={translate("Adınız ve soyadınız", "Your full name")} />
+        </label>
+        <label className="form-field-group" htmlFor="join-email">
+          <span className="form-label">{translate("Üniversite e-postası", "University email")} <b aria-hidden="true">*</b></span>
+          <input id="join-email" required name="email" type="email" autoComplete="email" className={field} placeholder="ornek@posta.mu.edu.tr" />
+        </label>
+      </div>
+      <div className="grid gap-5 sm:grid-cols-2">
+        <label className="form-field-group" htmlFor="join-department">
+          <span className="form-label">{translate("Bölüm", "Department")} <b aria-hidden="true">*</b></span>
+          <input id="join-department" required name="department" className={field} placeholder={translate("Okuduğunuz bölüm", "Your department")} />
+        </label>
+        <label className="form-field-group" htmlFor="join-phone">
+          <span className="form-label">{translate("Telefon numarası", "Phone number")} <small>{translate("Opsiyonel", "Optional")}</small></span>
+          <input id="join-phone" name="phone" type="tel" inputMode="tel" autoComplete="tel" className={field} placeholder="05xx xxx xx xx" />
+        </label>
+      </div>
+      <label className="form-field-group" htmlFor="join-team">
+        <span className="form-label">{translate("İlgilendiğiniz ekip", "Team of interest")} <b aria-hidden="true">*</b></span>
+        <select id="join-team" required name="team" className={`${field} team-select`} defaultValue="">
+          <option value="" disabled>{translate("Bir ekip seçin", "Choose a team")}</option>
+          <option value="mechanical">{translate("Mekanik Ekip", "Mechanical Team")}</option>
+          <option value="electronics">{translate("Elektronik Ekip", "Electronics Team")}</option>
+          <option value="software">{translate("Yazılım Ekibi", "Software Team")}</option>
+          <option value="organization">{translate("Organizasyon Ekibi", "Organization Team")}</option>
+        </select>
+      </label>
+      <label className="form-field-group" htmlFor="join-motivation">
+        <span className="form-label">{translate("Başvuru mesajı", "Application message")} <b aria-hidden="true">*</b></span>
+        <textarea id="join-motivation" required name="motivation" rows={6} className={field} placeholder={translate("Bizimle ne üretmek veya öğrenmek istersiniz?", "What would you like to build or learn with us?")} />
+      </label>
+      <Button type="submit" className="mt-2 w-fit">{translate("Başvuruyu gönder", "Submit application")} <Send size={15} /></Button>
+    </form>
+  );
 }
 
 export function ContactForm() {

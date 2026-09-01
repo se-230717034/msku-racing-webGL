@@ -43,6 +43,7 @@ const linkedinProfiles: Record<string, string> = {
   "Alper Salih Günaydın": "https://www.linkedin.com/in/alper-g%C3%BCnayd%C4%B1n-2641543b6/",
   "Barış Bağcı": "https://www.linkedin.com/in/bar%C4%B1%C5%9F-ba%C4%9Fc%C4%B1-580a5a1ab/",
   "Ebrar Azra Arslan": "https://www.linkedin.com/in/ebrar-azra-arslan-88a592290/",
+  "Alperen Kaşıkçı": "https://www.linkedin.com/in/alperen-ka%C5%9F%C4%B1k%C3%A7%C4%B1-05ab89401/",
   "Vatan Saatci": "https://www.linkedin.com/in/vatan-saatci-3a2571425/",
   "Aslı Ceren Yılmaz": "https://www.linkedin.com/in/asl%C4%B1cereny%C4%B1lmaz/",
   "Şenol Durmuş": "https://www.linkedin.com/in/%C5%9Fenol-durmu%C5%9F-b570613b7/",

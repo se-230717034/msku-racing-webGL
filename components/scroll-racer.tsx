@@ -100,6 +100,7 @@ export function ScrollRacer() {
       className={`scroll-racer${position.visible ? " is-visible" : ""}`}
       role="scrollbar"
       aria-label="Sayfa kaydırma konumu"
+      aria-controls="site-main"
       aria-orientation="vertical"
       aria-valuemin={0}
       aria-valuemax={100}

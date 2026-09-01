@@ -10,11 +10,11 @@ import { VehicleTelemetry } from "@/components/vehicle-telemetry";
 const specs = [
   ["Güç ünitesi", "Powertrain", "Elektrikli, arkadan itiş", "Electric, rear-wheel drive"],
   ["Tepe güç", "Peak power", "80 kW", "80 kW"],
-  ["Hedef kütle", "Target mass", "215 kg", "215 kg"],
+  ["Hedef kütle", "Target mass", "300 - 320 kg", "300 - 320 kg"],
   ["Batarya", "Battery", "Yüksek gerilim Li-ion", "High-voltage Li-ion"],
   ["Şasi", "Chassis", "Çelik uzay kafes", "Steel space frame"],
   ["Gövde", "Bodywork", "Karbon fiber kompozit", "Carbon-fiber composite"],
-  ["Hızlanma", "Acceleration", "0–100 km/sa: 3,8 sn", "0–100 km/h: 3.8 s"],
+  ["Hızlanma", "Acceleration", "-", "-"],
   ["Kontrol", "Control", "Özel ECU ve telemetri", "Custom ECU and telemetry"],
 ];
 
@@ -24,10 +24,10 @@ export default function CarPage() {
   return (
     <>
       <PageHero eyebrow="Akyaka" title={translate("Sürücü etrafında tasarlandı", "Designed around the driver")} description={translate("Kompakt, elektrikli ve her alt sistemi dikkatle geliştirilen Formula Student aracımız.", "Our compact electric Formula Student car, with every subsystem carefully developed.")} />
-      <section className="theme-fixed-dark relative min-h-[600px] overflow-hidden border-b border-white/10">
+      <section className="car-cover-stage relative min-h-[600px] overflow-hidden border-b border-white/10">
         <Image src="/images/msku-racing-car-covered.png" alt={translate("Kırık beyaz örtüyle kapatılmış MSKU RACING Akyaka prototipi", "MSKU RACING Akyaka prototype covered with an ivory cloth")} fill sizes="100vw" className="parallax-media scale-110 object-cover object-[68%_center] opacity-80 saturate-[.85]" priority />
-        <div className="absolute inset-0 bg-gradient-to-r from-background via-background/55 to-transparent" />
-        <div className="container-shell relative flex min-h-[600px] items-center"><Reveal><p className="max-w-2xl font-display text-4xl font-medium uppercase leading-tight tracking-[-.04em] md:text-6xl">{translate("Daha az kütle", "Less mass")}<br /><span className="text-burgundy">{translate("Daha fazla geri bildirim", "More feedback")}</span><br />{translate("Net sonuçlar", "Clear results")}</p></Reveal></div>
+        <div className="car-cover-overlay absolute inset-0 bg-gradient-to-r from-background via-background/55 to-transparent" />
+        <div className="container-shell relative flex min-h-[600px] items-center"><Reveal><p className="car-cover-copy max-w-2xl font-display text-4xl font-semibold uppercase leading-tight tracking-[-.04em] md:text-6xl">{translate("Daha az kütle", "Less mass")}<br /><span className="text-burgundy">{translate("Daha fazla geri bildirim", "More feedback")}</span><br />{translate("Net sonuçlar", "Clear results")}</p></Reveal></div>
       </section>
       <section className="section-space border-b border-white/10">
         <div className="container-shell">

@@ -12,6 +12,19 @@ body {
   overflow-x: clip;
 }
 
+.font-display,
+.display-title,
+.section-title {
+  font-synthesis: none;
+  font-kerning: normal;
+  text-rendering: optimizeLegibility;
+}
+
+.display-title,
+.section-title {
+  padding-block: .14em;
+}
+
 .race-intro {
   position: fixed;
   inset: 0;
@@ -302,6 +315,10 @@ body::-webkit-scrollbar-thumb { background: rgba(160,0,38,.24); }
 .scroll-racer:active .scroll-racer-vehicle,
 .scroll-racer.is-dragging .scroll-racer-vehicle { cursor: grabbing; transition: none; }
 
+@media (max-width: 1439px) {
+  .scroll-racer { display: none; }
+}
+
 .formula-body {
   position: absolute;
   z-index: 3;
@@ -534,6 +551,62 @@ html.light .premium-card {
   box-shadow: inset 3px 0 0 #a00026, 0 0 0 1px rgba(160,0,38,.35);
 }
 
+.form-field-group {
+  display: grid;
+  gap: .55rem;
+}
+
+.form-label {
+  display: flex;
+  align-items: baseline;
+  gap: .42rem;
+  font-size: .66rem;
+  font-weight: 750;
+  letter-spacing: .13em;
+  line-height: 1.35;
+  text-transform: uppercase;
+  color: rgba(245,244,239,.72);
+}
+
+.form-label b {
+  font-size: .78rem;
+  color: #d20a3d;
+}
+
+.form-label small {
+  font-size: .55rem;
+  font-weight: 700;
+  letter-spacing: .12em;
+  color: rgba(245,244,239,.38);
+}
+
+.team-select {
+  cursor: pointer;
+  color-scheme: dark;
+  color: rgba(245,244,239,.88);
+  background-color: #0d1425;
+}
+
+.team-select:invalid {
+  color: rgba(245,244,239,.46);
+}
+
+.team-select option {
+  color: #fff;
+  background-color: #10182b;
+}
+
+.team-select option:hover,
+.team-select option:focus,
+.team-select option:checked {
+  color: #fff;
+  background-color: #252b87;
+}
+
+.team-select:focus {
+  color: #fff;
+}
+
 .home-hero::after {
   content: "48";
   position: absolute;
@@ -689,34 +762,14 @@ html.light .premium-card {
   to { transform: translateX(-50%); }
 }
 
-.sponsor-marquee-window {
-  overflow: hidden;
-  padding-block: .35rem;
-  -webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
-  mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
-}
-
-.sponsor-marquee-track {
-  display: flex;
-  width: max-content;
+.sponsor-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 1rem;
-  padding-inline: .5rem;
-  animation: sponsor-scroll 42s linear infinite;
-  will-change: transform;
-}
-
-.sponsor-marquee-reverse {
-  animation-name: sponsor-scroll-reverse;
-  animation-duration: 48s;
-}
-
-.sponsor-marquee-track:hover {
-  animation-play-state: paused;
 }
 
 .sponsor-marquee-card {
   position: relative;
-  flex: 0 0 290px;
   min-height: 156px;
   overflow: hidden;
   border: 1px solid rgba(245,244,239,.11);
@@ -747,16 +800,6 @@ html.light .premium-card {
 
 .sponsor-marquee-card:hover::after {
   transform: scaleX(1);
-}
-
-@keyframes sponsor-scroll {
-  from { transform: translateX(0); }
-  to { transform: translateX(calc(-50% - .5rem)); }
-}
-
-@keyframes sponsor-scroll-reverse {
-  from { transform: translateX(calc(-50% - .5rem)); }
-  to { transform: translateX(0); }
 }
 
 .page-hero {
@@ -850,6 +893,13 @@ details > p {
   width: min-content;
   color: #f5f4ef;
   text-shadow: 0 18px 60px rgba(0,0,0,.38);
+}
+
+.cinematic-hero .hero-line {
+  overflow: clip;
+  overflow-clip-margin: .3em;
+  padding-block: .14em;
+  margin-block: -.14em;
 }
 
 .cinematic-hero .hero-line-racing {
@@ -1183,81 +1233,7 @@ html.light .race-control .text-white\/35 { color: rgba(245,244,239,.42); }
   color: rgba(245,244,239,.25);
 }
 
-.season-timeline {
-  position: relative;
-  padding-left: clamp(3.5rem, 7vw, 7rem);
-}
-
-.timeline-scene {
-  position: relative;
-  isolation: isolate;
-  overflow: hidden;
-  background-image: linear-gradient(115deg, rgba(37,43,135,.16), transparent 35%), radial-gradient(circle at 90% 20%, rgba(160,0,38,.1), transparent 28rem);
-}
-
-.timeline-scene::after {
-  content: "06";
-  position: absolute;
-  z-index: -1;
-  right: -.05em;
-  top: .05em;
-  font-family: var(--font-space);
-  font-size: clamp(12rem, 35vw, 36rem);
-  font-weight: 700;
-  line-height: .75;
-  letter-spacing: -.12em;
-  color: rgba(245,244,239,.018);
-  pointer-events: none;
-}
-
-.season-timeline::before,
-.timeline-progress {
-  position: absolute;
-  left: 12px;
-  top: 0;
-  bottom: 0;
-  width: 1px;
-  content: "";
-}
-
-.season-timeline::before { background: rgba(245,244,239,.12); }
-.timeline-progress { z-index: 1; background: linear-gradient(#252b87, #a00026 62%, #0ed678); transform-origin: top; }
-
-.timeline-step {
-  position: relative;
-  display: grid;
-  grid-template-columns: minmax(70px, .22fr) 1fr;
-  gap: clamp(1rem, 4vw, 3.5rem);
-  min-height: 280px;
-  padding: 3rem 0;
-  border-top: 1px solid rgba(245,244,239,.1);
-}
-
-html.light .timeline-scene::after { color: rgba(37,43,135,.035); }
-html.light .season-timeline::before { background: rgba(37,43,135,.16); }
-html.light .timeline-step { border-color: rgba(37,43,135,.14); }
 html.light .news-editorial { border-color: rgba(37,43,135,.16); }
-
-.timeline-dot {
-  position: absolute;
-  left: calc(-1 * clamp(3.5rem, 7vw, 7rem) + 7px);
-  top: 3.3rem;
-  z-index: 2;
-  width: 11px;
-  height: 11px;
-  border: 2px solid #0d1425;
-  background: #a00026;
-  box-shadow: 0 0 0 5px rgba(160,0,38,.12);
-}
-
-.timeline-number {
-  font-family: var(--font-space);
-  font-size: clamp(3.4rem, 6vw, 6.5rem);
-  font-weight: 700;
-  line-height: .8;
-  letter-spacing: -.07em;
-  color: rgba(245,244,239,.11);
-}
 
 .sponsor-scene .sponsor-marquee-window {
   -webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
@@ -1300,7 +1276,7 @@ html.light .sponsor-scene .sponsor-marquee-card:hover { background: #fff; border
 .editorial-gallery {
   display: grid;
   grid-template-columns: repeat(12, minmax(0, 1fr));
-  grid-template-rows: 170px minmax(260px, 36vw) 170px;
+  grid-template-rows: minmax(460px, 48vw);
   gap: 1rem;
 }
 
@@ -1314,16 +1290,53 @@ html.light .sponsor-scene .sponsor-marquee-card:hover { background: #fff; border
   border: 1px solid rgba(245,244,239,.1);
 }
 
-.gallery-panel-main { grid-column: 1 / 9; grid-row: 1 / 3; }
-.gallery-panel-side { grid-column: 9 / 13; grid-row: 2 / 4; }
+.gallery-panel-main { grid-column: 1 / 6; grid-row: 1; }
+.gallery-panel-side { grid-column: 6 / 13; grid-row: 1; }
 .gallery-media { scale: 1.04; transition: scale .8s cubic-bezier(.2,.8,.2,1); }
 .gallery-panel:hover .gallery-media { scale: 1.1; }
 .gallery-shade { position: absolute; inset: 0; background: linear-gradient(to top, rgba(3,6,13,.9), transparent 55%); }
 .gallery-caption { position: absolute; left: 1.5rem; bottom: 1.5rem; display: flex; align-items: center; gap: .75rem; font-size: .62rem; font-weight: 700; text-transform: uppercase; letter-spacing: .2em; }
 
+.team-gallery-grid {
+  display: grid;
+  grid-template-columns: minmax(0, .78fr) minmax(0, 1.22fr);
+  gap: clamp(1rem, 2.4vw, 2rem);
+  align-items: start;
+}
+
+.team-gallery-card {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(245,244,239,.12);
+  background: #0d1425;
+  box-shadow: 0 24px 70px rgba(3,6,13,.18);
+}
+
+.team-gallery-card::before {
+  content: "";
+  position: absolute;
+  z-index: 2;
+  inset: .8rem;
+  pointer-events: none;
+  border-top: 1px solid rgba(245,244,239,.24);
+  border-left: 1px solid rgba(245,244,239,.14);
+}
+
+.team-gallery-portrait { aspect-ratio: 3 / 4; }
+.team-gallery-landscape { aspect-ratio: 4 / 3; margin-top: clamp(2.5rem, 6vw, 7rem); }
+
+.car-cover-stage {
+  color: #f5f4ef;
+  background: #080d1a;
+}
+
+.car-cover-copy {
+  text-shadow: 0 8px 32px rgba(3,6,13,.72);
+}
+
 .gallery-editorial-copy {
-  grid-column: 8 / 12;
-  grid-row: 1 / 2;
+  grid-column: 5 / 9;
+  grid-row: 1;
   z-index: 2;
   align-self: start;
   padding: 1.35rem;
@@ -1348,6 +1361,7 @@ html.light .sponsor-scene .sponsor-marquee-card:hover { background: #fff; border
 }
 
 @media (max-width: 1023px) {
+  .sponsor-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .hero-preview {
     width: min(100%, 560px);
   }
@@ -1373,13 +1387,22 @@ html.light .sponsor-scene .sponsor-marquee-card:hover { background: #fff; border
   .cinematic-hero { min-height: 780px; }
   .cinematic-hero > .container-shell { min-height: 708px; }
   .cinematic-hero .hero-title-stage { bottom: 17rem; }
-  .cinematic-hero .hero-title { font-size: clamp(4rem, 20.5vw, 6rem); }
+  .cinematic-hero .hero-title { font-size: clamp(3.85rem, 19vw, 5.7rem); }
   .cinematic-hero .hero-line-racing { margin-left: 0; }
   .cinematic-hero .hero-actions { right: 1.125rem; bottom: 2rem; }
   .cinematic-hero .hero-image-wash {
     background:
       linear-gradient(90deg, rgba(3,6,13,.94), rgba(3,6,13,.15) 78%),
       linear-gradient(0deg, rgba(3,6,13,1) 0%, transparent 55%);
+  }
+  html.light .cinematic-hero.home-hero .hero-media {
+    opacity: .82;
+    filter: saturate(1.02) contrast(1.18) brightness(.98);
+  }
+  html.light .cinematic-hero .hero-image-wash {
+    background:
+      linear-gradient(90deg, rgba(248,247,242,.58), rgba(248,247,242,.02) 82%),
+      linear-gradient(0deg, rgba(248,247,242,.72) 0%, transparent 42%);
   }
   .hero-speed-lines { opacity: .12; }
   .hero-speed-lines::before,
@@ -1411,7 +1434,6 @@ html.light .sponsor-scene .sponsor-marquee-card:hover { background: #fff; border
   .vehicle-visual { min-height: 420px; }
   .vehicle-watermark { top: -1.8rem; font-size: clamp(4.6rem, 23vw, 6.4rem); }
   .vehicle-scan { animation-duration: 9s; opacity: .6; }
-  .vehicle-visual > p { top: 1rem; bottom: auto; }
   .vehicle-title { margin-top: -1rem; margin-left: .6rem; transform: none !important; }
   .vehicle-title span { margin-left: 1.5rem; }
   .vehicle-stage { padding-block: 4rem; opacity: 1 !important; transform: none !important; }
@@ -1431,12 +1453,6 @@ html.light .sponsor-scene .sponsor-marquee-card:hover { background: #fff; border
     transform: translateY(-10px);
     clip-path: inset(0 0 100% 0);
   }
-  .season-timeline { padding-left: 2.7rem; }
-  .season-timeline::before,
-  .timeline-progress { left: 7px; }
-  .timeline-step { grid-template-columns: 1fr; min-height: auto; padding-block: 3rem; }
-  .timeline-dot { left: calc(-2.7rem + 2px); }
-  .timeline-number { font-size: 3.4rem; }
   .news-editorial { grid-template-columns: 1fr auto; gap: 1.5rem; }
   .news-editorial span,
   .news-editorial h3,
@@ -1444,14 +1460,14 @@ html.light .sponsor-scene .sponsor-marquee-card:hover { background: #fff; border
   .news-editorial svg { grid-column: 2; grid-row: 1 / 4; }
   .editorial-gallery { display: flex; flex-direction: column; }
   .gallery-panel-main { min-height: 480px; }
-  .gallery-panel-side { min-height: 360px; margin-left: 2.5rem; }
-  .gallery-editorial-copy { margin-right: 2.5rem; order: -1; }
+  .gallery-panel-side { min-height: 360px; margin-left: 0; }
+  .gallery-editorial-copy { margin-right: 0; order: -1; }
+  .team-gallery-grid { grid-template-columns: 1fr; }
+  .team-gallery-landscape { margin-top: 0; }
   .kinetic-strip { padding-block: .7rem; }
   .kinetic-track { animation-duration: 34s; }
-  .sponsor-marquee-window { mask-image: none; -webkit-mask-image: none; }
-  .sponsor-marquee-track { gap: .75rem; animation-duration: 58s; }
-  .sponsor-marquee-reverse { animation-duration: 64s; }
-  .sponsor-marquee-card { flex-basis: 235px; min-height: 138px; padding: 1.1rem; }
+  .sponsor-grid { grid-template-columns: 1fr; }
+  .sponsor-marquee-card { min-height: 138px; padding: 1.1rem; }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -1468,11 +1484,6 @@ html.light .sponsor-scene .sponsor-marquee-card:hover { background: #fff; border
   .hero-actions {
     opacity: 1 !important;
     transform: none !important;
-  }
-  .sponsor-marquee-track {
-    animation: none !important;
-    transform: none !important;
-    overflow-x: auto;
   }
   .race-intro { display: none; }
 }
@@ -1527,14 +1538,14 @@ html.light .home-hero {
 }
 
 html.light .home-hero .hero-media {
-  opacity: .28;
-  filter: saturate(.55) contrast(.9);
+  opacity: .9;
+  filter: saturate(1.02) contrast(1.18) brightness(.98);
 }
 
 html.light .hero-image-wash {
   background:
-    linear-gradient(90deg, rgba(248,247,242,.99) 0%, rgba(248,247,242,.8) 38%, rgba(248,247,242,.3) 72%, rgba(248,247,242,.72) 100%),
-    linear-gradient(0deg, #f8f7f2 0%, transparent 40%, rgba(248,247,242,.5) 100%);
+    linear-gradient(90deg, rgba(248,247,242,.78) 0%, rgba(248,247,242,.34) 32%, rgba(248,247,242,.02) 68%, rgba(248,247,242,.1) 100%),
+    linear-gradient(0deg, rgba(248,247,242,.78) 0%, transparent 34%, rgba(248,247,242,.08) 100%);
 }
 
 html.light .cinematic-hero .hero-title {
@@ -1569,6 +1580,8 @@ html.light .vehicle-stage,
 html.light .team-disciplines,
 html.light .team-discipline,
 html.light .team-member-panel li { border-color: rgba(37,43,135,.14); }
+html.light .vehicle-stage .text-white\/50,
+html.light .team-discipline .text-white\/45 { color: rgba(8,13,26,.68); }
 html.light .team-member-panel li:nth-child(odd) { border-color: rgba(37,43,135,.14); }
 html.light .team-discipline-icon,
 html.light .team-discipline-meta > span,
@@ -1582,6 +1595,7 @@ html.light .gallery-scene {
 }
 
 html.light .gallery-panel { border-color: rgba(37,43,135,.16); }
+html.light .team-gallery-card { border-color: rgba(37,43,135,.16); box-shadow: 0 24px 70px rgba(8,13,26,.1); }
 html.light .gallery-caption,
 html.light .vehicle-visual,
 html.light .vehicle-visual .text-white\/45 { color: #f5f4ef; }
@@ -1591,6 +1605,54 @@ html.light .gallery-editorial-copy {
   border-left: 2px solid #a00026;
   background: rgba(255,255,255,.94);
   box-shadow: 0 20px 55px rgba(8,13,26,.1);
+}
+
+html.light .form-field {
+  color: #080d1a;
+  border-color: rgba(37,43,135,.28);
+  background: linear-gradient(90deg, rgba(37,43,135,.045), transparent 42%), #fff;
+  box-shadow: 0 10px 28px rgba(8,13,26,.045);
+}
+
+html.light .form-field::placeholder { color: rgba(8,13,26,.52); opacity: 1; }
+html.light .contact-form-stage .form-field {
+  border-width: 1px;
+  padding-inline: 1rem;
+  background: #fff;
+  box-shadow: 0 10px 28px rgba(8,13,26,.05);
+}
+
+html.light .form-label { color: rgba(8,13,26,.76); }
+html.light .form-label small { color: rgba(8,13,26,.46); }
+
+html.light .team-select,
+html.light .team-select:invalid {
+  color: rgba(8,13,26,.78);
+  color-scheme: light;
+  background-color: #fff;
+}
+html.light .team-select option { color: #080d1a; background: #fff; }
+html.light .team-select option:hover,
+html.light .team-select option:focus,
+html.light .team-select option:checked { color: #fff; background: #252b87; }
+
+html.light .car-cover-stage {
+  color: #03060d;
+  background: #f8f7f2;
+}
+
+html.light .car-cover-stage .parallax-media {
+  opacity: .78;
+  filter: saturate(.76) contrast(1.12);
+}
+
+html.light .car-cover-overlay {
+  background: linear-gradient(to right, rgba(248,247,242,.98) 0%, rgba(248,247,242,.76) 42%, rgba(248,247,242,.12) 76%, transparent 100%);
+}
+
+html.light .car-cover-copy {
+  color: #01030a;
+  text-shadow: 0 4px 24px rgba(255,255,255,.95);
 }
 
 html.light .page-hero {

@@ -14,9 +14,10 @@ export function MotorsportMotion() {
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const mobile = window.matchMedia("(max-width: 767px)").matches;
     const introDelay = pathname === "/" && !mobile ? 1.45 : 0;
+    const animationTargets = Array.from(document.querySelectorAll<HTMLElement>(".gsap-reveal, .hero-title, .hero-kicker, .hero-actions"));
 
     if (reducedMotion) {
-      gsap.set(".gsap-reveal, .hero-title, .hero-kicker, .hero-actions", {
+      gsap.set(animationTargets, {
         clearProps: "all",
         opacity: 1,
       });
@@ -24,46 +25,56 @@ export function MotorsportMotion() {
     }
 
     let context: gsap.Context | undefined;
+    let heroSafetyTimer: number | undefined;
     const frame = window.requestAnimationFrame(() => {
       context = gsap.context(() => {
-        gsap.fromTo(
-          ".hero-kicker",
-          { opacity: 0, x: -18 },
-          { opacity: 1, x: 0, duration: 0.65, ease: "power3.out", delay: introDelay },
-        );
-        gsap.fromTo(
-          ".hero-line > span",
-          { yPercent: 112, rotate: mobile ? 0 : 4, skewX: mobile ? 0 : -6 },
-          { yPercent: 0, rotate: 0, skewX: 0, duration: mobile ? 0.78 : 1.08, stagger: .12, ease: "power4.out", delay: introDelay + .04 },
-        );
-        gsap.fromTo(
-          ".hero-actions",
-          { opacity: 0, y: 18 },
-          { opacity: 1, y: 0, duration: 0.7, ease: "power3.out", delay: introDelay + .32 },
-        );
+        const homeHero = document.querySelector<HTMLElement>(".home-hero");
+        if (homeHero) {
+          const heroKicker = document.querySelector<HTMLElement>(".hero-kicker");
+          const heroLines = Array.from(document.querySelectorAll<HTMLElement>(".hero-line > span"));
+          const heroActions = document.querySelector<HTMLElement>(".hero-actions");
+          const heroFocusFrame = document.querySelector<HTMLElement>(".hero-focus-frame");
 
-        gsap.fromTo(
-          ".hero-focus-frame",
-          { opacity: 0, scale: 1.035 },
-          { opacity: 1, scale: 1, duration: mobile ? .75 : 1.25, ease: "power3.out", delay: introDelay + .18 },
-        );
+          if (heroKicker) {
+            gsap.set(heroKicker, { opacity: 1, x: 0 });
+          }
+          if (heroLines.length) {
+            gsap.set(heroLines, { yPercent: 0, rotate: 0, skewX: 0 });
+          }
+          if (heroActions) {
+            gsap.set(heroActions, { opacity: 1, y: 0 });
+          }
+          if (heroFocusFrame) {
+            gsap.fromTo(heroFocusFrame, { opacity: 0, scale: 1.035 }, { opacity: 1, scale: 1, duration: mobile ? .75 : 1.25, ease: "power3.out", delay: introDelay + .18 });
+          }
 
-        const heroPreview = document.querySelector<HTMLElement>(".hero-preview");
-        if (!mobile && heroPreview) {
-          gsap.fromTo(
-            heroPreview,
-            { opacity: 0, x: 90, rotateY: -12, transformPerspective: 1000 },
-            { opacity: 1, x: 0, rotateY: 0, duration: 1.1, ease: "power4.out", delay: introDelay + .25 },
-          );
-          gsap.to(heroPreview, {
-            y: -12,
-            rotateZ: .35,
-            duration: 3.2,
-            repeat: -1,
-            yoyo: true,
-            ease: "sine.inOut",
-            delay: introDelay + 1.25,
-          });
+          // Browsers can heavily throttle requestAnimationFrame in background tabs.
+          // Guarantee that the hero never remains clipped if the entrance timeline is paused.
+          heroSafetyTimer = window.setTimeout(() => {
+            gsap.killTweensOf([heroKicker, ...heroLines, heroActions, heroFocusFrame].filter(Boolean));
+            gsap.set(heroLines, { yPercent: 0, rotate: 0, skewX: 0 });
+            if (heroKicker) gsap.set(heroKicker, { opacity: 1, x: 0 });
+            if (heroActions) gsap.set(heroActions, { opacity: 1, y: 0 });
+            if (heroFocusFrame) gsap.set(heroFocusFrame, { opacity: 1, scale: 1 });
+          }, (introDelay + (mobile ? 1.4 : 2.4)) * 1000);
+
+          const heroPreview = document.querySelector<HTMLElement>(".hero-preview");
+          if (!mobile && heroPreview) {
+            gsap.fromTo(
+              heroPreview,
+              { opacity: 0, x: 90, rotateY: -12, transformPerspective: 1000 },
+              { opacity: 1, x: 0, rotateY: 0, duration: 1.1, ease: "power4.out", delay: introDelay + .25 },
+            );
+            gsap.to(heroPreview, {
+              y: -12,
+              rotateZ: .35,
+              duration: 3.2,
+              repeat: -1,
+              yoyo: true,
+              ease: "sine.inOut",
+              delay: introDelay + 1.25,
+            });
+          }
         }
 
         document.querySelectorAll<HTMLElement>(".gsap-reveal:not(.hero-preview)").forEach((element) => {
@@ -89,12 +100,12 @@ export function MotorsportMotion() {
         document.querySelectorAll<HTMLElement>(".section-title").forEach((element) => {
           gsap.fromTo(
             element,
-            { clipPath: "inset(0 0 100% 0)", yPercent: 24, rotateX: mobile ? 0 : -18, transformPerspective: 900 },
+            { opacity: 0, y: mobile ? 18 : 28, rotateX: mobile ? 0 : -10, transformPerspective: 900 },
             {
-              clipPath: "inset(0 0 0% 0)",
-              yPercent: 0,
+              opacity: 1,
+              y: 0,
               rotateX: 0,
-              duration: mobile ? .7 : 1.05,
+              duration: mobile ? .62 : .9,
               ease: "power4.out",
               scrollTrigger: { trigger: element, start: mobile ? "top 94%" : "top 86%", once: true },
             },
@@ -117,21 +128,24 @@ export function MotorsportMotion() {
         });
 
         if (!mobile) {
-          gsap.fromTo(
-            ".hero-media",
+          const heroMedia = document.querySelector<HTMLElement>(".hero-media");
+          if (homeHero && heroMedia) {
+            gsap.fromTo(
+            heroMedia,
             { scale: 1.08, yPercent: -2 },
             {
               scale: 1,
               yPercent: 7,
               ease: "none",
               scrollTrigger: {
-                trigger: ".home-hero",
+                trigger: homeHero,
                 start: "top top",
                 end: "bottom top",
                 scrub: 0.8,
               },
             },
-          );
+            );
+          }
 
           document.querySelectorAll<HTMLElement>(".parallax-media").forEach((element) => {
             gsap.to(element, {
@@ -146,8 +160,13 @@ export function MotorsportMotion() {
             });
           });
 
-          gsap.fromTo(
-            ".vehicle-media",
+          const vehicleLab = document.querySelector<HTMLElement>(".vehicle-lab");
+          const vehicleMedia = document.querySelector<HTMLElement>(".vehicle-media");
+          const vehicleTitle = document.querySelector<HTMLElement>(".vehicle-title");
+          const vehicleWatermark = document.querySelector<HTMLElement>(".vehicle-watermark");
+          if (vehicleLab && vehicleMedia) {
+            gsap.fromTo(
+            vehicleMedia,
             { scale: 1.16, filter: "saturate(.4) contrast(1.18)" },
             {
               scale: 1.03,
@@ -155,44 +174,49 @@ export function MotorsportMotion() {
               filter: "saturate(1) contrast(1)",
               ease: "none",
               scrollTrigger: {
-                trigger: ".vehicle-lab",
+                trigger: vehicleLab,
                 start: "top bottom",
                 end: "bottom top",
                 scrub: 1,
               },
             },
-          );
+            );
+          }
 
-          gsap.fromTo(
-            ".vehicle-title",
+          if (vehicleLab && vehicleTitle) {
+            gsap.fromTo(
+            vehicleTitle,
             { xPercent: -10 },
             {
               xPercent: 5,
               ease: "none",
               scrollTrigger: {
-                trigger: ".vehicle-lab",
+                trigger: vehicleLab,
                 start: "top bottom",
                 end: "bottom top",
                 scrub: 1,
               },
             },
-          );
+            );
+          }
 
-          gsap.fromTo(
-            ".vehicle-watermark",
+          if (vehicleLab && vehicleWatermark) {
+            gsap.fromTo(
+            vehicleWatermark,
             { xPercent: -14, opacity: .015 },
             {
               xPercent: 8,
               opacity: .06,
               ease: "none",
               scrollTrigger: {
-                trigger: ".vehicle-lab",
+                trigger: vehicleLab,
                 start: "top bottom",
                 end: "bottom top",
                 scrub: 1.1,
               },
             },
-          );
+            );
+          }
 
           document.querySelectorAll<HTMLElement>(".vehicle-stage").forEach((element) => {
             gsap.fromTo(
@@ -229,39 +253,25 @@ export function MotorsportMotion() {
             );
           });
 
-          gsap.fromTo(
-            ".timeline-progress",
-            { scaleY: 0 },
-            {
-              scaleY: 1,
-              ease: "none",
-              scrollTrigger: {
-                trigger: ".season-timeline",
-                start: "top 72%",
-                end: "bottom 72%",
-                scrub: .6,
-              },
-            },
-          );
-
-          gsap.fromTo(
-            ".race-control-board",
+          const raceControl = document.querySelector<HTMLElement>(".race-control");
+          const raceControlBoard = document.querySelector<HTMLElement>(".race-control-board");
+          if (raceControl && raceControlBoard) {
+            gsap.fromTo(
+            raceControlBoard,
             { clipPath: "inset(0 100% 0 0)" },
             {
               clipPath: "inset(0 0% 0 0)",
               duration: 1.15,
               ease: "power4.inOut",
-              scrollTrigger: { trigger: ".race-control", start: "top 82%", once: true },
+              scrollTrigger: { trigger: raceControl, start: "top 82%", once: true },
             },
-          );
+            );
+          }
 
-          gsap.to(".race-game-stage", {
-            y: -10,
-            duration: 3.6,
-            repeat: -1,
-            yoyo: true,
-            ease: "sine.inOut",
-          });
+          const raceGameStage = document.querySelector<HTMLElement>(".race-game-stage");
+          if (raceGameStage) {
+            gsap.to(raceGameStage, { y: -10, duration: 3.6, repeat: -1, yoyo: true, ease: "sine.inOut" });
+          }
 
           document.querySelectorAll<HTMLElement>(".gallery-panel").forEach((element, index) => {
             gsap.fromTo(
@@ -284,15 +294,14 @@ export function MotorsportMotion() {
 
         }
 
-        gsap.to(".scroll-progress", {
-          scaleX: 1,
-          ease: "none",
-          scrollTrigger: {
-            start: 0,
-            end: "max",
-            scrub: 0.25,
-          },
-        });
+        const scrollProgress = document.querySelector<HTMLElement>(".scroll-progress");
+        if (scrollProgress) {
+          gsap.to(scrollProgress, {
+            scaleX: 1,
+            ease: "none",
+            scrollTrigger: { start: 0, end: "max", scrub: 0.25 },
+          });
+        }
 
         ScrollTrigger.refresh();
       });
@@ -301,6 +310,7 @@ export function MotorsportMotion() {
 
     return () => {
       window.cancelAnimationFrame(frame);
+      if (heroSafetyTimer) window.clearTimeout(heroSafetyTimer);
       context?.revert();
     };
   }, [pathname]);

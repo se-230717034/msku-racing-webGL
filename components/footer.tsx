@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowUpRight, Linkedin, Mail } from "lucide-react";
+import { ArrowUpRight, Instagram, Linkedin, Mail } from "lucide-react";
 import { Logo } from "./logo";
 import { useLanguage } from "./language-provider";
 
@@ -12,6 +12,11 @@ export function Footer() {
       label: "LinkedIn",
       href: "https://www.linkedin.com/company/msku-racing/posts/?feedView=all",
       icon: Linkedin,
+    },
+    {
+      label: "Instagram @mskuracing",
+      href: "https://www.instagram.com/mskuracing/",
+      icon: Instagram,
     },
     { label: translate("E-posta", "Email"), href: "mailto:mskuracing@gmail.com", icon: Mail },
   ];

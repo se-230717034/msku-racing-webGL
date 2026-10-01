@@ -47,7 +47,7 @@ export function JoinForm() {
   }
 
   return (
-    <form onSubmit={submit} className="join-form grid gap-5">
+    <form action={formEndpoint} method="POST" onSubmit={submit} className="join-form grid gap-5">
       <input type="hidden" name="_subject" value="MSKU Racing takım başvurusu" />
       <input
         type="text"
@@ -153,7 +153,7 @@ export function ContactForm() {
   }
 
   return (
-    <form onSubmit={submit} className="grid gap-4">
+    <form action={formEndpoint} method="POST" onSubmit={submit} className="grid gap-4">
       <input type="hidden" name="_subject" value="MSKU Racing web sitesi iletişim mesajı" />
       <input
         type="text"

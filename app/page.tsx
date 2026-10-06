@@ -3,7 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useState, type CSSProperties } from "react";
-import { ArrowRight, ArrowUpRight, CalendarDays, Code2, Cpu, Mail, MapPin, Wrench } from "lucide-react";
+import { ArrowRight, ArrowUpRight, CalendarDays, Camera, Code2, Cpu, Mail, MapPin, Wrench } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Reveal } from "@/components/motion-reveal";
 import { RaceCountdown } from "@/components/race-countdown";
@@ -248,22 +248,17 @@ export default function Home() {
       <section id="gallery" className="gallery-scene theme-fixed-dark section-space scroll-mt-20 overflow-hidden border-t border-white/10 bg-[#0D1425]">
         <div className="container-shell">
           <div className="mb-9 flex items-center gap-4"><span className="section-index">05</span><span className="h-px flex-1 bg-white/10" /></div>
-          <Reveal><SectionHeading eyebrow={translate("Galeri", "Gallery")} title={translate("Atölyeden piste", "From workshop to track")} copy={translate("Takım ruhunu, birlikte ürettiğimiz anları ve Akyaka'ya uzanan yolculuğumuzu paylaşıyoruz.", "We share our team spirit, the moments we build together and our journey toward Akyaka.")} /></Reveal>
-          <div className="editorial-gallery mt-14">
-            <Reveal className="gallery-panel gallery-panel-main">
-              <Image src="/images/team-night-terrace.jpeg" alt={translate("MSKU RACING takım gecesi grup fotoğrafı", "MSKU RACING team night group photo")} fill sizes="(min-width: 1024px) 42vw, 100vw" className="gallery-media object-cover object-center" />
-              <div className="gallery-shade" />
-            </Reveal>
-            <Reveal delay={.08} className="gallery-panel gallery-panel-side">
-              <Image src="/images/team-night-court.jpeg" alt={translate("MSKU RACING ekibinin açık alandaki grup fotoğrafı", "MSKU RACING team group photo outdoors")} fill sizes="(min-width: 1024px) 58vw, 100vw" className="gallery-media object-cover object-center" />
-              <div className="gallery-shade" />
-            </Reveal>
-            <Reveal delay={.12} className="gallery-editorial-copy">
-              <span>MSKU RACING</span>
-              <strong>{translate("Her parça bir karar. Her tur yeni bir veri", "Every part is a decision. Every lap brings new data")}</strong>
-              <Link href="/gallery">{translate("Galeriyi görüntüle", "View gallery")} <ArrowRight size={15} /></Link>
-            </Reveal>
-          </div>
+          <Reveal><SectionHeading eyebrow={translate("Galeri", "Gallery")} title={translate("Atölyeden piste", "From workshop to track")} copy={translate("Üretim, test ve takım çalışmalarından yeni kareler için galeri alanımızı hazırlıyoruz.", "We are preparing our gallery for new moments from manufacturing, testing and team work.")} /></Reveal>
+          <Reveal delay={.08} className="gallery-coming-soon mt-14">
+            <div className="gallery-coming-soon-mark" aria-hidden="true">05</div>
+            <div className="gallery-coming-soon-content">
+              <span className="gallery-coming-soon-icon"><Camera size={25} /></span>
+              <p>{translate("Galeri hazırlanıyor", "Gallery in progress")}</p>
+              <h3>{translate("Yeni kareler çok yakında", "New moments coming soon")}</h3>
+              <span>{translate("Atölyeden piste uzanan yolculuğumuzu yakında burada paylaşacağız.", "We will soon share our journey from the workshop to the track here.")}</span>
+              <Link href="/gallery">{translate("Galeri sayfası", "Gallery page")} <ArrowRight size={15} /></Link>
+            </div>
+          </Reveal>
         </div>
       </section>
 

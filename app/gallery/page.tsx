@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+import { Camera } from "lucide-react";
 import { PageHero } from "@/components/page-hero";
 import { Reveal } from "@/components/motion-reveal";
 import { useLanguage } from "@/components/language-provider";
@@ -12,35 +12,17 @@ export default function GalleryPage() {
     <>
       <PageHero
         eyebrow={translate("Galeri", "Gallery")}
-        title={translate("Birlikte üretiyoruz", "We build together")}
-        description={translate("Takım ruhunu, birlikte geçirdiğimiz anları ve Akyaka'ya uzanan yolculuğumuzu burada paylaşıyoruz.", "We share our team spirit, the moments we spend together and our journey toward Akyaka here.")}
+        title={translate("Çok yakında", "Coming soon")}
+        description={translate("Üretim, test ve takım çalışmalarından yeni kareleri paylaşmak için galeri alanımızı hazırlıyoruz.", "We are preparing our gallery to share new moments from manufacturing, testing and team work.")}
       />
       <section className="section-space">
         <div className="container-shell">
-          <div className="team-gallery-grid">
-            <Reveal className="team-gallery-card team-gallery-portrait">
-              <Image
-                src="/images/team-night-terrace.jpeg"
-                alt={translate("MSKU RACING ekibinin terasta çekilmiş grup fotoğrafı", "MSKU RACING team group photo taken on a terrace")}
-                fill
-                sizes="(min-width: 768px) 42vw, 100vw"
-                className="object-cover object-center"
-                priority
-              />
-              <div className="gallery-shade" />
-            </Reveal>
-            <Reveal delay={.08} className="team-gallery-card team-gallery-landscape">
-              <Image
-                src="/images/team-night-court.jpeg"
-                alt={translate("MSKU RACING ekibinin açık alanda çekilmiş grup fotoğrafı", "MSKU RACING team group photo taken outdoors")}
-                fill
-                sizes="(min-width: 768px) 58vw, 100vw"
-                className="object-cover object-center"
-                priority
-              />
-              <div className="gallery-shade" />
-            </Reveal>
-          </div>
+          <Reveal className="gallery-page-coming-soon">
+            <span className="gallery-coming-soon-icon"><Camera size={27} /></span>
+            <p>{translate("Hazırlanıyor", "In progress")}</p>
+            <h2>{translate("Yeni kareler çok yakında", "New moments coming soon")}</h2>
+            <span>{translate("Takımımızın atölye, üretim ve pist çalışmalarından özenle seçilmiş fotoğraflar yakında burada yer alacak.", "Selected photos from our workshop, manufacturing and track work will be available here soon.")}</span>
+          </Reveal>
         </div>
       </section>
     </>

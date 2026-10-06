@@ -1349,6 +1349,52 @@ html.light .sponsor-scene .sponsor-marquee-card:hover { background: #fff; border
 .gallery-editorial-copy strong { display: block; margin-top: .8rem; font-family: var(--font-space); font-size: clamp(1rem, 1.8vw, 1.6rem); line-height: 1.15; text-transform: uppercase; }
 .gallery-editorial-copy a { display: inline-flex; align-items: center; gap: .5rem; margin-top: 1rem; font-size: .55rem; font-weight: 700; text-transform: uppercase; letter-spacing: .16em; color: #a00026; }
 
+.gallery-coming-soon {
+  position: relative;
+  min-height: clamp(360px, 42vw, 560px);
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  border: 1px solid rgba(245,244,239,.12);
+  background:
+    linear-gradient(rgba(245,244,239,.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(245,244,239,.04) 1px, transparent 1px),
+    radial-gradient(circle at 72% 28%, rgba(160,0,38,.22), transparent 20rem),
+    #080d1a;
+  background-size: 42px 42px, 42px 42px, auto, auto;
+}
+
+.gallery-coming-soon::before,
+.gallery-coming-soon::after {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+}
+
+.gallery-coming-soon::before { inset: 1rem; border: 1px solid rgba(245,244,239,.08); }
+.gallery-coming-soon::after { width: 1px; height: 135%; right: 18%; background: rgba(160,0,38,.7); rotate: 18deg; }
+.gallery-coming-soon-mark { position: absolute; left: clamp(1.5rem, 4vw, 4rem); bottom: -0.18em; font-family: var(--font-space); font-size: clamp(8rem, 24vw, 22rem); font-weight: 700; line-height: .7; color: rgba(245,244,239,.025); }
+.gallery-coming-soon-content { position: relative; z-index: 1; max-width: 700px; padding: 3rem 2rem; text-align: center; }
+.gallery-coming-soon-icon { margin-inline: auto; display: grid; width: 3.75rem; height: 3.75rem; place-items: center; border: 1px solid rgba(14,214,120,.35); background: rgba(14,214,120,.07); color: #0ed678; }
+.gallery-coming-soon-content p,
+.gallery-page-coming-soon > p { margin-top: 1.6rem; font-size: .62rem; font-weight: 700; text-transform: uppercase; letter-spacing: .24em; color: #0ed678; }
+.gallery-coming-soon-content h3,
+.gallery-page-coming-soon h2 { margin-top: 1rem; font-family: var(--font-space); font-size: clamp(2.3rem, 6vw, 5.8rem); font-weight: 600; line-height: .88; letter-spacing: -.05em; text-transform: uppercase; }
+.gallery-coming-soon-content > span,
+.gallery-page-coming-soon > span:last-child { display: block; max-width: 560px; margin: 1.5rem auto 0; line-height: 1.8; color: rgba(245,244,239,.48); }
+.gallery-coming-soon-content a { display: inline-flex; align-items: center; gap: .55rem; margin-top: 1.8rem; font-size: .62rem; font-weight: 700; text-transform: uppercase; letter-spacing: .18em; color: #f5f4ef; }
+
+.gallery-page-coming-soon {
+  min-height: 430px;
+  display: grid;
+  place-items: center;
+  align-content: center;
+  padding: clamp(3rem, 7vw, 6rem) 2rem;
+  border: 1px solid rgba(245,244,239,.12);
+  background: radial-gradient(circle at 50% 0%, rgba(37,43,135,.24), transparent 30rem), #0d1425;
+  text-align: center;
+}
+
 .contact-form-stage .form-field {
   border-width: 0 0 1px;
   padding-inline: 0;

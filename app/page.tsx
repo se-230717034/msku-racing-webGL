@@ -249,15 +249,18 @@ export default function Home() {
         <div className="container-shell">
           <div className="mb-9 flex items-center gap-4"><span className="section-index">05</span><span className="h-px flex-1 bg-white/10" /></div>
           <Reveal><SectionHeading eyebrow={translate("Galeri", "Gallery")} title={translate("Atölyeden piste", "From workshop to track")} copy={translate("Üretim, test ve takım çalışmalarından yeni kareler için galeri alanımızı hazırlıyoruz.", "We are preparing our gallery for new moments from manufacturing, testing and team work.")} /></Reveal>
-          <Reveal delay={.08} className="gallery-coming-soon mt-14">
-            <div className="gallery-coming-soon-mark" aria-hidden="true">05</div>
-            <div className="gallery-coming-soon-content">
-              <span className="gallery-coming-soon-icon"><Camera size={25} /></span>
-              <p>{translate("Galeri hazırlanıyor", "Gallery in progress")}</p>
+          <Reveal delay={.08} className="gallery-status-board mt-14">
+            <div className="gallery-status-number" aria-hidden="true">00</div>
+            <div className="gallery-status-copy">
+              <p>MSKU RACING / MEDIA</p>
               <h3>{translate("Yeni kareler çok yakında", "New moments coming soon")}</h3>
               <span>{translate("Atölyeden piste uzanan yolculuğumuzu yakında burada paylaşacağız.", "We will soon share our journey from the workshop to the track here.")}</span>
-              <Link href="/gallery">{translate("Galeri sayfası", "Gallery page")} <ArrowRight size={15} /></Link>
             </div>
+            <Link className="gallery-status-side" href="/gallery">
+              <span className="gallery-status-icon"><Camera size={22} /></span>
+              <div><small>{translate("Durum", "Status")}</small><strong>{translate("Arşiv hazırlanıyor", "Archive in progress")}</strong></div>
+              <ArrowUpRight size={17} />
+            </Link>
           </Reveal>
         </div>
       </section>

@@ -17,11 +17,17 @@ export default function GalleryPage() {
       />
       <section className="section-space">
         <div className="container-shell">
-          <Reveal className="gallery-page-coming-soon">
-            <span className="gallery-coming-soon-icon"><Camera size={27} /></span>
-            <p>{translate("Hazırlanıyor", "In progress")}</p>
-            <h2>{translate("Yeni kareler çok yakında", "New moments coming soon")}</h2>
-            <span>{translate("Takımımızın atölye, üretim ve pist çalışmalarından özenle seçilmiş fotoğraflar yakında burada yer alacak.", "Selected photos from our workshop, manufacturing and track work will be available here soon.")}</span>
+          <Reveal className="gallery-status-board gallery-page-status">
+            <div className="gallery-status-number" aria-hidden="true">00</div>
+            <div className="gallery-status-copy">
+              <p>MSKU RACING / MEDIA</p>
+              <h2>{translate("Arşiv hazırlanıyor", "Archive in progress")}</h2>
+              <span>{translate("Takımımızın atölye, üretim ve pist çalışmalarından özenle seçilmiş fotoğraflar yakında burada yer alacak.", "Selected photos from our workshop, manufacturing and track work will be available here soon.")}</span>
+            </div>
+            <div className="gallery-status-side">
+              <span className="gallery-status-icon"><Camera size={22} /></span>
+              <div><small>{translate("Yayın", "Release")}</small><strong>{translate("Çok yakında", "Coming soon")}</strong></div>
+            </div>
           </Reveal>
         </div>
       </section>

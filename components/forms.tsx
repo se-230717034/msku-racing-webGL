@@ -6,27 +6,38 @@ import { Button } from "@/components/ui/button";
 import { useLanguage } from "./language-provider";
 
 const field = "form-field w-full border border-white/10 bg-white/[.04] px-4 py-3.5 text-sm outline-none transition placeholder:text-white/45 focus:border-accent/70 focus:bg-white/[.06]";
-const formEndpoint = "https://formspree.io/f/xzezwlwn";
+const communityEndpoint = "https://formspree.io/f/xzezwlwn";
+const teamApplicationEndpoint = "https://formspree.io/f/mjygkylz";
+
+type JoinRequestType = "team" | "community";
 
 export function JoinForm() {
   const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
+  const [communityOnly, setCommunityOnly] = useState(false);
+  const [submittedType, setSubmittedType] = useState<JoinRequestType | null>(null);
   const { translate } = useLanguage();
 
   async function submit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const form = e.currentTarget;
+    const requestType: JoinRequestType = communityOnly ? "community" : "team";
+    const endpoint = requestType === "community" ? communityEndpoint : teamApplicationEndpoint;
+    const formData = new FormData(form);
+    formData.set("application_type", requestType === "community" ? "community_membership" : "team_application");
+    setSubmittedType(requestType);
     setStatus("sending");
 
     try {
-      const response = await fetch(formEndpoint, {
+      const response = await fetch(endpoint, {
         method: "POST",
-        body: new FormData(form),
+        body: formData,
         headers: { Accept: "application/json" },
       });
 
       if (!response.ok) throw new Error("Formspree submission failed");
 
       form.reset();
+      setCommunityOnly(false);
       setStatus("success");
     } catch {
       setStatus("error");
@@ -34,21 +45,41 @@ export function JoinForm() {
   }
 
   if (status === "success") {
+    const isCommunityMembership = submittedType === "community";
+
     return (
       <div role="status" className="rounded-sm border border-burgundy/40 bg-burgundy/10 p-8">
         <CheckCircle2 className="text-green" size={32} />
-        <h3 className="mt-5 font-display text-2xl font-semibold uppercase">{translate("Başvurunuz alındı.", "Your application has been received.")}</h3>
-        <p className="mt-3 leading-7 text-white/50">{translate("İlginiz için teşekkürler. Takımımız başvurunuzu değerlendirdikten sonra size dönüş yapacak.", "Thank you for your interest. Our team will contact you after reviewing your application.")}</p>
-        <Button type="button" onClick={() => setStatus("idle")} className="mt-6">
-          {translate("Yeni başvuru gönder", "Send another application")}
+        <h3 className="mt-5 font-display text-2xl font-semibold uppercase">
+          {isCommunityMembership
+            ? translate("Üyelik talebiniz alındı.", "Your membership request has been received.")
+            : translate("Başvurunuz alındı.", "Your application has been received.")}
+        </h3>
+        <p className="mt-3 leading-7 text-white/50">
+          {isCommunityMembership
+            ? translate("Topluluğumuza gösterdiğiniz ilgi için teşekkürler. En kısa sürede size dönüş yapacağız.", "Thank you for your interest in our community. We will get back to you as soon as possible.")
+            : translate("İlginiz için teşekkürler. Takımımız başvurunuzu değerlendirdikten sonra size dönüş yapacak.", "Thank you for your interest. Our team will contact you after reviewing your application.")}
+        </p>
+        <Button
+          type="button"
+          onClick={() => {
+            setSubmittedType(null);
+            setStatus("idle");
+          }}
+          className="mt-6"
+        >
+          {translate("Yeni talep gönder", "Send another request")}
         </Button>
       </div>
     );
   }
 
+  const activeEndpoint = communityOnly ? communityEndpoint : teamApplicationEndpoint;
+
   return (
-    <form action={formEndpoint} method="POST" onSubmit={submit} className="join-form grid gap-5">
-      <input type="hidden" name="_subject" value="MSKU Racing takım başvurusu" />
+    <form action={activeEndpoint} method="POST" onSubmit={submit} className="join-form grid gap-5">
+      <input type="hidden" name="_subject" value={communityOnly ? "MSKU Racing topluluk üyeliği" : "MSKU Racing takım başvurusu"} />
+      <input type="hidden" name="application_type" value={communityOnly ? "community_membership" : "team_application"} />
       <input
         type="text"
         name="_gotcha"
@@ -77,20 +108,47 @@ export function JoinForm() {
           <input id="join-phone" name="phone" type="tel" inputMode="tel" autoComplete="tel" className={field} placeholder="05xx xxx xx xx" />
         </label>
       </div>
-      <label className="form-field-group" htmlFor="join-team">
-        <span className="form-label">{translate("İlgilendiğiniz ekip", "Team of interest")} <b aria-hidden="true">*</b></span>
-        <select id="join-team" required name="team" className={`${field} team-select`} defaultValue="">
-          <option value="" disabled>{translate("Bir ekip seçin", "Choose a team")}</option>
-          <option value="mechanical">{translate("Mekanik Ekip", "Mechanical Team")}</option>
-          <option value="electronics">{translate("Elektronik Ekip", "Electronics Team")}</option>
-          <option value="software">{translate("Yazılım Ekibi", "Software Team")}</option>
-          <option value="organization">{translate("Organizasyon Ekibi", "Organization Team")}</option>
-        </select>
+      <label
+        className="flex cursor-pointer items-start gap-4 border border-white/10 bg-white/[.035] p-4 transition hover:border-accent/45 hover:bg-white/[.055]"
+        htmlFor="join-community-only"
+      >
+        <input
+          id="join-community-only"
+          type="checkbox"
+          name="community_only"
+          value="yes"
+          checked={communityOnly}
+          onChange={(event) => setCommunityOnly(event.target.checked)}
+          className="mt-1 size-5 shrink-0 accent-[#A70C30]"
+        />
+        <span>
+          <strong className="block text-sm font-semibold text-white">
+            {translate("Yalnızca topluluğa üye olmak istiyorum", "I only want to join the community")}
+          </strong>
+          <small className="mt-1 block text-xs leading-5 text-white/45">
+            {translate("Takım kadrosuna başvurmadan etkinliklere ve topluluk çalışmalarına katılmak istiyorsanız işaretleyin.", "Select this if you want to join community activities without applying to the team roster.")}
+          </small>
+        </span>
       </label>
-      <label className="form-field-group" htmlFor="join-motivation">
-        <span className="form-label">{translate("Başvuru mesajı", "Application message")} <b aria-hidden="true">*</b></span>
-        <textarea id="join-motivation" required name="motivation" rows={6} className={field} placeholder={translate("Bizimle ne üretmek veya öğrenmek istersiniz?", "What would you like to build or learn with us?")} />
-      </label>
+
+      {!communityOnly && (
+        <>
+          <label className="form-field-group" htmlFor="join-team">
+            <span className="form-label">{translate("İlgilendiğiniz ekip", "Team of interest")} <b aria-hidden="true">*</b></span>
+            <select id="join-team" required name="team" className={`${field} team-select`} defaultValue="">
+              <option value="" disabled>{translate("Bir ekip seçin", "Choose a team")}</option>
+              <option value="mechanical">{translate("Mekanik Ekip", "Mechanical Team")}</option>
+              <option value="electronics">{translate("Elektronik Ekip", "Electronics Team")}</option>
+              <option value="software">{translate("Yazılım Ekibi", "Software Team")}</option>
+              <option value="organization">{translate("Organizasyon Ekibi", "Organization Team")}</option>
+            </select>
+          </label>
+          <label className="form-field-group" htmlFor="join-motivation">
+            <span className="form-label">{translate("Başvuru mesajı", "Application message")} <b aria-hidden="true">*</b></span>
+            <textarea id="join-motivation" required name="motivation" rows={6} className={field} placeholder={translate("Bizimle ne üretmek veya öğrenmek istersiniz?", "What would you like to build or learn with us?")} />
+          </label>
+        </>
+      )}
 
       {status === "error" && (
         <p role="alert" className="flex items-center gap-2 text-sm text-burgundy">
@@ -106,7 +164,9 @@ export function JoinForm() {
           </>
         ) : (
           <>
-            {translate("Başvuruyu gönder", "Submit application")} <Send size={15} />
+            {communityOnly
+              ? translate("Üyelik talebini gönder", "Submit membership request")
+              : translate("Başvuruyu gönder", "Submit application")} <Send size={15} />
           </>
         )}
       </Button>
@@ -124,7 +184,7 @@ export function ContactForm() {
     setStatus("sending");
 
     try {
-      const response = await fetch(formEndpoint, {
+      const response = await fetch(communityEndpoint, {
         method: "POST",
         body: new FormData(form),
         headers: { Accept: "application/json" },
@@ -153,7 +213,7 @@ export function ContactForm() {
   }
 
   return (
-    <form action={formEndpoint} method="POST" onSubmit={submit} className="grid gap-4">
+    <form action={communityEndpoint} method="POST" onSubmit={submit} className="grid gap-4">
       <input type="hidden" name="_subject" value="MSKU Racing web sitesi iletişim mesajı" />
       <input
         type="text"

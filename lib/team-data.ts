@@ -18,7 +18,7 @@ export const teamGroups = [
     enName: "Software Team",
     trDescription: "Gömülü yazılım, telemetri, veri analizi ve takımın dijital sistemleri.",
     enDescription: "Embedded software, telemetry, data analysis and the team's digital systems.",
-    members: ["Aslı Ceren Yılmaz", "Şenol Durmuş", "Yaşar Kaki", "Yunus Emre Çelik"],
+    members: ["Aslı Ceren Yılmaz", "Şenol Durmuş", "Yaşar Kaki"],
   },
   {
     trName: "Mekanik Ekip",
@@ -32,7 +32,7 @@ export const teamGroups = [
     enName: "Organization Team",
     trDescription: "Etkinlik, iletişim, sponsorluk ve takım organizasyonu.",
     enDescription: "Events, communications, sponsorship and team organization.",
-    members: ["Eylül Deniz Kudu", "Ebrar Azra Arslan", "Şule Nilay Aktaş", "Ekrem Alperen Aksak", "Zişan Günay"],
+    members: ["Eylül Deniz Kudu", "Ebrar Azra Arslan", "Şule Nilay Aktaş"],
   },
 ];
 

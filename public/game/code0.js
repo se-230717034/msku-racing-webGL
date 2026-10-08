@@ -128,6 +128,13 @@ isConditionTrue_0 = false;
 isConditionTrue_0 = gdjs.evtTools.runtimeScene.sceneJustBegins(runtimeScene);
 if (isConditionTrue_0) {
 // msku-racing:desktop-controls
+// msku-racing:game-ready
+const mskuLoadingScreen = document.getElementById("msku-game-loading");
+if (mskuLoadingScreen) {
+  mskuLoadingScreen.classList.add("is-ready");
+  window.setTimeout(() => mskuLoadingScreen.remove(), 650);
+}
+window.parent.postMessage({ type: "msku-racing:game-ready" }, window.location.origin);
 if (!gdjs.evtTools.common.isMobile()) {
   gdjs.evtTools.camera.hideLayer(runtimeScene, "MobileControls");
 }

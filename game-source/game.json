@@ -64,14 +64,14 @@
       "gdevelopLogoStyle": "light",
       "logoAndProgressFadeInDuration": 0.2,
       "logoAndProgressLogoFadeInDelay": 0,
-      "minDuration": 1.5,
+      "minDuration": 0.2,
       "progressBarColor": 10947632,
       "progressBarHeight": 20,
       "progressBarMaxWidth": 200,
       "progressBarMinWidth": 40,
       "progressBarWidthPercent": 30,
-      "showGDevelopSplash": true,
-      "showProgressBar": true
+      "showGDevelopSplash": false,
+      "showProgressBar": false
     },
     "watermark": {
       "placement": "bottom-left",

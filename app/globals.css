@@ -1732,6 +1732,88 @@ html.light .site-footer {
 html.light .site-footer::before { color: rgba(37,43,135,.055); border-color: rgba(37,43,135,.12); }
 html.light .theme-fixed-dark.bg-university { background-color: #eef0ff; }
 
+.game-preview-panel {
+  color: #f5f4ef;
+  border-color: rgba(245,244,239,.15);
+  background: rgba(11,18,34,.9);
+}
+
+.game-preview-divider,
+.game-leaderboard,
+.game-leaderboard-row { border-color: rgba(245,244,239,.1); }
+.game-preview-muted { color: rgba(245,244,239,.45); }
+.game-preview-icon { color: rgba(245,244,239,.78); background: #09101e; }
+.game-leaderboard { background: rgba(7,13,25,.85); }
+
+.game-session { color: #f5f4ef; background: #03060d; }
+.game-start-screen {
+  position: relative;
+  isolation: isolate;
+  background: radial-gradient(circle at 50% 28%, rgba(37,43,135,.34), transparent 30rem), linear-gradient(145deg, #0b1222, #03060d 72%);
+}
+.game-start-screen::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  opacity: .13;
+  background-image: linear-gradient(rgba(255,255,255,.15) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.15) 1px, transparent 1px);
+  background-size: 42px 42px;
+  mask-image: linear-gradient(to bottom, black, transparent 82%);
+}
+.game-start-orbit { position: absolute; z-index: -1; border: 1px solid rgba(160,0,38,.2); border-radius: 50%; pointer-events: none; }
+.game-start-orbit-one { width: min(70vw, 760px); aspect-ratio: 1; }
+.game-start-orbit-two { width: min(52vw, 560px); aspect-ratio: 1; border-color: rgba(37,43,135,.3); }
+.game-start-close { color: #f5f4ef; border-color: rgba(245,244,239,.16); background: rgba(8,13,26,.52); }
+.game-start-close:hover { border-color: #a00026; }
+.game-start-dialog { border-color: rgba(245,244,239,.14); background: rgba(8,13,26,.93); box-shadow: 0 36px 120px rgba(0,0,0,.52); }
+.game-start-dialog > div:first-child { border-color: rgba(245,244,239,.1); }
+.game-start-badge { color: #f5f4ef; border-color: rgba(37,43,135,.55); background: rgba(37,43,135,.16); }
+.game-start-muted,
+.game-start-label { color: rgba(245,244,239,.46); }
+.game-start-step { color: rgba(245,244,239,.3); }
+.game-start-input { color: #f5f4ef; border-color: rgba(245,244,239,.18); background: rgba(245,244,239,.045); }
+.game-start-input::placeholder { color: rgba(245,244,239,.25); }
+.game-start-input:focus { border-color: #a00026; box-shadow: 0 0 0 3px rgba(160,0,38,.11); }
+.game-session-loader { background: radial-gradient(circle at 50% 28%, rgba(37,43,135,.4), transparent 31rem), #03060d; }
+.game-session-loader-track span { width: 42%; animation: game-session-loading 1.35s cubic-bezier(.7,0,.3,1) infinite; }
+
+@keyframes game-session-loading {
+  from { translate: -110% 0; }
+  to { translate: 240% 0; }
+}
+
+html.light .game-preview-panel {
+  color: #080d1a;
+  border-color: rgba(37,43,135,.16);
+  background: rgba(255,255,255,.88);
+  box-shadow: 0 20px 60px rgba(8,13,26,.07);
+}
+html.light .game-preview-grid { opacity: .08; }
+html.light .game-preview-divider,
+html.light .game-leaderboard,
+html.light .game-leaderboard-row { border-color: rgba(37,43,135,.14); }
+html.light .game-preview-muted { color: rgba(8,13,26,.55); }
+html.light .game-preview-icon { color: #252b87; background: rgba(37,43,135,.07); }
+html.light .game-leaderboard { background: rgba(37,43,135,.035); }
+html.light .game-leaderboard-row .text-white\/70 { color: rgba(8,13,26,.72); }
+html.light .game-leaderboard-row .text-white { color: #080d1a; }
+html.light .game-leaderboard-empty { color: rgba(8,13,26,.42); }
+html.light .game-start-screen { color: #080d1a; background: radial-gradient(circle at 50% 28%, rgba(37,43,135,.1), transparent 30rem), linear-gradient(145deg, #fff, #f0efe9 72%); }
+html.light .game-start-screen::before { opacity: .12; background-image: linear-gradient(rgba(37,43,135,.2) 1px, transparent 1px), linear-gradient(90deg, rgba(37,43,135,.2) 1px, transparent 1px); }
+html.light .game-start-close { color: #080d1a; border-color: rgba(37,43,135,.18); background: rgba(255,255,255,.7); }
+html.light .game-start-dialog { border-color: rgba(37,43,135,.16); background: rgba(255,255,255,.94); box-shadow: 0 36px 100px rgba(8,13,26,.14); }
+html.light .game-start-dialog > div:first-child { border-color: rgba(37,43,135,.13); }
+html.light .game-start-muted,
+html.light .game-start-label { color: rgba(8,13,26,.58); }
+html.light .game-start-step { color: rgba(8,13,26,.34); }
+html.light .game-start-input { color: #080d1a; border-color: rgba(37,43,135,.24); background: #fff; }
+html.light .game-start-input::placeholder { color: rgba(8,13,26,.34); }
+
+@media (prefers-reduced-motion: reduce) {
+  .game-session-loader-track span { animation-duration: 4s; }
+}
+
 html.light .bg-burgundy.text-white,
 html.light .bg-\[\#B51237\].text-white,
 html.light .theme-fixed-dark .bg-burgundy.text-white { color: #fff; }

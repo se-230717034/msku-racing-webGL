@@ -36,8 +36,8 @@ function brandFormulaModel(filePath) {
   const palette = {
     paint: colors.navy,
     trim: colors.dark,
-    white: colors.white,
-    accent: colors.burgundy,
+    white: colors.burgundy,
+    accent: colors.white,
     glass: [17 / 255, 29 / 255, 55 / 255, 1],
   };
 
@@ -148,6 +148,13 @@ function updateLapBridge() {
     const bridge = `if (gdjs.Game_32SceneCode.GDPlayerCarObjects1.length > 0) {\n  const completedLapTime = gdjs.Game_32SceneCode.GDPlayerCarObjects1[0].getTimerElapsedTimeInSeconds("LapTimer");\n  if (completedLapTime > 0.5) {\n    window.parent.postMessage({ type: "msku-racing:lap-complete", time: completedLapTime }, window.location.origin);\n  }\n}\n${timerReset}`;
     if (!source.includes(timerReset)) throw new Error("Lap timer reset block was not found in code0.js.");
     source = source.replace(timerReset, bridge);
+  }
+
+  if (!source.includes("msku-racing:desktop-controls")) {
+    const sceneStart = `if (isConditionTrue_0) {\ngdjs.copyArray(runtimeScene.getObjects("CheckpointArrow"), gdjs.Game_32SceneCode.GDCheckpointArrowObjects1);`;
+    const desktopControls = `if (isConditionTrue_0) {\n// msku-racing:desktop-controls\nif (!gdjs.evtTools.common.isMobile()) {\n  gdjs.evtTools.camera.hideLayer(runtimeScene, "MobileControls");\n}\ngdjs.copyArray(runtimeScene.getObjects("CheckpointArrow"), gdjs.Game_32SceneCode.GDCheckpointArrowObjects1);`;
+    if (!source.includes(sceneStart)) throw new Error("Scene start block was not found in code0.js.");
+    source = source.replace(sceneStart, desktopControls);
   }
 
   fs.writeFileSync(codePath, source);

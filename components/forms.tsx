@@ -100,10 +100,23 @@ export function JoinForm() {
           <input id="join-email" required name="email" type="email" autoComplete="email" className={field} placeholder="ornek@posta.mu.edu.tr" />
         </label>
       </div>
-      <div className="grid gap-5 sm:grid-cols-2">
+      <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
         <label className="form-field-group" htmlFor="join-department">
           <span className="form-label">{translate("Bölüm", "Department")} <b aria-hidden="true">*</b></span>
           <input id="join-department" required name="department" className={field} placeholder={translate("Okuduğunuz bölüm", "Your department")} />
+        </label>
+        <label className="form-field-group" htmlFor="join-class-year">
+          <span className="form-label">{translate("Sınıf", "Year of study")} <b aria-hidden="true">*</b></span>
+          <select id="join-class-year" required name="class_year" className={`${field} team-select`} defaultValue="">
+            <option value="" disabled>{translate("Sınıfınızı seçin", "Select your year")}</option>
+            <option value="preparatory">{translate("Hazırlık", "Preparatory year")}</option>
+            <option value="1">{translate("1. sınıf", "1st year")}</option>
+            <option value="2">{translate("2. sınıf", "2nd year")}</option>
+            <option value="3">{translate("3. sınıf", "3rd year")}</option>
+            <option value="4">{translate("4. sınıf", "4th year")}</option>
+            <option value="5-plus">{translate("5. sınıf ve üzeri", "5th year or above")}</option>
+            <option value="graduate">{translate("Lisansüstü", "Graduate")}</option>
+          </select>
         </label>
         <label className="form-field-group" htmlFor="join-phone">
           <span className="form-label">{translate("Telefon numarası", "Phone number")} <small>{translate("Opsiyonel", "Optional")}</small></span>

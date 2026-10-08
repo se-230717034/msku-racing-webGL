@@ -8,6 +8,23 @@ const formulaModelPaths = [
   path.join(gameDirectory, "MSKU-Formula-Student.glb"),
   path.join(root, "game-source", "assets", "MSKU-Formula-Student.glb"),
 ];
+const environmentAssets = [
+  "AsphaltTrack.png",
+  "TrackGrass.png",
+  "TrackBarrier.png",
+  "MSKU-Track-Tree.glb",
+];
+
+const treePlacements = [
+  [-1260, -110, 78], [-760, -105, 70], [-250, -100, 82], [280, -115, 74],
+  [820, -105, 86], [1360, -115, 76], [1900, -100, 82], [2450, -110, 72],
+  [-1260, 2940, 74], [-720, 2950, 84], [-160, 2940, 72], [430, 2950, 82],
+  [980, 2940, 76], [1540, 2950, 86], [2080, 2940, 72], [2520, 2950, 80],
+  [-1560, 360, 76], [-1550, 920, 84], [-1560, 1490, 72], [-1550, 2070, 82], [-1560, 2640, 76],
+  [2780, 360, 82], [2790, 920, 74], [2780, 1490, 86], [2790, 2070, 76], [2780, 2640, 82],
+  [-760, 1050, 70], [-760, 1810, 78], [1680, 1050, 74], [1680, 1810, 82],
+  [80, 1220, 68], [560, 1740, 76], [1120, 1200, 72],
+];
 
 const colors = {
   navy: [37 / 255, 43 / 255, 135 / 255, 1],
@@ -69,6 +86,86 @@ function brandFormulaModel(filePath) {
   fs.writeFileSync(filePath, output);
 }
 
+function syncEnvironmentAssets() {
+  const sourceDirectory = path.join(root, "game-source", "assets");
+  for (const asset of environmentAssets) {
+    fs.copyFileSync(path.join(sourceDirectory, asset), path.join(gameDirectory, asset));
+  }
+}
+
+function ensureResource(project, { name, file, kind }) {
+  const resources = project.resources.resources;
+  let resource = resources.find((candidate) => candidate.name === name || path.basename(candidate.file.replaceAll("\\", "/")) === path.basename(file));
+  if (!resource) {
+    resource = { file, kind, metadata: "", name, userAdded: true };
+    resources.push(resource);
+  }
+  resource.name = name;
+  resource.file = file;
+  resource.kind = kind;
+  if (kind === "image") resource.smoothed = true;
+  return resource;
+}
+
+function setCubeTexture(object, resourceName) {
+  for (const face of ["front", "back", "left", "right", "top", "bottom"]) {
+    object.content[`${face}FaceResourceName`] = resourceName;
+    object.content[`${face}FaceResourceRepeat`] = true;
+  }
+}
+
+function ensureTrackTrees(layout, treeResourceName) {
+  let treeObject = layout.objects.find((object) => object.name === "TrackTree");
+  if (!treeObject) {
+    const trafficCone = layout.objects.find((object) => object.name === "TrafficCone");
+    if (!trafficCone) throw new Error("TrafficCone template object was not found.");
+    treeObject = structuredClone(trafficCone);
+    treeObject.assetStoreId = "";
+    treeObject.name = "TrackTree";
+    treeObject.persistentUuid = "a826b9de-60df-4b03-ae8c-8f3f74ec6641";
+    treeObject.content = {
+      ...treeObject.content,
+      width: 72,
+      height: 72,
+      depth: 126,
+      modelResourceName: treeResourceName,
+      rotationX: 90,
+      rotationY: 0,
+      rotationZ: 0,
+      crossfadeDuration: 0,
+      isCastingShadow: true,
+      isReceivingShadow: true,
+    };
+    layout.objects.push(treeObject);
+  } else {
+    treeObject.content.modelResourceName = treeResourceName;
+  }
+  treeObject.behaviors = treeObject.behaviors.filter((behavior) => behavior.name !== "Physics3D");
+
+  if (!layout.instances.some((instance) => instance.name === "TrackTree")) {
+    treePlacements.forEach(([x, y, size], index) => {
+      layout.instances.push({
+        angle: (index * 37) % 360,
+        customSize: true,
+        depth: Math.round(size * 1.75),
+        height: size,
+        keepRatio: true,
+        layer: "",
+        locked: true,
+        name: "TrackTree",
+        persistentUuid: `aa51b5cc-18e7-43a1-9a${String(index).padStart(2, "0")}-b8955e6d${String(index).padStart(4, "0")}`,
+        width: size,
+        x,
+        y,
+        zOrder: 6,
+        numberProperties: [],
+        stringProperties: [],
+        initialVariables: [],
+      });
+    });
+  }
+}
+
 function brandProject(project, exported) {
   project.properties.name = "MSKU Racing: Garajdan Piste";
   project.properties.packageName = "com.mskuracing.garajdanpiste";
@@ -79,6 +176,10 @@ function brandProject(project, exported) {
 
   const oldResourceName = "assets\\Orange - Sedan Sports.glb";
   const newResourceName = "assets\\MSKU-Formula-Student.glb";
+  const asphaltResourceName = "AsphaltTrack.png";
+  const grassResourceName = "TrackGrass.png";
+  const barrierResourceName = "TrackBarrier.png";
+  const treeResourceName = "MSKU-Track-Tree.glb";
   const modelResource = project.resources.resources.find((resource) => resource.name === oldResourceName || resource.name === newResourceName);
   if (!modelResource) throw new Error("Player car resource was not found.");
   modelResource.name = newResourceName;
@@ -87,11 +188,16 @@ function brandProject(project, exported) {
     identifier: "https://cdn.3dassets.dev/assets/15252/v1/model.glb",
     name: "Current car high-downforce wing — CC0 1.0",
   };
+  ensureResource(project, { name: asphaltResourceName, file: exported ? "AsphaltTrack.png" : "assets/AsphaltTrack.png", kind: "image" });
+  ensureResource(project, { name: grassResourceName, file: exported ? "TrackGrass.png" : "assets/TrackGrass.png", kind: "image" });
+  ensureResource(project, { name: barrierResourceName, file: exported ? "TrackBarrier.png" : "assets/TrackBarrier.png", kind: "image" });
+  ensureResource(project, { name: treeResourceName, file: exported ? "MSKU-Track-Tree.glb" : "assets/MSKU-Track-Tree.glb", kind: "model3D" });
 
   for (const layout of project.layouts ?? []) {
     layout.r = 8;
     layout.g = 13;
     layout.b = 26;
+    ensureTrackTrees(layout, treeResourceName);
 
     for (const object of layout.objects ?? []) {
       if (object.name === "PlayerCar") {
@@ -102,11 +208,20 @@ function brandProject(project, exported) {
         if (physics) {
           physics.shapeDimensionC = 18;
           physics.shapeOffsetZ = 3;
+          physics.friction = 6;
+          physics.linearDamping = 0.12;
+          physics.angularDamping = 0.65;
         }
 
         const carPhysics = object.behaviors.find((behavior) => behavior.name === "PhysicsCar3D");
         if (carPhysics) {
           carPhysics.wheelOffsetZ = -3;
+          carPhysics.steerAngleMax = 30;
+          carPhysics.beginningSteerSpeed = 58;
+          carPhysics.endSteerSpeed = 14;
+          carPhysics.engineTorqueMax = 4800;
+          carPhysics.engineSpeedMax = 5600;
+          carPhysics.pitchRollAngleMax = 38;
         }
       }
       if (object.name === "LapText") {
@@ -116,14 +231,28 @@ function brandProject(project, exported) {
         object.content.color = "245;244;239";
         object.content.outlineColor = "8;13;26";
       }
-      if (object.name === "Grass_3D") object.content.tint = "37;43;135";
-      if (object.name === "Walls_3D") object.content.tint = "167;12;48";
-      if (object.name === "Road_3D" || object.name === "FinishLine_3D") object.content.tint = "245;244;239";
+      if (object.name === "Road_3D") {
+        setCubeTexture(object, asphaltResourceName);
+        object.content.tint = "225;225;225";
+        object.content.isCastingShadow = false;
+      }
+      if (object.name === "Grass_3D") {
+        setCubeTexture(object, grassResourceName);
+        object.content.tint = "205;220;195";
+      }
+      if (object.name === "Walls_3D") {
+        setCubeTexture(object, barrierResourceName);
+        object.content.tint = "245;244;239";
+      }
+      if (object.name === "FinishLine_3D") object.content.tint = "245;244;239";
     }
 
     if (Array.isArray(layout.usedResources)) {
       for (const resource of layout.usedResources) {
         if (resource.name === oldResourceName) resource.name = newResourceName;
+      }
+      for (const name of [asphaltResourceName, grassResourceName, barrierResourceName, treeResourceName]) {
+        if (!layout.usedResources.some((resource) => resource.name === name)) layout.usedResources.push({ name });
       }
     }
   }
@@ -192,6 +321,7 @@ function updateShell() {
   fs.writeFileSync(manifestPath, `${JSON.stringify(manifest, null, 2)}\n`);
 }
 
+syncEnvironmentAssets();
 for (const modelPath of formulaModelPaths) brandFormulaModel(modelPath);
 updateSourceProject();
 updateExportedProject();

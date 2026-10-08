@@ -156,9 +156,11 @@ function updateLapBridge() {
 function updateShell() {
   const indexPath = path.join(gameDirectory, "index.html");
   let html = fs.readFileSync(indexPath, "utf8")
-    .replace("<html>", '<html lang="tr">')
-    .replace("<head>", "<head>\n    <title>MSKU Racing — Garajdan Piste</title>")
-    .replace('<meta name="theme-color" content="#000000" />', '<meta name="theme-color" content="#080D1A" />')
+    .replace(/<html(?:\s+lang="[^"]*")?>/u, '<html lang="tr">')
+    .replace(/\s*<title>[^<]*<\/title>/gu, "")
+    .replace(/\s*<base\s+href="\/game\/"\s*\/?>/gu, "")
+    .replace("<head>", '<head>\n    <base href="/game/">\n    <title>MSKU Racing — Garajdan Piste</title>')
+    .replace(/<meta name="theme-color" content="[^"]*" \/>/u, '<meta name="theme-color" content="#080D1A" />')
     .replace("background-color: #000000;", "background: radial-gradient(circle at 50% 20%, #252b87 0%, #080d1a 42%, #03060d 100%);");
   fs.writeFileSync(indexPath, html);
 

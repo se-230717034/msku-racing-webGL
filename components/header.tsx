@@ -63,10 +63,14 @@ export function Header() {
       frame = 0;
       const marker = window.scrollY + window.innerHeight * .34;
       let current = "home";
+      let currentTop = Number.NEGATIVE_INFINITY;
 
       nav.forEach(({ id }) => {
         const section = document.getElementById(id);
-        if (section && section.offsetTop <= marker) current = id;
+        if (section && section.offsetTop <= marker && section.offsetTop >= currentTop) {
+          current = id;
+          currentTop = section.offsetTop;
+        }
       });
 
       setActiveSection(current);

@@ -119,8 +119,19 @@ export function JoinForm() {
           </select>
         </label>
         <label className="form-field-group" htmlFor="join-phone">
-          <span className="form-label">{translate("Telefon numarası", "Phone number")} <small>{translate("Opsiyonel", "Optional")}</small></span>
-          <input id="join-phone" name="phone" type="tel" inputMode="tel" autoComplete="tel" className={field} placeholder="05xx xxx xx xx" />
+          <span className="form-label">{translate("Telefon numarası", "Phone number")} <b aria-hidden="true">*</b></span>
+          <input
+            id="join-phone"
+            required
+            name="phone"
+            type="tel"
+            inputMode="tel"
+            autoComplete="tel"
+            minLength={10}
+            maxLength={20}
+            className={field}
+            placeholder="05xx xxx xx xx"
+          />
         </label>
       </div>
       <label

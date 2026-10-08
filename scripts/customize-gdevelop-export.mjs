@@ -176,6 +176,10 @@ function brandProject(project, exported) {
   project.properties.loadingScreen.showGDevelopSplash = false;
   project.properties.loadingScreen.showProgressBar = false;
   project.properties.loadingScreen.minDuration = 0.2;
+  project.properties.watermark = {
+    ...(project.properties.watermark ?? {}),
+    showWatermark: false,
+  };
 
   const oldResourceName = "assets\\Orange - Sedan Sports.glb";
   const newResourceName = "assets\\MSKU-Formula-Student.glb";
@@ -313,8 +317,7 @@ function updateLapBridge() {
 
 function updateShell() {
   const indexPath = path.join(gameDirectory, "index.html");
-  const loadingStyle = `
-    <style id="msku-game-loading-style">
+  const loadingStyle = `    <style id="msku-game-loading-style">
       #msku-game-loading { position: fixed; inset: 0; z-index: 999999; display: grid; place-items: center; overflow: hidden; color: #f5f4ef; background: radial-gradient(circle at 50% 24%, rgba(37,43,135,.48), transparent 34%), linear-gradient(145deg, #080d1a, #03060d 72%); font-family: Arial, sans-serif; transition: opacity .55s ease, visibility .55s ease; }
       #msku-game-loading::before { content: ""; position: absolute; inset: 0; opacity: .13; background-image: linear-gradient(rgba(255,255,255,.15) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.15) 1px, transparent 1px); background-size: 42px 42px; mask-image: linear-gradient(to bottom, black, transparent 76%); }
       #msku-game-loading::after { content: ""; position: absolute; width: min(68vw, 760px); aspect-ratio: 1; border: 1px solid rgba(160,0,38,.22); border-radius: 50%; box-shadow: 0 0 0 72px rgba(37,43,135,.05), 0 0 0 144px rgba(37,43,135,.025); animation: msku-orbit 3.6s ease-in-out infinite; }
@@ -329,8 +332,7 @@ function updateShell() {
       @keyframes msku-orbit { 50% { transform: scale(1.04); opacity: .72; } }
       @media (prefers-reduced-motion: reduce) { #msku-game-loading::after, .msku-game-loading-track span { animation-duration: 4s; } }
     </style>`;
-  const loadingMarkup = `
-    <!-- msku-racing:loading-screen -->
+  const loadingMarkup = `    <!-- msku-racing:loading-screen -->
     <div id="msku-game-loading" role="status" aria-live="polite">
       <div class="msku-game-loading-inner">
         <img class="msku-game-loading-logo" src="/images/msku-racing-logo-v2.png" alt="MSKU Racing" />
@@ -347,10 +349,10 @@ function updateShell() {
     .replace(/\s*<title>[^<]*<\/title>/gu, "")
     .replace(/\s*<base\s+href="\/game\/"\s*\/?>/gu, "")
     .replace("<head>", '<head>\n    <base href="/game/">\n    <title>MSKU Racing — Garajdan Piste</title>')
-    .replace("</head>", `${loadingStyle}\n  </head>`)
+    .replace(/\s*<\/head>/u, `\n${loadingStyle}\n  </head>`)
     .replace(/<meta name="theme-color" content="[^"]*" \/>/u, '<meta name="theme-color" content="#080D1A" />')
     .replace("background-color: #000000;", "background: radial-gradient(circle at 50% 20%, #252b87 0%, #080d1a 42%, #03060d 100%);")
-    .replace("<body>", `<body>${loadingMarkup}`);
+    .replace("<body>", `<body>\n${loadingMarkup}`);
   fs.writeFileSync(indexPath, html);
 
   const manifestPath = path.join(gameDirectory, "manifest.webmanifest");

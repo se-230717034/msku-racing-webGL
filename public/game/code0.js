@@ -140,6 +140,27 @@ if (!gdjs.evtTools.common.isMobile()) {
 }
 gdjs.copyArray(runtimeScene.getObjects("CheckpointArrow"), gdjs.Game_32SceneCode.GDCheckpointArrowObjects1);
 gdjs.copyArray(runtimeScene.getObjects("PlayerCar"), gdjs.Game_32SceneCode.GDPlayerCarObjects1);
+// msku-racing:livery-selection
+const selectedLivery = new URLSearchParams(window.location.search).get("livery") || "burgundy";
+const liveryPalettes = {
+  burgundy: { paint: "#A70C30", trim: "#080D1A", white: "#252B87", accent: "#F5F4EF" },
+  navy: { paint: "#252B87", trim: "#080D1A", white: "#A70C30", accent: "#F5F4EF" },
+  white: { paint: "#F5F4EF", trim: "#080D1A", white: "#A70C30", accent: "#252B87" },
+};
+const activeLivery = liveryPalettes[selectedLivery] || liveryPalettes.burgundy;
+for (const playerCar of gdjs.Game_32SceneCode.GDPlayerCarObjects1) {
+  const modelRoot = playerCar.getRenderer?.().get3DRendererObject?.();
+  modelRoot?.traverse((node) => {
+    const materials = Array.isArray(node.material) ? node.material : node.material ? [node.material] : [];
+    for (const material of materials) {
+      const materialColor = activeLivery[material.name];
+      if (materialColor && material.color) {
+        material.color.set(materialColor);
+        material.needsUpdate = true;
+      }
+    }
+  });
+}
 {for(var i = 0, len = gdjs.Game_32SceneCode.GDPlayerCarObjects1.length ;i < len;++i) {
     gdjs.Game_32SceneCode.GDPlayerCarObjects1[i].returnVariable(gdjs.Game_32SceneCode.GDPlayerCarObjects1[i].getVariables().getFromIndex(0)).setNumber(gdjs.evtTools.object.getSceneInstancesCount(runtimeScene, gdjs.Game_32SceneCode.mapOfEmptyGDCheckpointArrowObjects));
 }

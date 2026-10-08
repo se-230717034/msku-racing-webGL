@@ -1,8 +1,8 @@
 "use client";
 
-import { FormEvent, useEffect, useRef, useState } from "react";
+import { FormEvent, useCallback, useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
-import { ChevronRight, Flag, Gamepad2, Gauge, Play, Trophy, UserRound, X } from "lucide-react";
+import { ChevronRight, Flag, Gamepad2, Gauge, Paintbrush, Play, Trophy, UserRound, X } from "lucide-react";
 import { useLanguage } from "./language-provider";
 
 type LapRecord = {
@@ -12,9 +12,16 @@ type LapRecord = {
 };
 
 type GameStage = "closed" | "name" | "loading" | "playing";
+type LiveryId = "burgundy" | "navy" | "white";
 
 const leaderboardKey = "msku-racing-game-leaderboard";
 const driverKey = "msku-racing-game-driver";
+const liveryKey = "msku-racing-game-livery";
+const liveryOptions: Array<{ id: LiveryId; tr: string; en: string; colors: [string, string, string] }> = [
+  { id: "burgundy", tr: "Kırmızı / Siyah", en: "Red / Black", colors: ["#A70C30", "#080D1A", "#F5F4EF"] },
+  { id: "navy", tr: "Lacivert / Kırmızı", en: "Navy / Red", colors: ["#252B87", "#A70C30", "#F5F4EF"] },
+  { id: "white", tr: "Beyaz / Kırmızı", en: "White / Red", colors: ["#F5F4EF", "#A70C30", "#252B87"] },
+];
 
 function formatLapTime(time: number) {
   return `${time.toFixed(1)} sn`;
@@ -28,16 +35,36 @@ export function GamePreview() {
   const [mounted, setMounted] = useState(false);
   const [gameStage, setGameStage] = useState<GameStage>("closed");
   const [driver, setDriver] = useState("");
+  const [livery, setLivery] = useState<LiveryId>("burgundy");
   const [nameError, setNameError] = useState("");
   const [leaderboard, setLeaderboard] = useState<LapRecord[]>([]);
+
+  const returnHome = useCallback(() => {
+    if (readyTimerRef.current) window.clearTimeout(readyTimerRef.current);
+    readyTimerRef.current = null;
+    setGameStage("closed");
+    window.history.replaceState(null, "", "/");
+    const previousScrollBehavior = document.documentElement.style.scrollBehavior;
+    document.documentElement.style.scrollBehavior = "auto";
+    const scrollHome = () => window.scrollTo({ top: 0, behavior: "auto" });
+    scrollHome();
+    window.requestAnimationFrame(scrollHome);
+    window.setTimeout(() => {
+      scrollHome();
+      document.documentElement.style.scrollBehavior = previousScrollBehavior;
+      window.history.scrollRestoration = "auto";
+    }, 120);
+  }, []);
 
   useEffect(() => {
     setMounted(true);
 
     try {
       const savedDriver = window.localStorage.getItem(driverKey);
+      const savedLivery = window.localStorage.getItem(liveryKey);
       const savedLeaderboard = JSON.parse(window.localStorage.getItem(leaderboardKey) ?? "[]") as LapRecord[];
       if (savedDriver) setDriver(savedDriver);
+      if (savedLivery && liveryOptions.some((option) => option.id === savedLivery)) setLivery(savedLivery as LiveryId);
       if (Array.isArray(savedLeaderboard)) setLeaderboard(savedLeaderboard.slice(0, 8));
     } catch {
       // The game stays playable even when browser storage is unavailable.
@@ -50,19 +77,18 @@ export function GamePreview() {
     const previousOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
     const closeOnEscape = (event: KeyboardEvent) => {
-      if (event.key === "Escape") {
-        if (readyTimerRef.current) window.clearTimeout(readyTimerRef.current);
-        readyTimerRef.current = null;
-        setGameStage("closed");
-      }
+      if (event.key === "Escape") returnHome();
     };
+    const closeOnBack = () => returnHome();
     window.addEventListener("keydown", closeOnEscape);
+    window.addEventListener("popstate", closeOnBack);
 
     return () => {
       document.body.style.overflow = previousOverflow;
       window.removeEventListener("keydown", closeOnEscape);
+      window.removeEventListener("popstate", closeOnBack);
     };
-  }, [gameStage]);
+  }, [gameStage, returnHome]);
 
   useEffect(() => {
     const handleGameMessage = (event: MessageEvent) => {
@@ -107,14 +133,12 @@ export function GamePreview() {
 
   const openDriverPrompt = () => {
     setNameError("");
+    window.history.scrollRestoration = "manual";
+    window.history.pushState({ mskuRacingGame: true }, "", "#game");
     setGameStage("name");
   };
 
-  const closeGame = () => {
-    if (readyTimerRef.current) window.clearTimeout(readyTimerRef.current);
-    readyTimerRef.current = null;
-    setGameStage("closed");
-  };
+  const closeGame = returnHome;
 
   const launchGame = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -128,6 +152,7 @@ export function GamePreview() {
     setNameError("");
     try {
       window.localStorage.setItem(driverKey, normalizedDriver);
+      window.localStorage.setItem(liveryKey, livery);
     } catch {
       // The game still launches when browser storage is unavailable.
     }
@@ -266,6 +291,31 @@ export function GamePreview() {
                 />
                 {nameError && <p id="game-driver-error" className="mt-2 text-xs font-semibold text-burgundy">{nameError}</p>}
 
+                <fieldset className="mt-5">
+                  <legend className="game-start-label mb-2 flex items-center gap-2 text-[9px] font-bold uppercase tracking-[.2em]">
+                    <Paintbrush size={13} className="text-burgundy" />
+                    {translate("Araç kaplaması", "Car livery")}
+                  </legend>
+                  <div className="grid gap-2 sm:grid-cols-3">
+                    {liveryOptions.map((option) => (
+                      <label key={option.id} className={`game-livery-option${livery === option.id ? " is-selected" : ""}`}>
+                        <input
+                          type="radio"
+                          name="game-livery"
+                          value={option.id}
+                          checked={livery === option.id}
+                          onChange={() => setLivery(option.id)}
+                          className="sr-only"
+                        />
+                        <span className="game-livery-swatches" aria-hidden="true">
+                          {option.colors.map((color) => <i key={color} style={{ backgroundColor: color }} />)}
+                        </span>
+                        <span>{translate(option.tr, option.en)}</span>
+                      </label>
+                    ))}
+                  </div>
+                </fieldset>
+
                 <button type="submit" className="mt-5 inline-flex w-full items-center justify-between bg-burgundy px-5 py-4 text-[10px] font-bold uppercase tracking-[.19em] text-white transition hover:bg-[#c10f39]">
                   <span className="flex items-center gap-2"><Gauge size={16} /> {translate("Pisteye çık", "Enter the track")}</span>
                   <ChevronRight size={17} />
@@ -293,7 +343,7 @@ export function GamePreview() {
               <div className="relative grid min-h-0 flex-1 bg-[#03060D] lg:grid-cols-[1fr_290px]">
                 <iframe
                   ref={iframeRef}
-                  src="/game/index.html"
+                  src={`/game/index.html?livery=${livery}`}
                   title={translate("MSKU Racing - Garajdan Piste", "MSKU Racing - From garage to track")}
                   className="h-full min-h-[420px] w-full border-0 bg-black"
                   allow="autoplay; fullscreen; gamepad"

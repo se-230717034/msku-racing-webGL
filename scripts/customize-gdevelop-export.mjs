@@ -305,6 +305,13 @@ function updateLapBridge() {
     source = source.replace(sceneStart, desktopControls);
   }
 
+  if (!source.includes("msku-racing:livery-selection")) {
+    const playerObjectsCopy = `gdjs.copyArray(runtimeScene.getObjects("PlayerCar"), gdjs.Game_32SceneCode.GDPlayerCarObjects1);`;
+    const liveryBridge = `${playerObjectsCopy}\n// msku-racing:livery-selection\nconst selectedLivery = new URLSearchParams(window.location.search).get("livery") || "burgundy";\nconst liveryPalettes = {\n  burgundy: { paint: "#A70C30", trim: "#080D1A", white: "#252B87", accent: "#F5F4EF" },\n  navy: { paint: "#252B87", trim: "#080D1A", white: "#A70C30", accent: "#F5F4EF" },\n  white: { paint: "#F5F4EF", trim: "#080D1A", white: "#A70C30", accent: "#252B87" },\n};\nconst activeLivery = liveryPalettes[selectedLivery] || liveryPalettes.burgundy;\nfor (const playerCar of gdjs.Game_32SceneCode.GDPlayerCarObjects1) {\n  const modelRoot = playerCar.getRenderer?.().get3DRendererObject?.();\n  modelRoot?.traverse((node) => {\n    const materials = Array.isArray(node.material) ? node.material : node.material ? [node.material] : [];\n    for (const material of materials) {\n      const materialColor = activeLivery[material.name];\n      if (materialColor && material.color) {\n        material.color.set(materialColor);\n        material.needsUpdate = true;\n      }\n    }\n  });\n}`;
+    if (!source.includes(playerObjectsCopy)) throw new Error("Player car scene-start block was not found in code0.js.");
+    source = source.replace(playerObjectsCopy, liveryBridge);
+  }
+
   if (!source.includes("msku-racing:game-ready")) {
     const desktopControlsMarker = `// msku-racing:desktop-controls\n`;
     const gameReadyBridge = `// msku-racing:desktop-controls\n// msku-racing:game-ready\nconst mskuLoadingScreen = document.getElementById("msku-game-loading");\nif (mskuLoadingScreen) {\n  mskuLoadingScreen.classList.add("is-ready");\n  window.setTimeout(() => mskuLoadingScreen.remove(), 650);\n}\nwindow.parent.postMessage({ type: "msku-racing:game-ready" }, window.location.origin);\n`;

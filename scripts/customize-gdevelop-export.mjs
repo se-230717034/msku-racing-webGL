@@ -34,9 +34,9 @@ function brandFormulaModel(filePath) {
   const document = JSON.parse(jsonChunk.data.toString("utf8").replace(/[\u0000\s]+$/u, ""));
 
   const palette = {
-    paint: colors.navy,
+    paint: colors.burgundy,
     trim: colors.dark,
-    white: colors.burgundy,
+    white: colors.navy,
     accent: colors.white,
     glass: [17 / 255, 29 / 255, 55 / 255, 1],
   };
@@ -96,6 +96,18 @@ function brandProject(project, exported) {
     for (const object of layout.objects ?? []) {
       if (object.name === "PlayerCar") {
         object.content.modelResourceName = newResourceName;
+        object.content.rotationZ = 90;
+
+        const physics = object.behaviors.find((behavior) => behavior.name === "Physics3D");
+        if (physics) {
+          physics.shapeDimensionC = 18;
+          physics.shapeOffsetZ = 3;
+        }
+
+        const carPhysics = object.behaviors.find((behavior) => behavior.name === "PhysicsCar3D");
+        if (carPhysics) {
+          carPhysics.wheelOffsetZ = -3;
+        }
       }
       if (object.name === "LapText") {
         object.string = "SÜRE: 0.0\nTUR: 0";

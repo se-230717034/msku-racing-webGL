@@ -1,0 +1,16 @@
+{
+  "name": "MSKU Racing — Garajdan Piste",
+  "short_name": "MSKU Racing",
+  "id": "com.example.gamename",
+  "description": "",
+  "orientation": "landscape",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#080D1A",
+  "categories": [
+    "games",
+    "entertainment"
+  ],
+  "icons": [],
+  "theme_color": "#A70C30"
+}

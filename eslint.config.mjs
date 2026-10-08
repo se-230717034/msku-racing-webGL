@@ -11,6 +11,7 @@ const eslintConfig = [
       ".pnpm-store/**",
       "dist/**",
       "node_modules/**",
+      "public/game/**",
       "next-env.d.ts",
     ],
   },

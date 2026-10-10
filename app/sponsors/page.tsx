@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowRight, Gem, Handshake, Rocket } from "lucide-react";
 import { PageHero } from "@/components/page-hero";
 import { Reveal } from "@/components/motion-reveal";
@@ -75,17 +76,42 @@ export default function SponsorsPage() {
                   <p className="mt-3 max-w-sm text-sm leading-7 text-white/45">{language === "tr" ? tier.trDescription : tier.enDescription}</p>
                 </div>
                 <div className={`grid gap-px border border-white/10 bg-white/10 sm:grid-cols-2 ${tier.slots === 8 ? "lg:grid-cols-4" : ""}`}>
-                  {Array.from({ length: tier.slots }, (_, index) => index + 1).map((slot) => (
-                    <div key={slot} className={`premium-card group grid place-items-center bg-[#0D1425] text-center ${tier.slots === 8 ? "min-h-24 p-3" : "min-h-48 p-6"}`}>
-                      <div>
-                        <TierIcon className="mx-auto text-university transition group-hover:text-burgundy" size={tier.slots === 8 ? 18 : 23} />
-                        <p className={`${tier.slots === 8 ? "mt-2 text-[9px]" : "mt-5 text-[11px]"} font-bold uppercase tracking-[.2em] text-white/35`}>
-                          {language === "tr" ? tier.trMarker : tier.enMarker} {tier.slots === 8 ? "" : "SPONSOR "}{String(slot).padStart(2, "0")}
-                        </p>
-                        <p className={`${tier.slots === 8 ? "mt-1 text-[8px]" : "mt-2 text-[9px]"} uppercase tracking-[.18em] text-white/20`}>{translate("Logo alanı", "Logo area")}</p>
+                  {Array.from({ length: tier.slots }, (_, index) => index + 1).map((slot) => {
+                    const isCodexoSoft = tier.trMarker === "DESTEKÇİ" && slot === 1;
+
+                    if (isCodexoSoft) {
+                      return (
+                        <a
+                          key="codexosoft"
+                          href="https://codexosoft.com/"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          aria-label={translate("CodexoSoft web sitesini ziyaret et", "Visit the CodexoSoft website")}
+                          className="premium-card group relative aspect-[3/2] min-h-24 overflow-hidden bg-[#0D1425] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-burgundy focus-visible:ring-inset"
+                        >
+                          <Image
+                            src="/images/sponsors/codexosoft.png"
+                            alt="CodexoSoft Software Solutions"
+                            fill
+                            sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
+                            className="object-cover transition duration-500 group-hover:scale-[1.03] group-hover:brightness-110"
+                          />
+                        </a>
+                      );
+                    }
+
+                    return (
+                      <div key={slot} className={`premium-card group grid place-items-center bg-[#0D1425] text-center ${tier.slots === 8 ? "min-h-24 p-3" : "min-h-48 p-6"}`}>
+                        <div>
+                          <TierIcon className="mx-auto text-university transition group-hover:text-burgundy" size={tier.slots === 8 ? 18 : 23} />
+                          <p className={`${tier.slots === 8 ? "mt-2 text-[9px]" : "mt-5 text-[11px]"} font-bold uppercase tracking-[.2em] text-white/35`}>
+                            {language === "tr" ? tier.trMarker : tier.enMarker} {tier.slots === 8 ? "" : "SPONSOR "}{String(slot).padStart(2, "0")}
+                          </p>
+                          <p className={`${tier.slots === 8 ? "mt-1 text-[8px]" : "mt-2 text-[9px]"} uppercase tracking-[.18em] text-white/20`}>{translate("Logo alanı", "Logo area")}</p>
+                        </div>
                       </div>
-                    </div>
-                  ))}
+                    );
+                  })}
                 </div>
               </div>
             </Reveal>

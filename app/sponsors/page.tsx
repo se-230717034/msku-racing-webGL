@@ -47,7 +47,7 @@ const sponsorTiers = [
     enDescription: "Supporters contributing products, services and expertise to our team's development.",
     trMarker: "DESTEKÇİ",
     enMarker: "SUPPORTER",
-    slots: 8,
+    slots: 4,
     icon: Handshake,
   },
 ];
@@ -67,6 +67,7 @@ export default function SponsorsPage() {
         <div className="container-shell space-y-16">
           {sponsorTiers.map((tier, tierIndex) => {
             const TierIcon = tier.icon;
+            const isSupporterTier = tier.trMarker === "DESTEKÇİ";
             return (
             <Reveal key={tier.trName} delay={tierIndex * .06}>
               <div className="grid gap-7 lg:grid-cols-[.45fr_1.55fr] lg:items-start">
@@ -75,9 +76,9 @@ export default function SponsorsPage() {
                   <h2 className="mt-3 font-display text-3xl font-semibold uppercase">{language === "tr" ? tier.trName : tier.enName}</h2>
                   <p className="mt-3 max-w-sm text-sm leading-7 text-white/45">{language === "tr" ? tier.trDescription : tier.enDescription}</p>
                 </div>
-                <div className={`grid gap-px border border-white/10 bg-white/10 sm:grid-cols-2 ${tier.slots === 8 ? "lg:grid-cols-4" : ""}`}>
+                <div className={`grid gap-px border border-white/10 bg-white/10 sm:grid-cols-2 ${isSupporterTier ? "lg:grid-cols-4" : ""}`}>
                   {Array.from({ length: tier.slots }, (_, index) => index + 1).map((slot) => {
-                    const isCodexoSoft = tier.trMarker === "DESTEKÇİ" && slot === 1;
+                    const isCodexoSoft = isSupporterTier && slot === 1;
 
                     if (isCodexoSoft) {
                       return (
@@ -101,13 +102,13 @@ export default function SponsorsPage() {
                     }
 
                     return (
-                      <div key={slot} className={`premium-card group grid place-items-center bg-[#0D1425] text-center ${tier.slots === 8 ? "min-h-24 p-3" : "min-h-48 p-6"}`}>
+                      <div key={slot} className={`premium-card group grid place-items-center bg-[#0D1425] text-center ${isSupporterTier ? "min-h-24 p-3" : "min-h-48 p-6"}`}>
                         <div>
-                          <TierIcon className="mx-auto text-university transition group-hover:text-burgundy" size={tier.slots === 8 ? 18 : 23} />
-                          <p className={`${tier.slots === 8 ? "mt-2 text-[9px]" : "mt-5 text-[11px]"} font-bold uppercase tracking-[.2em] text-white/35`}>
-                            {language === "tr" ? tier.trMarker : tier.enMarker} {tier.slots === 8 ? "" : "SPONSOR "}{String(slot).padStart(2, "0")}
+                          <TierIcon className="mx-auto text-university transition group-hover:text-burgundy" size={isSupporterTier ? 18 : 23} />
+                          <p className={`${isSupporterTier ? "mt-2 text-[9px]" : "mt-5 text-[11px]"} font-bold uppercase tracking-[.2em] text-white/35`}>
+                            {language === "tr" ? tier.trMarker : tier.enMarker} {isSupporterTier ? "" : "SPONSOR "}{String(slot).padStart(2, "0")}
                           </p>
-                          <p className={`${tier.slots === 8 ? "mt-1 text-[8px]" : "mt-2 text-[9px]"} uppercase tracking-[.18em] text-white/20`}>{translate("Logo alanı", "Logo area")}</p>
+                          <p className={`${isSupporterTier ? "mt-1 text-[8px]" : "mt-2 text-[9px]"} uppercase tracking-[.18em] text-white/20`}>{translate("Logo alanı", "Logo area")}</p>
                         </div>
                       </div>
                     );

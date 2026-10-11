@@ -272,6 +272,14 @@
         "name": "TrackCrowd.png",
         "userAdded": true,
         "smoothed": true
+      },
+      {
+        "file": "assets/FinishCheckered.png",
+        "kind": "image",
+        "metadata": "",
+        "name": "FinishCheckered.png",
+        "userAdded": true,
+        "smoothed": true
       }
     ]
   },
@@ -3155,13 +3163,13 @@
             "depth": 1,
             "enableTextureTransparency": false,
             "facesOrientation": "Y",
-            "frontFaceResourceName": "assets\\StartingFinishLine.png",
-            "backFaceResourceName": "assets\\StartingFinishLine.png",
+            "frontFaceResourceName": "FinishCheckered.png",
+            "backFaceResourceName": "FinishCheckered.png",
             "backFaceUpThroughWhichAxisRotation": "X",
-            "leftFaceResourceName": "assets\\StartingFinishLine.png",
-            "rightFaceResourceName": "assets\\StartingFinishLine.png",
-            "topFaceResourceName": "assets\\StartingFinishLine.png",
-            "bottomFaceResourceName": "assets\\StartingFinishLine.png",
+            "leftFaceResourceName": "FinishCheckered.png",
+            "rightFaceResourceName": "FinishCheckered.png",
+            "topFaceResourceName": "FinishCheckered.png",
+            "bottomFaceResourceName": "FinishCheckered.png",
             "frontFaceVisible": true,
             "backFaceVisible": true,
             "leftFaceVisible": true,

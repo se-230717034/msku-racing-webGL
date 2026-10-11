@@ -13,6 +13,7 @@ const environmentAssets = [
   "TrackGrass.png",
   "TrackBarrier.png",
   "TrackCrowd.png",
+  "FinishCheckered.png",
   "MSKU-Track-Tree.glb",
 ];
 
@@ -434,7 +435,9 @@ function brandProject(project, exported) {
   const grassResourceName = "TrackGrass.png";
   const barrierResourceName = "TrackBarrier.png";
   const crowdResourceName = "TrackCrowd.png";
+  const finishResourceName = "FinishCheckered.png";
   const treeResourceName = "MSKU-Track-Tree.glb";
+  project.resources.resources = project.resources.resources.filter((resource) => resource.name !== "FinishCheckered.svg");
   const modelResource = project.resources.resources.find((resource) => resource.name === oldResourceName || resource.name === newResourceName);
   if (!modelResource) throw new Error("Player car resource was not found.");
   modelResource.name = newResourceName;
@@ -447,6 +450,7 @@ function brandProject(project, exported) {
   ensureResource(project, { name: grassResourceName, file: exported ? "TrackGrass.png" : "assets/TrackGrass.png", kind: "image" });
   ensureResource(project, { name: barrierResourceName, file: exported ? "TrackBarrier.png" : "assets/TrackBarrier.png", kind: "image" });
   ensureResource(project, { name: crowdResourceName, file: exported ? "TrackCrowd.png" : "assets/TrackCrowd.png", kind: "image" });
+  ensureResource(project, { name: finishResourceName, file: exported ? "FinishCheckered.png" : "assets/FinishCheckered.png", kind: "image" });
   ensureResource(project, { name: treeResourceName, file: exported ? "MSKU-Track-Tree.glb" : "assets/MSKU-Track-Tree.glb", kind: "model3D" });
 
   for (const layout of project.layouts ?? []) {
@@ -455,7 +459,7 @@ function brandProject(project, exported) {
     layout.b = 26;
     ensureSafetyFloor(layout, asphaltResourceName);
     extendTrack(layout);
-    ensureFinishArea(layout, "assets\\StartingFinishLine.png");
+    ensureFinishArea(layout, finishResourceName);
     ensureTrackTrees(layout, treeResourceName);
     ensureGrandstands(layout, crowdResourceName);
 
@@ -508,10 +512,11 @@ function brandProject(project, exported) {
     }
 
     if (Array.isArray(layout.usedResources)) {
+      layout.usedResources = layout.usedResources.filter((resource) => resource.name !== "FinishCheckered.svg");
       for (const resource of layout.usedResources) {
         if (resource.name === oldResourceName) resource.name = newResourceName;
       }
-      for (const name of [asphaltResourceName, grassResourceName, barrierResourceName, crowdResourceName, treeResourceName]) {
+      for (const name of [asphaltResourceName, grassResourceName, barrierResourceName, crowdResourceName, finishResourceName, treeResourceName]) {
         if (!layout.usedResources.some((resource) => resource.name === name)) layout.usedResources.push({ name });
       }
     }

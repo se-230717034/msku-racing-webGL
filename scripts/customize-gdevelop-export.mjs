@@ -12,6 +12,7 @@ const environmentAssets = [
   "AsphaltTrack.png",
   "TrackGrass.png",
   "TrackBarrier.png",
+  "TrackCrowd.png",
   "MSKU-Track-Tree.glb",
 ];
 
@@ -24,6 +25,45 @@ const treePlacements = [
   [2780, 360, 82], [2790, 920, 74], [2780, 1490, 86], [2790, 2070, 76], [2780, 2640, 82],
   [-760, 1050, 70], [-760, 1810, 78], [1680, 1050, 74], [1680, 1810, 82],
   [80, 1220, 68], [560, 1740, 76], [1120, 1200, 72],
+  [3200, -110, 80], [3720, -105, 72], [4250, -115, 84],
+  [3200, 2940, 74], [3720, 2950, 82], [4250, 2940, 76],
+  [4380, 430, 78], [4390, 1050, 84], [4380, 1700, 72], [4390, 2350, 82],
+];
+
+const trackInstanceUpdates = {
+  "0ded717a-a950-4abf-8393-0a554a43b2f2": { width: 6144 },
+  "f9ea97fc-7ed3-421a-8559-e7f829e15f39": { x: 3456 },
+  "4228bb12-f49e-4d04-846f-2b11fdd409f4": { width: 4608 },
+  "083123ad-65ee-4fe8-a533-7012fe3919b3": { x: 4224 },
+  "957d4411-69db-4efc-b0d8-d85469aa992f": { width: 4608 },
+  "fde56f5b-98c9-4f2b-88a4-e2e38543f417": { width: 5632 },
+  "9e640006-bc3b-4f2c-b159-0f8db6c5eb77": { x: 3712 },
+  "7cf2d31f-329b-441d-8ebe-3b348efff87e": { width: 5632 },
+  "6456938f-188e-4c70-846a-08648d40a731": { width: 6144 },
+  "81e614f0-a872-4733-8776-c1b39a179439": { x: 3904 },
+  "d341bbe5-226f-49e6-858f-bb6b168ef06e": { width: 4032 },
+  "e0ad31b9-ce4c-44a9-b145-002eee2900a0": { x: -1728, width: 6208 },
+  "96b1d772-a817-4590-bae0-7b3083345a91": { width: 6208 },
+  "341a0214-5a04-4b02-a96f-a62a222b311c": { x: -640, width: 4032 },
+  "6c501c40-2cd2-47fd-b966-6c73cc7c5d5e": { x: 4480 },
+  "a6aab085-b1ef-47b7-afdc-067bd06711fa": { x: 3392 },
+};
+
+const chicanePlacements = [
+  { uuid: "c814c35e-a968-45ff-980f-000000000001", x: 2680, y: 64, width: 72, height: 176 },
+  { uuid: "c814c35e-a968-45ff-980f-000000000002", x: 3180, y: 400, width: 72, height: 176 },
+  { uuid: "c814c35e-a968-45ff-980f-000000000003", x: 3680, y: 64, width: 72, height: 176 },
+];
+
+const grandstandPlacements = [
+  { uuid: "b941f34c-5b50-44c1-a1a0-000000000001", x: -1280, y: -650, width: 960, height: 176 },
+  { uuid: "b941f34c-5b50-44c1-a1a0-000000000002", x: -160, y: -650, width: 960, height: 176 },
+  { uuid: "b941f34c-5b50-44c1-a1a0-000000000003", x: 960, y: -650, width: 960, height: 176 },
+  { uuid: "b941f34c-5b50-44c1-a1a0-000000000004", x: 2080, y: -650, width: 960, height: 176 },
+  { uuid: "b941f34c-5b50-44c1-a1a0-000000000005", x: 3200, y: -650, width: 960, height: 176 },
+  { uuid: "b941f34c-5b50-44c1-a1a0-000000000006", x: 160, y: 3370, width: 960, height: 176 },
+  { uuid: "b941f34c-5b50-44c1-a1a0-000000000007", x: 1280, y: 3370, width: 960, height: 176 },
+  { uuid: "b941f34c-5b50-44c1-a1a0-000000000008", x: 2400, y: 3370, width: 960, height: 176 },
 ];
 
 const colors = {
@@ -142,26 +182,114 @@ function ensureTrackTrees(layout, treeResourceName) {
   }
   treeObject.behaviors = treeObject.behaviors.filter((behavior) => behavior.name !== "Physics3D");
 
-  if (!layout.instances.some((instance) => instance.name === "TrackTree")) {
-    treePlacements.forEach(([x, y, size], index) => {
-      layout.instances.push({
-        angle: (index * 37) % 360,
-        customSize: true,
-        depth: Math.round(size * 1.75),
-        height: size,
-        keepRatio: true,
-        layer: "",
-        locked: true,
-        name: "TrackTree",
-        persistentUuid: `aa51b5cc-18e7-43a1-9a${String(index).padStart(2, "0")}-b8955e6d${String(index).padStart(4, "0")}`,
-        width: size,
-        x,
-        y,
-        zOrder: 6,
-        numberProperties: [],
-        stringProperties: [],
-        initialVariables: [],
-      });
+  treePlacements.forEach(([x, y, size], index) => {
+    const persistentUuid = `aa51b5cc-18e7-43a1-9a${String(index).padStart(2, "0")}-b8955e6d${String(index).padStart(4, "0")}`;
+    if (layout.instances.some((instance) => instance.persistentUuid === persistentUuid)) return;
+    layout.instances.push({
+      angle: (index * 37) % 360,
+      customSize: true,
+      depth: Math.round(size * 1.75),
+      height: size,
+      keepRatio: true,
+      layer: "",
+      locked: true,
+      name: "TrackTree",
+      persistentUuid,
+      width: size,
+      x,
+      y,
+      zOrder: 6,
+      numberProperties: [],
+      stringProperties: [],
+      initialVariables: [],
+    });
+  });
+}
+
+function extendTrack(layout) {
+  for (const [persistentUuid, changes] of Object.entries(trackInstanceUpdates)) {
+    const instance = layout.instances.find((candidate) => candidate.persistentUuid === persistentUuid);
+    if (!instance) throw new Error(`Track instance ${persistentUuid} was not found.`);
+    Object.assign(instance, changes);
+  }
+
+  for (const placement of chicanePlacements) {
+    if (layout.instances.some((instance) => instance.persistentUuid === placement.uuid)) continue;
+    layout.instances.push({
+      angle: 0,
+      customSize: true,
+      depth: 70,
+      height: placement.height,
+      keepRatio: false,
+      layer: "",
+      locked: true,
+      name: "Walls_3D",
+      persistentUuid: placement.uuid,
+      width: placement.width,
+      x: placement.x,
+      y: placement.y,
+      zOrder: 15,
+      numberProperties: [],
+      stringProperties: [],
+      initialVariables: [],
+    });
+  }
+}
+
+function ensureGrandstands(layout, crowdResourceName) {
+  let grandstandObject = layout.objects.find((object) => object.name === "Grandstand_3D");
+  if (!grandstandObject) {
+    const wallObject = layout.objects.find((object) => object.name === "Walls_3D");
+    if (!wallObject) throw new Error("Walls_3D template object was not found.");
+    grandstandObject = structuredClone(wallObject);
+    grandstandObject.assetStoreId = "";
+    grandstandObject.name = "Grandstand_3D";
+    grandstandObject.persistentUuid = "df65b003-a08c-4fb9-a480-a973b11d5954";
+    grandstandObject.behaviors = grandstandObject.behaviors.filter((behavior) => behavior.name !== "Physics3D");
+    layout.objects.push(grandstandObject);
+  }
+
+  grandstandObject.content = {
+    ...grandstandObject.content,
+    width: 960,
+    height: 176,
+    depth: 260,
+    frontFaceResourceName: crowdResourceName,
+    backFaceResourceName: crowdResourceName,
+    leftFaceResourceName: crowdResourceName,
+    rightFaceResourceName: crowdResourceName,
+    topFaceResourceName: crowdResourceName,
+    bottomFaceResourceName: crowdResourceName,
+    frontFaceResourceRepeat: false,
+    backFaceResourceRepeat: false,
+    leftFaceResourceRepeat: false,
+    rightFaceResourceRepeat: false,
+    topFaceResourceRepeat: false,
+    bottomFaceResourceRepeat: false,
+    tint: "245;244;239",
+    isCastingShadow: false,
+    isReceivingShadow: true,
+  };
+
+  for (const placement of grandstandPlacements) {
+    if (layout.instances.some((instance) => instance.persistentUuid === placement.uuid)) continue;
+    layout.instances.push({
+      angle: 0,
+      customSize: true,
+      depth: 260,
+      height: placement.height,
+      keepRatio: false,
+      layer: "",
+      locked: true,
+      name: "Grandstand_3D",
+      persistentUuid: placement.uuid,
+      width: placement.width,
+      x: placement.x,
+      y: placement.y,
+      zOrder: 16,
+      numberProperties: [],
+      stringProperties: [],
+      initialVariables: [],
     });
   }
 }
@@ -186,6 +314,7 @@ function brandProject(project, exported) {
   const asphaltResourceName = "AsphaltTrack.png";
   const grassResourceName = "TrackGrass.png";
   const barrierResourceName = "TrackBarrier.png";
+  const crowdResourceName = "TrackCrowd.png";
   const treeResourceName = "MSKU-Track-Tree.glb";
   const modelResource = project.resources.resources.find((resource) => resource.name === oldResourceName || resource.name === newResourceName);
   if (!modelResource) throw new Error("Player car resource was not found.");
@@ -198,13 +327,16 @@ function brandProject(project, exported) {
   ensureResource(project, { name: asphaltResourceName, file: exported ? "AsphaltTrack.png" : "assets/AsphaltTrack.png", kind: "image" });
   ensureResource(project, { name: grassResourceName, file: exported ? "TrackGrass.png" : "assets/TrackGrass.png", kind: "image" });
   ensureResource(project, { name: barrierResourceName, file: exported ? "TrackBarrier.png" : "assets/TrackBarrier.png", kind: "image" });
+  ensureResource(project, { name: crowdResourceName, file: exported ? "TrackCrowd.png" : "assets/TrackCrowd.png", kind: "image" });
   ensureResource(project, { name: treeResourceName, file: exported ? "MSKU-Track-Tree.glb" : "assets/MSKU-Track-Tree.glb", kind: "model3D" });
 
   for (const layout of project.layouts ?? []) {
     layout.r = 8;
     layout.g = 13;
     layout.b = 26;
+    extendTrack(layout);
     ensureTrackTrees(layout, treeResourceName);
+    ensureGrandstands(layout, crowdResourceName);
 
     for (const object of layout.objects ?? []) {
       if (object.name === "PlayerCar") {
@@ -258,7 +390,7 @@ function brandProject(project, exported) {
       for (const resource of layout.usedResources) {
         if (resource.name === oldResourceName) resource.name = newResourceName;
       }
-      for (const name of [asphaltResourceName, grassResourceName, barrierResourceName, treeResourceName]) {
+      for (const name of [asphaltResourceName, grassResourceName, barrierResourceName, crowdResourceName, treeResourceName]) {
         if (!layout.usedResources.some((resource) => resource.name === name)) layout.usedResources.push({ name });
       }
     }

@@ -19,40 +19,59 @@ const environmentAssets = [
 const treePlacements = [
   [-1260, -110, 78], [-760, -105, 70], [-250, -100, 82], [280, -115, 74],
   [820, -105, 86], [1360, -115, 76], [1900, -100, 82], [2450, -110, 72],
-  [-1260, 2940, 74], [-720, 2950, 84], [-160, 2940, 72], [430, 2950, 82],
-  [980, 2940, 76], [1540, 2950, 86], [2080, 2940, 72], [2520, 2950, 80],
-  [-1560, 360, 76], [-1550, 920, 84], [-1560, 1490, 72], [-1550, 2070, 82], [-1560, 2640, 76],
-  [2780, 360, 82], [2790, 920, 74], [2780, 1490, 86], [2790, 2070, 76], [2780, 2640, 82],
-  [-760, 1050, 70], [-760, 1810, 78], [1680, 1050, 74], [1680, 1810, 82],
-  [80, 1220, 68], [560, 1740, 76], [1120, 1200, 72],
-  [3200, -110, 80], [3720, -105, 72], [4250, -115, 84],
-  [3200, 2940, 74], [3720, 2950, 82], [4250, 2940, 76],
-  [4380, 430, 78], [4390, 1050, 84], [4380, 1700, 72], [4390, 2350, 82],
+  [3000, -100, 80], [3550, -115, 74], [4100, -105, 84],
+  [-1260, 4250, 74], [-720, 4260, 84], [-160, 4250, 72], [430, 4260, 82],
+  [980, 4250, 76], [1540, 4260, 86], [2080, 4250, 72], [2640, 4260, 80],
+  [3200, 4250, 74], [3760, 4260, 82], [4250, 4250, 76],
+  [-1560, 360, 76], [-1550, 980, 84], [-1560, 1600, 72], [-1550, 2220, 82],
+  [-1560, 2840, 76], [-1550, 3460, 84], [-1560, 4020, 72],
+  [4350, 360, 82], [4360, 980, 74], [4350, 1600, 86], [4360, 2220, 76],
+  [4350, 2840, 82], [4360, 3460, 74], [4350, 4020, 84],
+  [-600, 900, 70], [0, 920, 78], [600, 900, 74], [1200, 920, 82],
+  [1800, 900, 76], [2400, 920, 84], [3100, 900, 72],
+  [-600, 2000, 78], [0, 2040, 70], [600, 2000, 82], [1200, 2040, 74], [1800, 2000, 86],
+  [-600, 3100, 72], [0, 3140, 80], [600, 3100, 74], [1200, 3140, 84], [1800, 3100, 76],
+  [3300, 2100, 82], [3300, 3200, 78],
 ];
 
-const trackInstanceUpdates = {
-  "0ded717a-a950-4abf-8393-0a554a43b2f2": { width: 6144 },
-  "f9ea97fc-7ed3-421a-8559-e7f829e15f39": { x: 3456 },
-  "4228bb12-f49e-4d04-846f-2b11fdd409f4": { width: 4608 },
-  "083123ad-65ee-4fe8-a533-7012fe3919b3": { x: 4224 },
-  "957d4411-69db-4efc-b0d8-d85469aa992f": { width: 4608 },
-  "fde56f5b-98c9-4f2b-88a4-e2e38543f417": { width: 5632 },
-  "9e640006-bc3b-4f2c-b159-0f8db6c5eb77": { x: 3712 },
-  "7cf2d31f-329b-441d-8ebe-3b348efff87e": { width: 5632 },
-  "6456938f-188e-4c70-846a-08648d40a731": { width: 6144 },
-  "81e614f0-a872-4733-8776-c1b39a179439": { x: 3904 },
-  "d341bbe5-226f-49e6-858f-bb6b168ef06e": { width: 4032 },
-  "e0ad31b9-ce4c-44a9-b145-002eee2900a0": { x: -1728, width: 6208 },
-  "96b1d772-a817-4590-bae0-7b3083345a91": { width: 6208 },
-  "341a0214-5a04-4b02-a96f-a62a222b311c": { x: -640, width: 4032 },
-  "6c501c40-2cd2-47fd-b966-6c73cc7c5d5e": { x: 4480 },
-  "a6aab085-b1ef-47b7-afdc-067bd06711fa": { x: 3392 },
-};
+const roadPlacements = [
+  { uuid: "e1000000-0000-4000-8000-000000000001", x: -1408, y: 64, width: 5632, height: 512 },
+  { uuid: "e1000000-0000-4000-8000-000000000002", x: 3712, y: 576, width: 512, height: 768 },
+  { uuid: "e1000000-0000-4000-8000-000000000003", x: 2432, y: 1344, width: 1792, height: 512 },
+  { uuid: "e1000000-0000-4000-8000-000000000004", x: 2432, y: 1856, width: 512, height: 512 },
+  { uuid: "e1000000-0000-4000-8000-000000000005", x: 2432, y: 2368, width: 1792, height: 512 },
+  { uuid: "e1000000-0000-4000-8000-000000000006", x: 3712, y: 2880, width: 512, height: 768 },
+  { uuid: "e1000000-0000-4000-8000-000000000007", x: -1408, y: 3648, width: 5632, height: 512 },
+  { uuid: "e1000000-0000-4000-8000-000000000008", x: -1408, y: 576, width: 512, height: 3072 },
+];
 
-const chicanePlacements = [
-  { uuid: "c814c35e-a968-45ff-980f-000000000001", x: 2680, y: 64, width: 72, height: 176 },
-  { uuid: "c814c35e-a968-45ff-980f-000000000002", x: 3180, y: 400, width: 72, height: 176 },
-  { uuid: "c814c35e-a968-45ff-980f-000000000003", x: 3680, y: 64, width: 72, height: 176 },
+const grassPlacements = [
+  { uuid: "e2000000-0000-4000-8000-000000000001", x: -1664, y: -192, width: 6144, height: 256 },
+  { uuid: "e2000000-0000-4000-8000-000000000002", x: -1664, y: 4160, width: 6144, height: 256 },
+  { uuid: "e2000000-0000-4000-8000-000000000003", x: -1664, y: 64, width: 256, height: 4096 },
+  { uuid: "e2000000-0000-4000-8000-000000000004", x: 4224, y: 64, width: 256, height: 4096 },
+  { uuid: "e2000000-0000-4000-8000-000000000005", x: -896, y: 576, width: 4608, height: 768 },
+  { uuid: "e2000000-0000-4000-8000-000000000006", x: -896, y: 1344, width: 3328, height: 2304 },
+  { uuid: "e2000000-0000-4000-8000-000000000007", x: 2944, y: 1856, width: 768, height: 512 },
+  { uuid: "e2000000-0000-4000-8000-000000000008", x: 2944, y: 2880, width: 768, height: 768 },
+];
+
+const wallPlacements = [
+  { uuid: "e3000000-0000-4000-8000-000000000001", x: -1728, y: -256, width: 6208, height: 64 },
+  { uuid: "e3000000-0000-4000-8000-000000000002", x: -1728, y: 4416, width: 6208, height: 64 },
+  { uuid: "e3000000-0000-4000-8000-000000000003", x: -1728, y: -256, width: 64, height: 4736 },
+  { uuid: "e3000000-0000-4000-8000-000000000004", x: 4480, y: -256, width: 64, height: 4736 },
+  { uuid: "e3000000-0000-4000-8000-000000000005", x: -640, y: 832, width: 4032, height: 64 },
+  { uuid: "e3000000-0000-4000-8000-000000000006", x: -640, y: 896, width: 64, height: 2624 },
+  { uuid: "e3000000-0000-4000-8000-000000000007", x: 3392, y: 832, width: 64, height: 448 },
+  { uuid: "e3000000-0000-4000-8000-000000000008", x: 3008, y: 1280, width: 384, height: 64 },
+  { uuid: "e3000000-0000-4000-8000-000000000009", x: 3008, y: 1920, width: 384, height: 64 },
+  { uuid: "e3000000-0000-4000-8000-000000000010", x: 2368, y: 1920, width: 64, height: 384 },
+  { uuid: "e3000000-0000-4000-8000-000000000011", x: 3008, y: 1920, width: 64, height: 384 },
+  { uuid: "e3000000-0000-4000-8000-000000000012", x: 3008, y: 2304, width: 384, height: 64 },
+  { uuid: "e3000000-0000-4000-8000-000000000013", x: 3008, y: 2944, width: 384, height: 64 },
+  { uuid: "e3000000-0000-4000-8000-000000000014", x: 3392, y: 3008, width: 64, height: 384 },
+  { uuid: "e3000000-0000-4000-8000-000000000015", x: -640, y: 3392, width: 4032, height: 64 },
 ];
 
 const grandstandPlacements = [
@@ -61,9 +80,19 @@ const grandstandPlacements = [
   { uuid: "b941f34c-5b50-44c1-a1a0-000000000003", x: 960, y: -650, width: 960, height: 176 },
   { uuid: "b941f34c-5b50-44c1-a1a0-000000000004", x: 2080, y: -650, width: 960, height: 176 },
   { uuid: "b941f34c-5b50-44c1-a1a0-000000000005", x: 3200, y: -650, width: 960, height: 176 },
-  { uuid: "b941f34c-5b50-44c1-a1a0-000000000006", x: 160, y: 3370, width: 960, height: 176 },
-  { uuid: "b941f34c-5b50-44c1-a1a0-000000000007", x: 1280, y: 3370, width: 960, height: 176 },
-  { uuid: "b941f34c-5b50-44c1-a1a0-000000000008", x: 2400, y: 3370, width: 960, height: 176 },
+  { uuid: "b941f34c-5b50-44c1-a1a0-000000000006", x: -1280, y: 4560, width: 960, height: 176 },
+  { uuid: "b941f34c-5b50-44c1-a1a0-000000000007", x: -160, y: 4560, width: 960, height: 176 },
+  { uuid: "b941f34c-5b50-44c1-a1a0-000000000008", x: 960, y: 4560, width: 960, height: 176 },
+  { uuid: "b941f34c-5b50-44c1-a1a0-000000000009", x: 2080, y: 4560, width: 960, height: 176 },
+  { uuid: "b941f34c-5b50-44c1-a1a0-000000000010", x: 3200, y: 4560, width: 960, height: 176 },
+  { uuid: "b941f34c-5b50-44c1-a1a0-000000000011", x: -2150, y: 200, width: 960, height: 176, angle: 90 },
+  { uuid: "b941f34c-5b50-44c1-a1a0-000000000012", x: -2150, y: 1280, width: 960, height: 176, angle: 90 },
+  { uuid: "b941f34c-5b50-44c1-a1a0-000000000013", x: -2150, y: 2360, width: 960, height: 176, angle: 90 },
+  { uuid: "b941f34c-5b50-44c1-a1a0-000000000014", x: -2150, y: 3440, width: 960, height: 176, angle: 90 },
+  { uuid: "b941f34c-5b50-44c1-a1a0-000000000015", x: 4660, y: 200, width: 960, height: 176, angle: 90 },
+  { uuid: "b941f34c-5b50-44c1-a1a0-000000000016", x: 4660, y: 1280, width: 960, height: 176, angle: 90 },
+  { uuid: "b941f34c-5b50-44c1-a1a0-000000000017", x: 4660, y: 2360, width: 960, height: 176, angle: 90 },
+  { uuid: "b941f34c-5b50-44c1-a1a0-000000000018", x: 4660, y: 3440, width: 960, height: 176, angle: 90 },
 ];
 
 const colors = {
@@ -181,10 +210,10 @@ function ensureTrackTrees(layout, treeResourceName) {
     treeObject.content.modelResourceName = treeResourceName;
   }
   treeObject.behaviors = treeObject.behaviors.filter((behavior) => behavior.name !== "Physics3D");
+  layout.instances = layout.instances.filter((instance) => instance.name !== "TrackTree");
 
   treePlacements.forEach(([x, y, size], index) => {
     const persistentUuid = `aa51b5cc-18e7-43a1-9a${String(index).padStart(2, "0")}-b8955e6d${String(index).padStart(4, "0")}`;
-    if (layout.instances.some((instance) => instance.persistentUuid === persistentUuid)) return;
     layout.instances.push({
       angle: (index * 37) % 360,
       customSize: true,
@@ -207,32 +236,45 @@ function ensureTrackTrees(layout, treeResourceName) {
 }
 
 function extendTrack(layout) {
-  for (const [persistentUuid, changes] of Object.entries(trackInstanceUpdates)) {
-    const instance = layout.instances.find((candidate) => candidate.persistentUuid === persistentUuid);
-    if (!instance) throw new Error(`Track instance ${persistentUuid} was not found.`);
-    Object.assign(instance, changes);
-  }
+  const rebuiltObjectNames = new Set(["Road_3D", "Grass_3D", "Walls_3D"]);
+  layout.instances = layout.instances.filter((instance) => !rebuiltObjectNames.has(instance.name));
 
-  for (const placement of chicanePlacements) {
-    if (layout.instances.some((instance) => instance.persistentUuid === placement.uuid)) continue;
-    layout.instances.push({
+  const addInstances = (name, placements, depth, zOrder) => {
+    for (const placement of placements) layout.instances.push({
       angle: 0,
       customSize: true,
-      depth: 70,
+      depth,
       height: placement.height,
       keepRatio: false,
       layer: "",
       locked: true,
-      name: "Walls_3D",
+      name,
       persistentUuid: placement.uuid,
       width: placement.width,
       x: placement.x,
       y: placement.y,
-      zOrder: 15,
+      zOrder,
       numberProperties: [],
       stringProperties: [],
       initialVariables: [],
     });
+  };
+
+  addInstances("Road_3D", roadPlacements, 10, 1);
+  addInstances("Grass_3D", grassPlacements, 10, 7);
+  addInstances("Walls_3D", wallPlacements, 64, 15);
+
+  const checkpointUpdates = {
+    "6609c5de-0942-442d-a5ea-854600876d72": { x: 1408, y: 256, angle: 0 },
+    "81e614f0-a872-4733-8776-c1b39a179439": { x: 3300, y: 1600, angle: 180 },
+    "5f4b441c-42df-49dd-afb1-688a02d82ce3": { x: 3300, y: 2624, angle: 0 },
+    "11f21b7d-6d1a-475f-b8af-40af39020148": { x: -1216, y: 2200, angle: 270 },
+  };
+
+  for (const [persistentUuid, changes] of Object.entries(checkpointUpdates)) {
+    const checkpoint = layout.instances.find((instance) => instance.persistentUuid === persistentUuid);
+    if (!checkpoint) throw new Error(`Checkpoint ${persistentUuid} was not found.`);
+    Object.assign(checkpoint, changes);
   }
 }
 
@@ -271,10 +313,10 @@ function ensureGrandstands(layout, crowdResourceName) {
     isReceivingShadow: true,
   };
 
+  layout.instances = layout.instances.filter((instance) => instance.name !== "Grandstand_3D");
   for (const placement of grandstandPlacements) {
-    if (layout.instances.some((instance) => instance.persistentUuid === placement.uuid)) continue;
     layout.instances.push({
-      angle: 0,
+      angle: placement.angle ?? 0,
       customSize: true,
       depth: 260,
       height: placement.height,

@@ -63,26 +63,38 @@ const wallPlacements = [
   { uuid: "e3000000-0000-4000-8000-000000000004", x: 4544, y: -384, width: 64, height: 4992 },
 ];
 
-const grandstandPlacements = [
-  { uuid: "b941f34c-5b50-44c1-a1a0-000000000001", x: -1280, y: -820, width: 960, height: 176 },
-  { uuid: "b941f34c-5b50-44c1-a1a0-000000000002", x: -160, y: -820, width: 960, height: 176 },
-  { uuid: "b941f34c-5b50-44c1-a1a0-000000000003", x: 960, y: -820, width: 960, height: 176 },
-  { uuid: "b941f34c-5b50-44c1-a1a0-000000000004", x: 2080, y: -820, width: 960, height: 176 },
-  { uuid: "b941f34c-5b50-44c1-a1a0-000000000005", x: 3200, y: -820, width: 960, height: 176 },
-  { uuid: "b941f34c-5b50-44c1-a1a0-000000000006", x: -1280, y: 4700, width: 960, height: 176 },
-  { uuid: "b941f34c-5b50-44c1-a1a0-000000000007", x: -160, y: 4700, width: 960, height: 176 },
-  { uuid: "b941f34c-5b50-44c1-a1a0-000000000008", x: 960, y: 4700, width: 960, height: 176 },
-  { uuid: "b941f34c-5b50-44c1-a1a0-000000000009", x: 2080, y: 4700, width: 960, height: 176 },
-  { uuid: "b941f34c-5b50-44c1-a1a0-000000000010", x: 3200, y: 4700, width: 960, height: 176 },
-  { uuid: "b941f34c-5b50-44c1-a1a0-000000000011", x: -2300, y: 200, width: 960, height: 176, angle: 90 },
-  { uuid: "b941f34c-5b50-44c1-a1a0-000000000012", x: -2300, y: 1280, width: 960, height: 176, angle: 90 },
-  { uuid: "b941f34c-5b50-44c1-a1a0-000000000013", x: -2300, y: 2360, width: 960, height: 176, angle: 90 },
-  { uuid: "b941f34c-5b50-44c1-a1a0-000000000014", x: -2300, y: 3440, width: 960, height: 176, angle: 90 },
-  { uuid: "b941f34c-5b50-44c1-a1a0-000000000015", x: 4800, y: 200, width: 960, height: 176, angle: 90 },
-  { uuid: "b941f34c-5b50-44c1-a1a0-000000000016", x: 4800, y: 1280, width: 960, height: 176, angle: 90 },
-  { uuid: "b941f34c-5b50-44c1-a1a0-000000000017", x: 4800, y: 2360, width: 960, height: 176, angle: 90 },
-  { uuid: "b941f34c-5b50-44c1-a1a0-000000000018", x: 4800, y: 3440, width: 960, height: 176, angle: 90 },
-];
+const grandstandPlacements = [];
+
+function addGrandstandPlacement(x, y, width = 800, angle = 0) {
+  const index = String(grandstandPlacements.length + 1).padStart(12, "0");
+  grandstandPlacements.push({
+    uuid: `b941f34c-5b50-44c1-a1a0-${index}`,
+    x,
+    y,
+    width,
+    height: 176,
+    angle,
+  });
+}
+
+for (let index = 0; index < 8; index += 1) {
+  const x = -1680 + (index * 768);
+  addGrandstandPlacement(x, -820);
+  addGrandstandPlacement(x, 4700);
+}
+
+for (let index = 0; index < 6; index += 1) {
+  const y = -80 + (index * 768);
+  addGrandstandPlacement(-2300, y, 800, 90);
+  addGrandstandPlacement(4800, y, 800, 90);
+}
+
+for (const [x, y, angle] of [
+  [-1910, -700, 22.5], [-2160, -500, 45], [-2320, -210, 67.5],
+  [3970, -700, -22.5], [4270, -500, -45], [4510, -210, -67.5],
+  [-2320, 4080, 112.5], [-2160, 4380, 135], [-1910, 4600, 157.5],
+  [4510, 4080, 67.5], [4270, 4380, 45], [3970, 4600, 22.5],
+]) addGrandstandPlacement(x, y, 640, angle);
 
 const colors = {
   navy: [37 / 255, 43 / 255, 135 / 255, 1],
@@ -172,6 +184,42 @@ function setCubeTexture(object, resourceName) {
   }
 }
 
+function ensureSafetyFloor(layout, asphaltResourceName) {
+  let safetyFloorObject = layout.objects.find((object) => object.name === "SafetyFloor_3D");
+  if (!safetyFloorObject) {
+    const roadObject = layout.objects.find((object) => object.name === "Road_3D");
+    if (!roadObject) throw new Error("Road_3D template object was not found.");
+    safetyFloorObject = structuredClone(roadObject);
+    safetyFloorObject.assetStoreId = "";
+    safetyFloorObject.name = "SafetyFloor_3D";
+    safetyFloorObject.persistentUuid = "ac271351-347d-48a8-a4fe-0ef75f91d80f";
+    layout.objects.push(safetyFloorObject);
+  }
+
+  setCubeTexture(safetyFloorObject, asphaltResourceName);
+  safetyFloorObject.content.tint = "180;180;180";
+  safetyFloorObject.content.isCastingShadow = false;
+  layout.instances = layout.instances.filter((instance) => instance.name !== "SafetyFloor_3D");
+  layout.instances.push({
+    angle: 0,
+    customSize: true,
+    depth: 10,
+    height: 7000,
+    keepRatio: false,
+    layer: "",
+    locked: true,
+    name: "SafetyFloor_3D",
+    persistentUuid: "922b6fbf-2ef0-41f7-b33f-e8aa4cb62373",
+    width: 8000,
+    x: -2500,
+    y: -1200,
+    zOrder: 0,
+    numberProperties: [],
+    stringProperties: [],
+    initialVariables: [],
+  });
+}
+
 function ensureTrackTrees(layout, treeResourceName) {
   let treeObject = layout.objects.find((object) => object.name === "TrackTree");
   if (!treeObject) {
@@ -250,7 +298,7 @@ function extendTrack(layout) {
   };
 
   addInstances("Road_3D", roadPlacements, 10, 1);
-  addInstances("Grass_3D", grassPlacements, 10, 7);
+  addInstances("Grass_3D", grassPlacements, 10, 1);
   addInstances("Walls_3D", wallPlacements, 64, 15);
 
   const checkpointUpdates = {
@@ -264,6 +312,46 @@ function extendTrack(layout) {
     const checkpoint = layout.instances.find((instance) => instance.persistentUuid === persistentUuid);
     if (!checkpoint) throw new Error(`Checkpoint ${persistentUuid} was not found.`);
     Object.assign(checkpoint, changes);
+  }
+}
+
+function ensureFinishArea(layout, finishResourceName) {
+  const finishObject = layout.objects.find((object) => object.name === "FinishLine_3D");
+  if (!finishObject) throw new Error("FinishLine_3D object was not found.");
+
+  setCubeTexture(finishObject, finishResourceName);
+  finishObject.content.tint = "255;255;255";
+  for (const face of ["front", "back", "left", "right", "top", "bottom"]) {
+    finishObject.content[`${face}FaceVisible`] = true;
+  }
+
+  layout.instances = layout.instances.filter((instance) => instance.name !== "FinishLine_3D");
+  const finishPlacements = [
+    { uuid: "a37f0e3a-b3b4-42fa-a071-475f4322c101", x: 1184, y: 64, width: 96, height: 640, depth: 2, zOrder: 11 },
+    { uuid: "a37f0e3a-b3b4-42fa-a071-475f4322c102", x: 1184, y: 0, width: 96, height: 64, depth: 112, zOrder: 11 },
+    { uuid: "a37f0e3a-b3b4-42fa-a071-475f4322c103", x: 1184, y: 704, width: 96, height: 64, depth: 112, zOrder: 11 },
+    { uuid: "a37f0e3a-b3b4-42fa-a071-475f4322c104", x: 1184, y: 0, width: 96, height: 768, depth: 28, zOrder: 112 },
+  ];
+
+  for (const placement of finishPlacements) {
+    layout.instances.push({
+      angle: 0,
+      customSize: true,
+      depth: placement.depth,
+      height: placement.height,
+      keepRatio: false,
+      layer: "",
+      locked: true,
+      name: "FinishLine_3D",
+      persistentUuid: placement.uuid,
+      width: placement.width,
+      x: placement.x,
+      y: placement.y,
+      zOrder: placement.zOrder,
+      numberProperties: [],
+      stringProperties: [],
+      initialVariables: [],
+    });
   }
 }
 
@@ -365,7 +453,9 @@ function brandProject(project, exported) {
     layout.r = 8;
     layout.g = 13;
     layout.b = 26;
+    ensureSafetyFloor(layout, asphaltResourceName);
     extendTrack(layout);
+    ensureFinishArea(layout, "assets\\StartingFinishLine.png");
     ensureTrackTrees(layout, treeResourceName);
     ensureGrandstands(layout, crowdResourceName);
 

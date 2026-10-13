@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { ChevronLeft, ChevronRight, X } from "lucide-react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 
@@ -10,36 +10,17 @@ const images = [
   "/images/team-card/team-card-2.jpg",
 ];
 
-const storageKey = "msku-racing-member-card-popup-v1-dismissed-at";
-const displayCooldown = 7 * 24 * 60 * 60 * 1_000;
-
 export function MemberCardPopup() {
   const [mounted, setMounted] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [activeSlide, setActiveSlide] = useState(0);
   const dragStartX = useRef<number | null>(null);
 
-  const closePopup = useCallback(() => {
-    try {
-      window.localStorage.setItem(storageKey, String(Date.now()));
-    } catch {
-      // Closing the popup should never depend on browser storage.
-    }
-    setIsOpen(false);
-  }, []);
+  const closePopup = useCallback(() => setIsOpen(false), []);
 
   useEffect(() => {
     setMounted(true);
 
-    let shouldOpen = true;
-    try {
-      const dismissedAt = Number(window.localStorage.getItem(storageKey));
-      shouldOpen = !Number.isFinite(dismissedAt) || Date.now() - dismissedAt >= displayCooldown;
-    } catch {
-      // The announcement can still be shown when browser storage is unavailable.
-    }
-
-    if (!shouldOpen) return;
     const hasDesktopIntro = window.matchMedia("(min-width: 768px)").matches;
     const timer = window.setTimeout(() => setIsOpen(true), hasDesktopIntro ? 2_450 : 900);
     return () => window.clearTimeout(timer);
@@ -90,10 +71,10 @@ export function MemberCardPopup() {
         <button
           type="button"
           onClick={closePopup}
-          className="absolute right-3 top-3 z-20 grid size-11 place-items-center border border-white/25 bg-[#080d1a]/80 text-white backdrop-blur-md transition hover:border-burgundy hover:bg-burgundy"
+          className="absolute right-2 top-2 z-20 grid size-12 place-items-center text-white transition hover:text-burgundy focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
           aria-label="Duyuruyu kapat"
         >
-          <X size={20} />
+          <span aria-hidden="true" className="text-[2.35rem] font-light leading-none drop-shadow-[0_2px_8px_rgba(0,0,0,.9)]">×</span>
         </button>
 
         <div

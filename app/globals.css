@@ -1829,6 +1829,24 @@ html.light .game-start-label { color: rgba(8,13,26,.58); }
 html.light .game-start-step { color: rgba(8,13,26,.34); }
 html.light .game-start-input { color: #080d1a; border-color: rgba(37,43,135,.24); background: #fff; }
 html.light .game-start-input::placeholder { color: rgba(8,13,26,.34); }
+
+.member-card-popup { animation: member-card-popup-fade .28s ease-out both; }
+.member-card-popup-panel { animation: member-card-popup-rise .4s cubic-bezier(.2,.8,.2,1) both; }
+
+@keyframes member-card-popup-fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes member-card-popup-rise {
+  from { opacity: 0; transform: translateY(18px) scale(.975); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .member-card-popup,
+  .member-card-popup-panel { animation: none; }
+}
 html.light .game-livery-option { color: rgba(8,13,26,.55); border-color: rgba(37,43,135,.17); background: rgba(37,43,135,.025); }
 html.light .game-livery-option:hover,
 html.light .game-livery-option.is-selected { color: #080d1a; border-color: #a00026; background: rgba(160,0,38,.065); }

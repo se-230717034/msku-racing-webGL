@@ -1832,6 +1832,8 @@ html.light .game-start-input::placeholder { color: rgba(8,13,26,.34); }
 
 .member-card-popup { animation: member-card-popup-fade .28s ease-out both; }
 .member-card-popup-panel { animation: member-card-popup-rise .4s cubic-bezier(.2,.8,.2,1) both; }
+.member-card-popup-close,
+html.light .member-card-popup-close { color: #fff !important; }
 
 @keyframes member-card-popup-fade {
   from { opacity: 0; }

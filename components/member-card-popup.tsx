@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 
@@ -71,7 +70,7 @@ export function MemberCardPopup() {
         <button
           type="button"
           onClick={closePopup}
-          className="absolute right-2 top-2 z-20 grid size-12 place-items-center text-white transition hover:text-burgundy focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+          className="member-card-popup-close absolute right-2 top-2 z-20 grid size-12 place-items-center transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
           aria-label="Duyuruyu kapat"
         >
           <span aria-hidden="true" className="text-[2.35rem] font-light leading-none drop-shadow-[0_2px_8px_rgba(0,0,0,.9)]">×</span>
@@ -112,23 +111,6 @@ export function MemberCardPopup() {
               </div>
             ))}
           </div>
-
-          <button
-            type="button"
-            onClick={showPrevious}
-            className="absolute left-3 top-1/2 z-10 grid size-10 -translate-y-1/2 place-items-center border border-white/20 bg-[#080d1a]/65 text-white backdrop-blur-md transition hover:border-burgundy hover:bg-burgundy"
-            aria-label="Önceki görsel"
-          >
-            <ChevronLeft size={21} />
-          </button>
-          <button
-            type="button"
-            onClick={showNext}
-            className="absolute right-3 top-1/2 z-10 grid size-10 -translate-y-1/2 place-items-center border border-white/20 bg-[#080d1a]/65 text-white backdrop-blur-md transition hover:border-burgundy hover:bg-burgundy"
-            aria-label="Sonraki görsel"
-          >
-            <ChevronRight size={21} />
-          </button>
 
           <div className="absolute bottom-3 left-1/2 z-10 flex -translate-x-1/2 gap-2 border border-white/15 bg-[#080d1a]/70 px-3 py-2 backdrop-blur-md" aria-label="Görsel seçimi">
             {images.map((src, index) => (

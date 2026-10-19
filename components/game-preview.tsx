@@ -21,7 +21,7 @@ export function GamePreview() {
           </div>
           <span className="flex shrink-0 items-center gap-2 border border-burgundy/30 bg-burgundy/10 px-3 py-2 text-[9px] font-bold uppercase tracking-[.18em] text-burgundy">
             <Clock3 size={12} />
-            {translate("Hazırlanıyor", "In development")}
+            {translate("Yayında", "Live")}
           </span>
         </div>
 
@@ -32,20 +32,21 @@ export function GamePreview() {
           <p className="game-preview-muted text-[9px] font-bold uppercase tracking-[.26em]">
             {translate("Yeni yarış deneyimi", "A new racing experience")}
           </p>
-          <h3 className="mt-3 max-w-md font-display text-[clamp(2.6rem,5vw,4.6rem)] font-semibold uppercase leading-[.84] tracking-[-.055em]">
-            {translate("Çok yakında", "Coming soon")}
-          </h3>
-          <p className="game-preview-muted mt-5 max-w-md text-sm leading-6">
-            {translate(
-              "MSKU Racing ruhunu piste taşıyan yeni oyun deneyimi hazırlanıyor. Gelişmeleri buradan paylaşacağız.",
-              "A new game experience bringing the MSKU Racing spirit to the track is in development. Updates will be shared here.",
-            )}
-          </p>
+          
+          <div className="mt-6">
+            <a 
+              href="/game/index.html" 
+              className="inline-flex items-center gap-3 border border-burgundy bg-burgundy px-8 py-4 text-xs font-bold uppercase tracking-[.2em] text-white transition-all hover:bg-white hover:text-burgundy"
+            >
+              <Gauge size={16} />
+              {translate("Oyunu Başlat", "Start Game")}
+            </a>
+          </div>
         </div>
 
         <div className="game-preview-divider flex items-center gap-3 border-t pt-5 text-[9px] font-bold uppercase tracking-[.18em]">
           <Wrench size={14} className="text-burgundy" />
-          <span className="game-preview-muted">{translate("Garajda çalışmalar sürüyor", "Work continues in the garage")}</span>
+          <span className="game-preview-muted">{translate("Piste çıkmaya hazır", "Ready for the track")}</span>
         </div>
       </div>
     </div>

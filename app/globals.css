@@ -304,6 +304,11 @@ body::-webkit-scrollbar-thumb { background: rgba(160,0,38,.24); }
   top: 0;
   width: 32px;
   height: 52px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
   color: #f5f4ef;
   filter: drop-shadow(0 5px 6px rgba(0,0,0,.7)) drop-shadow(0 0 5px rgba(160,0,38,.55));
   transform: translate3d(0, var(--scroll-racer-y), 0);
@@ -315,8 +320,57 @@ body::-webkit-scrollbar-thumb { background: rgba(160,0,38,.24); }
 .scroll-racer:active .scroll-racer-vehicle,
 .scroll-racer.is-dragging .scroll-racer-vehicle { cursor: grabbing; transition: none; }
 
+.scroll-racer.is-escaping { z-index: 180; }
+
+.scroll-racer.is-escaping .scroll-racer-vehicle {
+  position: fixed;
+  z-index: 2;
+  left: 0;
+  top: 0;
+  cursor: pointer;
+  transform: translate3d(var(--scroll-racer-escape-x), var(--scroll-racer-escape-y), 0) rotate(var(--scroll-racer-escape-tilt));
+  transition: transform .42s cubic-bezier(.2,.9,.25,1.18), filter .2s ease;
+  filter: drop-shadow(0 8px 9px rgba(0,0,0,.72)) drop-shadow(0 0 10px rgba(160,0,38,.8));
+}
+
+.scroll-racer.is-returning .scroll-racer-vehicle {
+  cursor: default;
+  transition-duration: .82s;
+  transition-timing-function: cubic-bezier(.2,.75,.22,1);
+}
+
+.scroll-racer-message {
+  position: fixed;
+  z-index: 1;
+  left: var(--scroll-racer-message-x);
+  top: var(--scroll-racer-message-y);
+  width: max-content;
+  max-width: min(190px, 62vw);
+  padding: .55rem .7rem;
+  border: 1px solid rgba(245,244,239,.22);
+  background: rgba(3,6,13,.92);
+  box-shadow: 0 12px 35px rgba(0,0,0,.38), 0 0 18px rgba(160,0,38,.2);
+  color: #fff;
+  font-family: var(--font-space);
+  font-size: .68rem;
+  font-weight: 700;
+  letter-spacing: .035em;
+  line-height: 1.15;
+  pointer-events: none;
+  white-space: nowrap;
+  animation: scroll-racer-message-pop .25s cubic-bezier(.2,.9,.25,1.2) both;
+}
+
+.scroll-racer-message.is-left { transform: translate(calc(-100% - 11px), 5px); }
+.scroll-racer-message.is-right { transform: translate(43px, 5px); }
+
+@keyframes scroll-racer-message-pop {
+  from { opacity: 0; scale: .82; }
+  to { opacity: 1; scale: 1; }
+}
+
 @media (max-width: 1439px) {
-  .scroll-racer { display: none; }
+  .scroll-racer { top: 76px; right: 2px; bottom: 18px; }
 }
 
 .formula-body {
@@ -1419,7 +1473,7 @@ a.gallery-status-side:hover { color: #f5f4ef; background: rgba(160,0,38,.12); }
 }
 
 @media (max-width: 767px) {
-  .scroll-racer { display: none; }
+  .scroll-racer { top: 72px; right: 1px; bottom: 14px; width: 32px; }
   .race-intro { display: none; }
   .container-shell { padding-left: 1.125rem; padding-right: 1.125rem; }
   .section-space { padding-top: 4.5rem; padding-bottom: 4.5rem; }

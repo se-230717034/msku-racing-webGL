@@ -105,6 +105,7 @@ export function ScrollRacer() {
     if (escapePhase !== "escaping") return;
 
     let randomTimer = 0;
+    let proximityTimer = 0;
     const scheduleRandomMove = () => {
       randomTimer = window.setTimeout(() => {
         if (phaseRef.current !== "escaping") return;
@@ -120,7 +121,12 @@ export function ScrollRacer() {
       const rect = vehicleRef.current?.getBoundingClientRect();
       if (!rect) return;
       const distance = Math.hypot(event.clientX - (rect.left + rect.width / 2), event.clientY - (rect.top + rect.height / 2));
-      if (distance < 145) moveEscapeVehicle({ x: event.clientX, y: event.clientY });
+      if (distance < 145 && !proximityTimer) {
+        proximityTimer = window.setTimeout(() => {
+          proximityTimer = 0;
+          moveEscapeVehicle({ x: event.clientX, y: event.clientY });
+        }, 90);
+      }
     };
     const onEscapeKey = (event: globalThis.KeyboardEvent) => {
       if (event.key === "Escape") returnToRail("");
@@ -131,6 +137,7 @@ export function ScrollRacer() {
     return () => {
       window.clearTimeout(firstMove);
       window.clearTimeout(randomTimer);
+      window.clearTimeout(proximityTimer);
       window.removeEventListener("pointermove", onPointerMove);
       window.removeEventListener("keydown", onEscapeKey);
     };

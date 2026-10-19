@@ -125,20 +125,32 @@ export function ScrollRacer() {
         proximityTimer = window.setTimeout(() => {
           proximityTimer = 0;
           moveEscapeVehicle({ x: event.clientX, y: event.clientY });
-        }, 90);
+        }, 180);
       }
+    };
+    const onPointerDown = (event: globalThis.PointerEvent) => {
+      const rect = vehicleRef.current?.getBoundingClientRect();
+      if (!rect) return;
+      const catchPadding = 48;
+      const isWithinCatchArea = event.clientX >= rect.left - catchPadding
+        && event.clientX <= rect.right + catchPadding
+        && event.clientY >= rect.top - catchPadding
+        && event.clientY <= rect.bottom + catchPadding;
+      if (isWithinCatchArea) returnToRail("Tamam lan, pes!");
     };
     const onEscapeKey = (event: globalThis.KeyboardEvent) => {
       if (event.key === "Escape") returnToRail("");
     };
 
     window.addEventListener("pointermove", onPointerMove, { passive: true });
+    window.addEventListener("pointerdown", onPointerDown, true);
     window.addEventListener("keydown", onEscapeKey);
     return () => {
       window.clearTimeout(firstMove);
       window.clearTimeout(randomTimer);
       window.clearTimeout(proximityTimer);
       window.removeEventListener("pointermove", onPointerMove);
+      window.removeEventListener("pointerdown", onPointerDown, true);
       window.removeEventListener("keydown", onEscapeKey);
     };
   }, [escapePhase, moveEscapeVehicle, returnToRail]);

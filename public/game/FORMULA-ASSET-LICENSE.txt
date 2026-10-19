@@ -1,7 +1,0 @@
-MSKU Racing Formula car base model
-
-Asset: Current car high-downforce wing
-Source: https://3dassets.dev/assets/grand-prix-circuit-and-open-wheel-car-high-downforce-c1e1dd27
-License: CC0 1.0 Universal
-License URL: https://creativecommons.org/publicdomain/zero/1.0/
-Attribution is not required. The material palette was customized for MSKU Racing.

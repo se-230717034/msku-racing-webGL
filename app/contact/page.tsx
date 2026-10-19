@@ -52,7 +52,7 @@ export default function ContactPage() {
     <>
       <PageHero
         eyebrow={translate("İletişim", "Contact")}
-        title={translate("Bir konuşma başlatalım.", "Let's start a conversation.")}
+        title={translate("Bir konuşma başlatalım", "Let's start a conversation")}
         description={translate("Sponsorluk, iş birliği, etkinlik veya takımımızla ilgili sorularınız için bize ulaşabilirsiniz.", "Contact us about sponsorship, collaboration, events or any questions about our team.")}
       />
       <section className="section-space">

@@ -8,11 +8,15 @@ import { useLanguage } from "./language-provider";
 export function Footer() {
   const { translate } = useLanguage();
   const socialLinks = [
-    { label: "Instagram", href: "#", icon: Instagram },
     {
       label: "LinkedIn",
       href: "https://www.linkedin.com/company/msku-racing/posts/?feedView=all",
       icon: Linkedin,
+    },
+    {
+      label: "Instagram @mskuracing",
+      href: "https://www.instagram.com/mskuracing/",
+      icon: Instagram,
     },
     { label: translate("E-posta", "Email"), href: "mailto:mskuracing@gmail.com", icon: Mail },
   ];
@@ -35,7 +39,7 @@ export function Footer() {
             <div className="grid grid-cols-2 gap-3 text-sm text-white/55">
               <Link href="/#home">{translate("Ana Sayfa", "Home")}</Link><Link href="/#team">{translate("Takım", "Team")}</Link>
               <Link href="/#car">{translate("Araç", "Car")}</Link><Link href="/#sponsors">{translate("Sponsorlar", "Sponsors")}</Link>
-              <Link href="/#news">{translate("Haberler", "News")}</Link><Link href="/#contact">{translate("İletişim", "Contact")}</Link>
+              <Link href="/#news">{translate("Haberler", "News")}</Link><Link href="/contact">{translate("İletişim", "Contact")}</Link>
             </div>
           </div>
           <div>

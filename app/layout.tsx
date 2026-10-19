@@ -5,9 +5,11 @@ import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { LanguageProvider } from "@/components/language-provider";
 import { MotorsportMotion } from "@/components/motorsport-motion";
+import { ScrollRacer } from "@/components/scroll-racer";
+import { MemberCardPopup } from "@/components/member-card-popup";
 
-const manrope = Manrope({ subsets: ["latin"], variable: "--font-manrope" });
-const space = Space_Grotesk({ subsets: ["latin"], variable: "--font-space" });
+const manrope = Manrope({ subsets: ["latin", "latin-ext"], variable: "--font-manrope" });
+const space = Space_Grotesk({ subsets: ["latin", "latin-ext"], variable: "--font-space" });
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://msku-racing-preview.vercel.app"),
@@ -26,8 +28,8 @@ export const metadata: Metadata = {
     images: ["/og.png"],
   },
   icons: {
-    icon: "/images/team-logo.png",
-    apple: "/images/team-logo.png",
+    icon: "/images/msku-racing-logo-v2.png",
+    apple: "/images/msku-racing-logo-v2.png",
   },
 };
 
@@ -46,8 +48,10 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <div className="noise" />
         <LanguageProvider>
           <MotorsportMotion />
+          <ScrollRacer />
+          <MemberCardPopup />
           <Header />
-          <main>{children}</main>
+          <main id="site-main">{children}</main>
           <Footer />
         </LanguageProvider>
       </body>

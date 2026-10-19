@@ -3,7 +3,7 @@ import { Reveal } from "./motion-reveal";
 
 export function PageHero({ eyebrow, title, description, children }: { eyebrow: string; title: string; description: string; children?: ReactNode }) {
   return (
-    <section className="page-hero relative overflow-hidden border-b border-white/10 pt-[72px] xl:pt-[76px]">
+    <section className="page-hero theme-fixed-dark relative overflow-hidden border-b border-white/10 pt-[72px] xl:pt-[76px]">
       <div className="absolute inset-0 bg-grid-dark bg-[size:64px_64px] opacity-55 [mask-image:linear-gradient(to_bottom,black,transparent)]" />
       <div className="track-line absolute -right-[8%] top-[-28%] size-[520px] rounded-full border border-white/10 md:size-[760px]" />
       <div className="track-line absolute -right-[2%] top-[-5%] size-[340px] rounded-full border border-burgundy/30 md:size-[520px]" />

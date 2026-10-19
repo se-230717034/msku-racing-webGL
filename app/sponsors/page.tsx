@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowRight, Gem, Handshake, Rocket } from "lucide-react";
 import { PageHero } from "@/components/page-hero";
 import { Reveal } from "@/components/motion-reveal";
@@ -46,7 +47,7 @@ const sponsorTiers = [
     enDescription: "Supporters contributing products, services and expertise to our team's development.",
     trMarker: "DESTEKÇİ",
     enMarker: "SUPPORTER",
-    slots: 8,
+    slots: 4,
     icon: Handshake,
   },
 ];
@@ -58,7 +59,7 @@ export default function SponsorsPage() {
     <>
       <PageHero
         eyebrow={translate("İş ortaklarımız", "Our Partners")}
-        title={translate("İlerlemek bir takım işidir.", "Progress is a team effort.")}
+        title={translate("İlerlemek bir takım işidir", "Progress is a team effort")}
         description={translate("Sponsorlarımız, öğrenci hedeflerini gerçek üretim, test ve yarışma deneyimine dönüştürmemize destek olur.", "Our sponsors help transform student ambition into real manufacturing, testing and competition experience.")}
       />
 
@@ -66,6 +67,7 @@ export default function SponsorsPage() {
         <div className="container-shell space-y-16">
           {sponsorTiers.map((tier, tierIndex) => {
             const TierIcon = tier.icon;
+            const isSupporterTier = tier.trMarker === "DESTEKÇİ";
             return (
             <Reveal key={tier.trName} delay={tierIndex * .06}>
               <div className="grid gap-7 lg:grid-cols-[.45fr_1.55fr] lg:items-start">
@@ -74,18 +76,43 @@ export default function SponsorsPage() {
                   <h2 className="mt-3 font-display text-3xl font-semibold uppercase">{language === "tr" ? tier.trName : tier.enName}</h2>
                   <p className="mt-3 max-w-sm text-sm leading-7 text-white/45">{language === "tr" ? tier.trDescription : tier.enDescription}</p>
                 </div>
-                <div className={`grid gap-px border border-white/10 bg-white/10 sm:grid-cols-2 ${tier.slots === 8 ? "lg:grid-cols-4" : ""}`}>
-                  {Array.from({ length: tier.slots }, (_, index) => index + 1).map((slot) => (
-                    <div key={slot} className={`premium-card group grid place-items-center bg-[#0D1425] text-center ${tier.slots === 8 ? "min-h-24 p-3" : "min-h-48 p-6"}`}>
-                      <div>
-                        <TierIcon className="mx-auto text-university transition group-hover:text-burgundy" size={tier.slots === 8 ? 18 : 23} />
-                        <p className={`${tier.slots === 8 ? "mt-2 text-[9px]" : "mt-5 text-[11px]"} font-bold uppercase tracking-[.2em] text-white/35`}>
-                          {language === "tr" ? tier.trMarker : tier.enMarker} {tier.slots === 8 ? "" : "SPONSOR "}{String(slot).padStart(2, "0")}
-                        </p>
-                        <p className={`${tier.slots === 8 ? "mt-1 text-[8px]" : "mt-2 text-[9px]"} uppercase tracking-[.18em] text-white/20`}>{translate("Logo alanı", "Logo area")}</p>
+                <div className={`grid gap-px border border-white/10 bg-white/10 sm:grid-cols-2 ${isSupporterTier ? "lg:grid-cols-4" : ""}`}>
+                  {Array.from({ length: tier.slots }, (_, index) => index + 1).map((slot) => {
+                    const isCodexoSoft = isSupporterTier && slot === 1;
+
+                    if (isCodexoSoft) {
+                      return (
+                        <a
+                          key="codexosoft"
+                          href="https://codexosoft.com/"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          aria-label={translate("CodexoSoft web sitesini ziyaret et", "Visit the CodexoSoft website")}
+                          className="premium-card group relative aspect-[3/2] min-h-24 overflow-hidden bg-[#0D1425] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-burgundy focus-visible:ring-inset"
+                        >
+                          <Image
+                            src="/images/sponsors/codexosoft.png"
+                            alt="CodexoSoft Software Solutions"
+                            fill
+                            sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
+                            className="object-cover transition duration-500 group-hover:scale-[1.03] group-hover:brightness-110"
+                          />
+                        </a>
+                      );
+                    }
+
+                    return (
+                      <div key={slot} className={`premium-card group grid place-items-center bg-[#0D1425] text-center ${isSupporterTier ? "min-h-24 p-3" : "min-h-48 p-6"}`}>
+                        <div>
+                          <TierIcon className="mx-auto text-university transition group-hover:text-burgundy" size={isSupporterTier ? 18 : 23} />
+                          <p className={`${isSupporterTier ? "mt-2 text-[9px]" : "mt-5 text-[11px]"} font-bold uppercase tracking-[.2em] text-white/35`}>
+                            {language === "tr" ? tier.trMarker : tier.enMarker} {isSupporterTier ? "" : "SPONSOR "}{String(slot).padStart(2, "0")}
+                          </p>
+                          <p className={`${isSupporterTier ? "mt-1 text-[8px]" : "mt-2 text-[9px]"} uppercase tracking-[.18em] text-white/20`}>{translate("Logo alanı", "Logo area")}</p>
+                        </div>
                       </div>
-                    </div>
-                  ))}
+                    );
+                  })}
                 </div>
               </div>
             </Reveal>
@@ -117,7 +144,7 @@ export default function SponsorsPage() {
         <div className="container-shell text-center">
           <Reveal>
             <h2 className="mx-auto max-w-4xl font-display text-5xl font-semibold uppercase leading-[.95] tracking-[-.05em] md:text-7xl">
-              {translate("Gelecek neslin arkasında yer alın.", "Stand behind the next generation.")}
+              {translate("Gelecek neslin arkasında yer alın", "Stand behind the next generation")}
             </h2>
             <p className="mx-auto mt-7 max-w-xl leading-8 text-white/50">{translate("Hedeflediğiniz etkiyi birlikte oluşturacak bir iş birliği tasarlayalım.", "Let's design a partnership that creates the impact you are aiming for.")}</p>
             <Button asChild size="lg" className="mt-8"><Link href="/contact">{translate("İş ortağımız olun", "Become our partner")} <ArrowRight size={16} /></Link></Button>

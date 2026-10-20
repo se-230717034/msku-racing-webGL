@@ -47,7 +47,7 @@ export function GamePreview() {
   };
 
   return (
-    <div className={`race-game-launch race-game-compact is-${phase}`}>
+    <div className={`race-game-launch race-game-compact race-game-real is-${phase}`}>
       <div className="race-game-grid" aria-hidden="true" />
       <div className="race-game-scan" aria-hidden="true" />
 
@@ -80,17 +80,20 @@ export function GamePreview() {
             </p>
           </div>
 
-          <div className="race-game-gameplay">
+          <div className="race-game-car-stage">
+            <span className="race-game-orbit race-game-orbit-one" aria-hidden="true" />
+            <span className="race-game-orbit race-game-orbit-two" aria-hidden="true" />
+            <span className="race-game-car-index" aria-hidden="true">48</span>
             <Image
-              className="race-game-gameplay-image"
-              src="/images/msku-racing-gameplay.png"
-              alt={translate("MSKU Racing oyununun yarış pisti", "The race track in the MSKU Racing game")}
+              className="race-game-photo-car"
+              src="/images/msku-racing-game-car-v2.png"
+              alt={translate("48 numaralı MSKU Racing Formula Student aracı", "MSKU Racing Formula Student car number 48")}
               fill
-              sizes="(min-width: 1024px) 25vw, 100vw"
+              sizes="(min-width: 1024px) 34vw, 100vw"
+              priority
             />
-            <div className="race-game-gameplay-shade" aria-hidden="true" />
-            <span className="race-game-gameplay-label">
-              <i /> {translate("Oyun içi görüntü", "In-game footage")}
+            <span className="race-game-car-label">
+              <i /> {translate("Piste çıkmaya hazır", "Ready for the track")}
             </span>
           </div>
         </div>

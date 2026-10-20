@@ -48,7 +48,7 @@ export function RaceCountdown() {
     <section aria-labelledby="race-countdown-title" className="race-control theme-fixed-dark relative overflow-hidden border-b border-white/10 bg-[#080d1a]">
       <div className="race-control-grid absolute inset-0" />
       <span className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-burgundy to-transparent" />
-      <div className="container-shell relative grid gap-8 py-16 lg:grid-cols-2 lg:items-stretch lg:py-20">
+      <div className="container-shell relative grid gap-8 py-16 lg:grid-cols-2 lg:items-start lg:py-20">
         <div className="race-control-board">
           <div className="flex flex-wrap items-center justify-between gap-4 border-b border-white/10 pb-5">
             <div className="flex items-center gap-3">
@@ -58,7 +58,7 @@ export function RaceCountdown() {
             <span className="flex items-center gap-2 text-[9px] font-bold uppercase tracking-[.2em] text-green"><Radio size={13} /> Formula Student 2027</span>
           </div>
 
-          <div className="grid gap-8 py-9 xl:grid-cols-[.48fr_1.52fr] xl:items-end">
+          <div className="grid gap-8 py-9 xl:grid-cols-[.4fr_1.6fr] xl:items-end">
             <div>
               <CalendarDays className="text-burgundy" size={24} />
               <h2 id="race-countdown-title" className="mt-5 font-display text-4xl font-semibold uppercase leading-[.9] tracking-[-.045em] md:text-5xl">

@@ -2149,6 +2149,153 @@ html.light .theme-fixed-dark.bg-university { background-color: #eef0ff; }
   .race-game-copy p { font-size: 11px; }
 }
 
+.race-game-launch.race-game-compact {
+  min-height: 440px;
+  background:
+    radial-gradient(circle at 76% 48%, rgba(37,43,135,.3), transparent 16rem),
+    linear-gradient(135deg, #0b1222, #03060d 68%);
+  box-shadow: 0 22px 70px rgba(0,0,0,.35);
+}
+
+.race-game-compact::before {
+  border-color: rgba(245,244,239,.09);
+  background: linear-gradient(115deg, transparent 0 68%, rgba(160,0,38,.07) 68% 69%, transparent 69%);
+}
+
+.race-game-compact::after { width: 86px; height: 6px; box-shadow: -24px 0 0 #252b87; }
+.race-game-compact .race-game-grid { opacity: .1; background-size: 32px 32px; mask-image: linear-gradient(90deg, black, rgba(0,0,0,.35)); }
+.race-game-compact .race-game-scan { width: 13%; animation-duration: 7.5s; }
+
+.race-game-compact .race-game-content {
+  min-height: 440px;
+  padding: 20px;
+}
+
+.race-game-compact .race-game-topline { padding-bottom: 13px; }
+
+.race-game-main {
+  display: grid;
+  min-height: 0;
+  flex: 1;
+  grid-template-columns: minmax(220px, .9fr) minmax(260px, 1.1fr);
+  align-items: center;
+  gap: 8px;
+}
+
+.race-game-compact .race-game-copy {
+  width: 100%;
+  margin: 0;
+  padding: 22px 0 16px;
+  text-shadow: none;
+}
+
+.race-game-compact .race-game-kicker { margin-bottom: 11px; font-size: 8px; }
+.race-game-compact .race-game-copy h2 { font-size: clamp(2.15rem, 3.15vw, 3.4rem); line-height: .88; letter-spacing: -.065em; }
+.race-game-compact .race-game-copy p { max-width: 310px; margin-top: 13px; font-size: 10px; line-height: 1.55; }
+
+.race-game-schematic {
+  position: relative;
+  min-width: 0;
+  min-height: 230px;
+  overflow: hidden;
+}
+
+.race-game-number {
+  position: absolute;
+  right: -.04em;
+  top: 50%;
+  color: rgba(245,244,239,.035);
+  font-family: var(--font-space);
+  font-size: clamp(8rem, 13vw, 12rem);
+  font-weight: 700;
+  line-height: .7;
+  letter-spacing: -.1em;
+  transform: translateY(-48%);
+}
+
+.race-game-circuit {
+  position: absolute;
+  inset: 8px 5% auto auto;
+  width: 74%;
+  height: 90%;
+  fill: none;
+  stroke: rgba(245,244,239,.13);
+  stroke-width: 1;
+  stroke-dasharray: 3 8;
+  animation: race-game-dash 15s linear infinite;
+}
+
+.race-game-formula {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 112%;
+  overflow: visible;
+  transform: translate(-50%, -50%) rotate(-5deg);
+  filter: drop-shadow(0 18px 30px rgba(0,0,0,.5));
+  transition: transform .65s cubic-bezier(.2,.8,.2,1), filter .65s ease;
+}
+
+.race-game-compact:hover .race-game-formula { transform: translate(-50%, -53%) rotate(-3deg) scale(1.025); filter: drop-shadow(0 24px 36px rgba(0,0,0,.62)); }
+.race-game-formula-glow { fill: none; stroke: rgba(216,0,50,.72); stroke-width: 2; }
+.race-game-formula-wheels { fill: #050810; stroke: rgba(245,244,239,.34); stroke-width: 2; }
+.race-game-formula-body { fill: rgba(37,43,135,.48); stroke: #f5f4ef; stroke-width: 2.2; stroke-linejoin: round; }
+.race-game-formula-body path:nth-child(2) { fill: rgba(160,0,38,.72); }
+.race-game-formula-body path:nth-child(3) { fill: #09101e; stroke: rgba(245,244,239,.6); }
+.race-game-formula-body path:nth-child(4) { fill: rgba(160,0,38,.25); stroke: #d80032; }
+.race-game-formula text { fill: #f5f4ef; font-family: var(--font-space); font-size: 22px; font-weight: 700; text-anchor: middle; }
+
+.race-game-schematic-label {
+  position: absolute;
+  right: 12px;
+  bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: rgba(245,244,239,.45);
+  font-size: 7px;
+  font-weight: 800;
+  letter-spacing: .22em;
+}
+
+.race-game-schematic-label i { display: block; width: 34px; height: 1px; background: linear-gradient(90deg, #252b87, #d80032); }
+
+.race-game-compact .race-game-launchpad {
+  grid-template-columns: 160px minmax(230px, 1fr);
+  gap: 9px;
+}
+
+.race-game-compact .race-start-lights { min-height: 61px; justify-content: center; padding-inline: 12px; }
+.race-game-compact .race-start-lights span { width: 13px; }
+.race-game-compact .race-game-button { min-height: 61px; padding: 8px 15px 8px 8px; }
+.race-game-compact .race-game-button-icon { width: 43px; height: 43px; }
+.race-game-compact .race-game-button > span:nth-child(2) { font-size: 11px; }
+
+@media (max-width: 720px) {
+  .race-game-launch.race-game-compact,
+  .race-game-compact .race-game-content { min-height: 525px; }
+  .race-game-compact .race-game-content { padding: 18px; }
+  .race-game-main { grid-template-columns: 1fr; gap: 0; }
+  .race-game-compact .race-game-copy { padding: 20px 0 4px; }
+  .race-game-compact .race-game-copy h2 { font-size: clamp(2.2rem, 11vw, 3.15rem); }
+  .race-game-compact .race-game-copy p { max-width: 28rem; }
+  .race-game-schematic { min-height: 165px; }
+  .race-game-formula { width: min(112%, 470px); }
+  .race-game-number { font-size: 8rem; }
+  .race-game-compact .race-game-launchpad { grid-template-columns: 1fr; }
+  .race-game-compact .race-start-lights { min-height: 42px; }
+  .race-game-compact .race-game-button { min-height: 58px; }
+}
+
+@media (max-width: 420px) {
+  .race-game-launch.race-game-compact,
+  .race-game-compact .race-game-content { min-height: 500px; }
+  .race-game-compact .race-game-copy { padding-top: 16px; }
+  .race-game-compact .race-game-copy p { display: none; }
+  .race-game-schematic { min-height: 170px; }
+  .race-game-schematic-label { display: none; }
+}
+
 @keyframes game-session-loading {
   from { translate: -110% 0; }
   to { translate: 240% 0; }

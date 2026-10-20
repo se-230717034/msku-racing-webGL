@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <base href="/game/">
-    <title>Unity Web Player | FST</title>
+    <title>MSKU Racing Game</title>
     <link rel="shortcut icon" href="TemplateData/favicon.ico">
     <link rel="stylesheet" href="TemplateData/style.css">
   </head>
@@ -12,9 +12,22 @@
     <div id="unity-container" class="unity-desktop">
       <canvas id="unity-canvas" width=960 height=600 tabindex="-1"></canvas>
       <div id="unity-loading-bar">
-        <div id="unity-logo"></div>
-        <div id="unity-progress-bar-empty">
-          <div id="unity-progress-bar-full"></div>
+        <div class="msku-loader-grid"></div>
+        <div class="msku-loader-scan"></div>
+        <div class="msku-loader-panel">
+          <img class="msku-loader-logo" src="../images/msku-racing-logo-v2.png" alt="MSKU Racing">
+          <p class="msku-loader-eyebrow">MSKU RACING GAME</p>
+          <h1>YARIŞ HAZIRLANIYOR</h1>
+          <div class="msku-loader-lights" aria-hidden="true">
+            <span></span><span></span><span></span><span></span><span></span>
+          </div>
+          <div id="unity-progress-bar-empty">
+            <div id="unity-progress-bar-full"></div>
+          </div>
+          <div class="msku-loader-meta">
+            <span>UNITY WEBGL</span>
+            <span id="unity-progress-label">0%</span>
+          </div>
         </div>
       </div>
       <div id="unity-warning"> </div>
@@ -110,6 +123,7 @@
       script.onload = () => {
         createUnityInstance(canvas, config, (progress) => {
           document.querySelector("#unity-progress-bar-full").style.width = 100 * progress + "%";
+          document.querySelector("#unity-progress-label").textContent = Math.round(100 * progress) + "%";
               }).then((unityInstance) => {
                 document.querySelector("#unity-loading-bar").style.display = "none";
                 document.querySelector("#unity-fullscreen-button").onclick = () => {

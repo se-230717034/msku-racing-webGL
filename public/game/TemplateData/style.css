@@ -1,16 +1,129 @@
-body { padding: 0; margin: 0 }
-#unity-container { position: absolute }
-#unity-container.unity-desktop { left: 50%; top: 50%; transform: translate(-50%, -50%) }
-#unity-container.unity-mobile { position: fixed; width: 100%; height: 100% }
-#unity-canvas { background: #231F20 }
-.unity-mobile #unity-canvas { width: 100%; height: 100% }
-#unity-loading-bar { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); display: none }
-#unity-logo { width: 154px; height: 130px; background: url('unity-logo-dark.png') no-repeat center }
-#unity-progress-bar-empty { width: 141px; height: 18px; margin-top: 10px; margin-left: 6.5px; background: url('progress-bar-empty-dark.png') no-repeat center }
-#unity-progress-bar-full { width: 0%; height: 18px; margin-top: 10px; background: url('progress-bar-full-dark.png') no-repeat center }
-#unity-footer { position: relative }
-.unity-mobile #unity-footer { display: none }
-#unity-logo-title-footer { float:left; width: 102px; height: 38px; background: url('unity-logo-title-footer.png') no-repeat center }
-#unity-build-title { float: right; margin-right: 10px; line-height: 38px; font-family: arial; font-size: 18px }
-#unity-fullscreen-button { cursor:pointer; float: right; width: 38px; height: 38px; background: url('fullscreen-button.png') no-repeat center }
-#unity-warning { position: absolute; left: 50%; top: 5%; transform: translate(-50%); background: white; padding: 10px; display: none }
+:root {
+  color-scheme: dark;
+  font-family: Inter, Arial, sans-serif;
+  background: #03060d;
+}
+
+* { box-sizing: border-box; }
+html, body { width: 100%; min-height: 100%; }
+body { padding: 0; margin: 0; overflow: hidden; background: #03060d; }
+#unity-container { position: absolute; }
+#unity-container.unity-desktop { left: 50%; top: 50%; transform: translate(-50%, -50%); }
+#unity-container.unity-mobile { position: fixed; width: 100%; height: 100%; }
+#unity-canvas { display: block; background: #03060d; }
+.unity-mobile #unity-canvas { width: 100%; height: 100%; }
+
+#unity-loading-bar {
+  position: fixed;
+  inset: 0;
+  z-index: 20;
+  display: none;
+  place-items: center;
+  overflow: hidden;
+  color: #f5f4ef;
+  background:
+    linear-gradient(90deg, rgba(3,6,13,.96) 0%, rgba(3,6,13,.76) 52%, rgba(3,6,13,.9) 100%),
+    url('/images/msku-racing-hero.png') 68% center / cover no-repeat,
+    #03060d;
+}
+
+#unity-loading-bar[style*="block"] { display: grid !important; }
+
+.msku-loader-grid {
+  position: absolute;
+  inset: 0;
+  opacity: .16;
+  background-image:
+    linear-gradient(rgba(245,244,239,.18) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(245,244,239,.18) 1px, transparent 1px);
+  background-size: 46px 46px;
+  mask-image: linear-gradient(to right, #000, transparent 72%);
+}
+
+.msku-loader-scan {
+  position: absolute;
+  inset: 0 auto 0 -25%;
+  width: 25%;
+  background: linear-gradient(90deg, transparent, rgba(160,0,38,.18), transparent);
+  transform: skewX(-17deg);
+  animation: msku-loader-scan 2.6s ease-in-out infinite;
+}
+
+.msku-loader-panel {
+  position: relative;
+  width: min(88vw, 560px);
+  padding: 42px;
+  border: 1px solid rgba(245,244,239,.15);
+  border-left: 3px solid #a00026;
+  background: rgba(3,6,13,.82);
+  box-shadow: 0 28px 100px rgba(0,0,0,.55);
+  backdrop-filter: blur(16px);
+}
+
+.msku-loader-panel::before {
+  content: "";
+  position: absolute;
+  top: -1px;
+  right: -1px;
+  width: 78px;
+  height: 8px;
+  background: #a00026;
+  clip-path: polygon(12% 0, 100% 0, 100% 100%, 0 100%);
+}
+
+.msku-loader-logo { display: block; width: 170px; height: auto; margin-bottom: 30px; }
+.msku-loader-eyebrow { margin: 0 0 10px; color: rgba(245,244,239,.48); font-size: 10px; font-weight: 800; letter-spacing: .3em; }
+.msku-loader-panel h1 { margin: 0; font-size: clamp(30px, 6vw, 58px); line-height: .92; letter-spacing: -.045em; }
+
+.msku-loader-lights { display: flex; gap: 8px; margin: 28px 0 22px; }
+.msku-loader-lights span {
+  width: 34px;
+  height: 13px;
+  border-radius: 999px;
+  border: 1px solid rgba(245,244,239,.17);
+  background: rgba(245,244,239,.06);
+  animation: msku-loader-light 1.6s infinite;
+}
+.msku-loader-lights span:nth-child(2) { animation-delay: .13s; }
+.msku-loader-lights span:nth-child(3) { animation-delay: .26s; }
+.msku-loader-lights span:nth-child(4) { animation-delay: .39s; }
+.msku-loader-lights span:nth-child(5) { animation-delay: .52s; }
+
+#unity-progress-bar-empty { width: 100%; height: 5px; overflow: hidden; background: rgba(245,244,239,.12); }
+#unity-progress-bar-full {
+  width: 0%;
+  height: 100%;
+  background: linear-gradient(90deg, #252b87, #a00026 58%, #f5f4ef);
+  box-shadow: 0 0 24px rgba(160,0,38,.65);
+  transition: width .18s ease;
+}
+
+.msku-loader-meta { display: flex; justify-content: space-between; margin-top: 11px; color: rgba(245,244,239,.55); font-size: 9px; font-weight: 800; letter-spacing: .22em; }
+
+#unity-footer { position: relative; height: 38px; color: #f5f4ef; background: #080d1a; }
+.unity-mobile #unity-footer { display: none; }
+#unity-logo-title-footer { display: none; }
+#unity-build-title { float: left; margin-left: 12px; line-height: 38px; font-family: Arial, sans-serif; font-size: 11px; font-weight: 700; letter-spacing: .18em; }
+#unity-fullscreen-button { cursor: pointer; float: right; width: 38px; height: 38px; background: url('fullscreen-button.png') no-repeat center; }
+#unity-warning { position: fixed; left: 50%; top: 5%; z-index: 30; transform: translateX(-50%); background: white; padding: 10px; display: none; }
+
+@keyframes msku-loader-scan {
+  0% { translate: 0 0; opacity: 0; }
+  20% { opacity: 1; }
+  100% { translate: 620% 0; opacity: 0; }
+}
+
+@keyframes msku-loader-light {
+  0%, 72%, 100% { background: rgba(245,244,239,.06); box-shadow: none; }
+  18%, 58% { background: #d80032; border-color: #ff315f; box-shadow: 0 0 18px rgba(216,0,50,.82); }
+}
+
+@media (max-width: 640px) {
+  .msku-loader-panel { width: calc(100vw - 32px); padding: 28px 24px; }
+  .msku-loader-logo { width: 138px; margin-bottom: 24px; }
+  .msku-loader-lights span { width: 27px; height: 11px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .msku-loader-scan, .msku-loader-lights span { animation-duration: 5s; }
+}

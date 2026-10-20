@@ -58,7 +58,7 @@ export function RaceCountdown() {
             <span className="flex items-center gap-2 text-[9px] font-bold uppercase tracking-[.2em] text-green"><Radio size={13} /> Formula Student 2027</span>
           </div>
 
-          <div className="grid gap-10 py-9 xl:grid-cols-[.55fr_1.45fr] xl:items-end">
+          <div className="grid gap-8 py-9 xl:grid-cols-[.48fr_1.52fr] xl:items-end">
             <div>
               <CalendarDays className="text-burgundy" size={24} />
               <h2 id="race-countdown-title" className="mt-5 font-display text-4xl font-semibold uppercase leading-[.9] tracking-[-.045em] md:text-5xl">

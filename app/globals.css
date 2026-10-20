@@ -1028,7 +1028,7 @@ html.light .race-control .text-white\/35 { color: rgba(245,244,239,.42); }
 
 .race-clock {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: 1.22fr repeat(3, minmax(0, 1fr));
   border-block: 1px solid rgba(245,244,239,.1);
 }
 
@@ -1043,7 +1043,7 @@ html.light .race-control .text-white\/35 { color: rgba(245,244,239,.42); }
 
 .race-clock-unit:last-child { border-right: 0; }
 .race-clock-unit > strong { display: block; max-width: 100%; overflow: hidden; font-family: var(--font-space); font-size: clamp(2rem, 4.1vw, 4.15rem); line-height: .85; letter-spacing: -.07em; white-space: nowrap; font-variant-numeric: tabular-nums; }
-.race-clock-unit-days > strong { font-size: clamp(1.75rem, 3.4vw, 3.55rem); }
+.race-clock-unit-days > strong { font-size: clamp(1.7rem, 2.7vw, 2.9rem); letter-spacing: -.09em; }
 .race-clock-unit > span:last-child { display: block; margin-top: .65rem; font-size: .52rem; font-weight: 700; text-transform: uppercase; letter-spacing: .17em; color: rgba(245,244,239,.38); }
 .race-clock-index { position: absolute; right: .65rem; top: .55rem; font-size: .48rem; color: #a00026; letter-spacing: .15em; }
 
@@ -2260,6 +2260,67 @@ html.light .theme-fixed-dark.bg-university { background-color: #eef0ff; }
 
 .race-game-schematic-label i { display: block; width: 34px; height: 1px; background: linear-gradient(90deg, #252b87, #d80032); }
 
+.race-game-gameplay {
+  position: relative;
+  min-width: 0;
+  min-height: 230px;
+  margin-left: 10px;
+  overflow: hidden;
+  border: 1px solid rgba(245,244,239,.16);
+  background: #050810;
+  clip-path: polygon(0 0, calc(100% - 22px) 0, 100% 22px, 100% 100%, 22px 100%, 0 calc(100% - 22px));
+  box-shadow: 0 18px 36px rgba(0,0,0,.4);
+}
+
+.race-game-gameplay::after {
+  content: "";
+  position: absolute;
+  inset: 9px;
+  z-index: 3;
+  border: 1px solid rgba(245,244,239,.07);
+  pointer-events: none;
+}
+
+.race-game-gameplay-image {
+  object-fit: cover;
+  object-position: center;
+  transform: scale(1.02);
+  transition: transform .7s cubic-bezier(.2,.8,.2,1), filter .4s ease;
+}
+
+.race-game-compact:hover .race-game-gameplay-image { transform: scale(1.065); filter: saturate(1.08); }
+
+.race-game-gameplay-shade {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background:
+    linear-gradient(90deg, rgba(3,6,13,.42), transparent 42%),
+    linear-gradient(0deg, rgba(3,6,13,.78), transparent 44%);
+}
+
+.race-game-gameplay-label {
+  position: absolute;
+  left: 19px;
+  bottom: 16px;
+  z-index: 4;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: rgba(245,244,239,.72);
+  font-size: 7px;
+  font-weight: 800;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+}
+
+.race-game-gameplay-label i {
+  width: 17px;
+  height: 2px;
+  background: #d80032;
+  box-shadow: 0 0 12px rgba(216,0,50,.7);
+}
+
 .race-game-compact .race-game-launchpad {
   grid-template-columns: 160px minmax(230px, 1fr);
   gap: 9px;
@@ -2280,6 +2341,7 @@ html.light .theme-fixed-dark.bg-university { background-color: #eef0ff; }
   .race-game-compact .race-game-copy h2 { font-size: clamp(2.2rem, 11vw, 3.15rem); }
   .race-game-compact .race-game-copy p { max-width: 28rem; }
   .race-game-schematic { min-height: 165px; }
+  .race-game-gameplay { min-height: 170px; margin-left: 0; }
   .race-game-formula { width: min(112%, 470px); }
   .race-game-number { font-size: 8rem; }
   .race-game-compact .race-game-launchpad { grid-template-columns: 1fr; }
@@ -2293,6 +2355,7 @@ html.light .theme-fixed-dark.bg-university { background-color: #eef0ff; }
   .race-game-compact .race-game-copy { padding-top: 16px; }
   .race-game-compact .race-game-copy p { display: none; }
   .race-game-schematic { min-height: 170px; }
+  .race-game-gameplay { min-height: 175px; }
   .race-game-schematic-label { display: none; }
 }
 

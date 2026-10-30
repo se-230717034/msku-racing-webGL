@@ -18,7 +18,7 @@ export const teamGroups = [
     enName: "Software Team",
     trDescription: "Gömülü yazılım, telemetri, veri analizi ve takımın dijital sistemleri.",
     enDescription: "Embedded software, telemetry, data analysis and the team's digital systems.",
-    members: ["Aslı Ceren Yılmaz", "Şenol Durmuş", "Yaşar Kaki"],
+    members: ["Aslı Ceren Yılmaz", "Şenol Durmuş", "Yaşar Kaki", "Dilara Dinç"],
   },
   {
     trName: "Mekanik Ekip",
@@ -32,7 +32,7 @@ export const teamGroups = [
     enName: "Organization Team",
     trDescription: "Etkinlik, iletişim, sponsorluk ve takım organizasyonu.",
     enDescription: "Events, communications, sponsorship and team organization.",
-    members: ["Eylül Deniz Kudu", "Ebrar Azra Arslan", "Şule Nilay Aktaş"],
+    members: ["Eylül Deniz Kudu", "Ebrar Azra Arslan", "Şule Nilay Aktaş", "Bedia Aydemir"],
   },
 ];
 
@@ -48,6 +48,7 @@ const linkedinProfiles: Record<string, string> = {
   "Aslı Ceren Yılmaz": "https://www.linkedin.com/in/asl%C4%B1cereny%C4%B1lmaz/",
   "Şenol Durmuş": "https://www.linkedin.com/in/%C5%9Fenol-durmu%C5%9F-b570613b7/",
   "Yaşar Kaki": "https://www.linkedin.com/in/yasarkaki/",
+  "Dilara Dinç": "https://www.linkedin.com/in/dilara-dinc/",
   "Halil İbrahim Yılmaz": "https://www.linkedin.com/in/halil-ibrahim-y%C4%B1lmaz-7a2a35229/",
   "Sertan Kurt": "https://www.linkedin.com/in/sertan-kurt-59bb6a185/",
   "Ata Üstün": "https://www.linkedin.com/in/ata-ustun/",
@@ -55,6 +56,7 @@ const linkedinProfiles: Record<string, string> = {
   "Zişan Günay": "https://www.linkedin.com/in/zi%C5%9Fan-g%C3%BCnay-9bb27b286/",
   "Şule Nilay Aktaş": "https://www.linkedin.com/in/nilay-aktas-95b1aa3ab/",
   "Ekrem Alperen Aksak": "https://www.linkedin.com/in/ekremalperenaksak/",
+  "Bedia Aydemir": "https://www.linkedin.com/in/bedia-aydemir-6964ba378/",
 };
 
 const universityProfiles: Record<string, string> = {

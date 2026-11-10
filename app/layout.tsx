@@ -8,6 +8,7 @@ import { LanguageProvider } from "@/components/language-provider";
 import { MotorsportMotion } from "@/components/motorsport-motion";
 import { ScrollRacer } from "@/components/scroll-racer";
 import { MemberCardPopup } from "@/components/member-card-popup";
+import { RaceEasterEgg } from "@/components/race-easter-egg";
 
 const manrope = Manrope({ subsets: ["latin", "latin-ext"], variable: "--font-manrope" });
 const space = Space_Grotesk({ subsets: ["latin", "latin-ext"], variable: "--font-space" });
@@ -51,6 +52,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
           <MotorsportMotion />
           <ScrollRacer />
           <MemberCardPopup />
+          <RaceEasterEgg />
           <Header />
           <main id="site-main">{children}</main>
           <Footer />

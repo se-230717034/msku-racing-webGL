@@ -236,6 +236,16 @@
   transform: scale(1.04);
 }
 
+.lightGreen {
+  border-color: rgba(90, 255, 156, .95);
+  background: radial-gradient(circle at 42% 35%, #b8ffd2 0 7%, #16d965 29%, #006d31 72%);
+  box-shadow:
+    inset 0 0 22px rgba(255, 255, 255, .2),
+    0 0 24px rgba(22, 217, 101, .92),
+    0 0 76px rgba(22, 217, 101, .46);
+  transform: scale(1.06);
+}
+
 .finalCopy {
   position: relative;
 }

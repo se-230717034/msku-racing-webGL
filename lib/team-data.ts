@@ -11,7 +11,7 @@ export const teamGroups = [
     enName: "Electronics Team",
     trDescription: "Araç elektroniği, kablolama, veri toplama ve kontrol sistemleri.",
     enDescription: "Vehicle electronics, wiring, data acquisition and control systems.",
-    members: ["Ufuk Çok", "Mahmut Can Aşar", "Eylül Deniz Kudu", "Alper Salih Günaydın", "Barış Bağcı", "Ebrar Azra Arslan", "Alperen Kaşıkçı", "Vatan Saatci"],
+    members: ["Ufuk Çok", "Mahmut Can Aşar", "Eylül Deniz Kudu", "Alper Salih Günaydın", "Barış Bağcı", "Ebrar Azra Arslan", "Alperen Kaşıkçı", "Vatan Saatci", "Feyza Atay"],
   },
   {
     trName: "Yazılım Ekibi",
@@ -45,6 +45,7 @@ const linkedinProfiles: Record<string, string> = {
   "Ebrar Azra Arslan": "https://www.linkedin.com/in/ebrar-azra-arslan-88a592290/",
   "Alperen Kaşıkçı": "https://www.linkedin.com/in/alperen-ka%C5%9F%C4%B1k%C3%A7%C4%B1-05ab89401/",
   "Vatan Saatci": "https://www.linkedin.com/in/vatan-saatci-3a2571425/",
+  "Feyza Atay": "https://www.linkedin.com/in/feyza-atay-527528393/",
   "Aslı Ceren Yılmaz": "https://www.linkedin.com/in/asl%C4%B1cereny%C4%B1lmaz/",
   "Şenol Durmuş": "https://www.linkedin.com/in/%C5%9Fenol-durmu%C5%9F-b570613b7/",
   "Yaşar Kaki": "https://www.linkedin.com/in/yasarkaki/",

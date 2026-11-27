@@ -11,7 +11,7 @@ export const teamGroups = [
     enName: "Electronics Team",
     trDescription: "Araç elektroniği, kablolama, veri toplama ve kontrol sistemleri.",
     enDescription: "Vehicle electronics, wiring, data acquisition and control systems.",
-    members: ["Ufuk Çok", "Mahmut Can Aşar", "Eylül Deniz Kudu", "Alper Salih Günaydın", "Barış Bağcı", "Ebrar Azra Arslan", "Alperen Kaşıkçı", "Vatan Saatci", "Feyza Atay"],
+    members: ["Ufuk Çok", "Mahmut Can Aşar", "Eylül Deniz Kudu", "Alper Salih Günaydın", "Barış Bağcı", "Ebrar Azra Arslan", "Alperen Kaşıkçı", "Vatan Saatci"],
   },
   {
     trName: "Yazılım Ekibi",
@@ -25,7 +25,7 @@ export const teamGroups = [
     enName: "Mechanical Team",
     trDescription: "Şasi, süspansiyon, aktarma, üretim ve aracın mekanik bütünlüğü.",
     enDescription: "Chassis, suspension, drivetrain, manufacturing and vehicle mechanical integrity.",
-    members: ["Halil İbrahim Yılmaz", "Sertan Kurt", "Ata Üstün", "Tuğra Temur", "Zişan Günay"],
+    members: ["Halil İbrahim Yılmaz", "Sertan Kurt", "Ata Üstün", "Tuğra Temur", "Zişan Günay", "Feyza Atay"],
   },
   {
     trName: "Organizasyon Ekibi",
